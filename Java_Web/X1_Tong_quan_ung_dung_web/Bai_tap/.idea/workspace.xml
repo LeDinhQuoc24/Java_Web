@@ -7,20 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a900478e-3a18-462a-8331-3a04d7770970" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Ung_dung_Product_Discount_CalculatorAssignment_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ung_dung_Product_Discount_CalculatorAssignment.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Ung_dung_Product_Discount_CalculatorAssignment_war_exploded/WEB-INF/classes/Ung_dung_Product_Discount_CalculatorAssignment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Ung_dung_Product_Discount_CalculatorAssignment_war_exploded/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Ung_dung_Product_Discount_CalculatorAssignment_war_exploded/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ung_dung_Product_Discount_CalculatorAssignment/Ung_dung_Product_Discount_CalculatorAssignment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ung_dung_Product_Discount_CalculatorAssignment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product_Discount/Product_Discount.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Product_Discount/Product_Discount.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product_Discount/src/Product_Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product_Discount/src/Product_Discount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +22,7 @@
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
       <set>
+        <option value="F:\ProjectCodyGym\C0120G1_Le_Dinh_Quoc\C0120G1\Module2_JavaWeb\Java_Web\X1_Tong_quan_ung_dung_web\Bai_tap2\.idea" />
         <option value="F:\ProjectCodyGym\C0120G1_Le_Dinh_Quoc\C0120G1\Module2_JavaWeb\Java_Wed\X1_Tong_quan_ung_dung_web\Bai_tap\.idea" />
       </set>
     </option>
@@ -55,15 +45,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Bai_tap3/Product_Discount" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.33" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.33" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="Ung_dung_Product_Discount_CalculatorAssignment:war exploded">
+        <artifact name="Product_Discount:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/" />
           </settings>
@@ -143,11 +134,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -166,6 +152,9 @@
       <option name="presentableId" value="Default" />
       <updated>1585659297231</updated>
       <workItem from="1585659328408" duration="365000" />
+      <workItem from="1585666180050" duration="26000" />
+      <workItem from="1585666443965" duration="605000" />
+      <workItem from="1585667165345" duration="50000" />
     </task>
     <servers />
   </component>
@@ -173,18 +162,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="275" y="22" key="#Project_Structure" timestamp="1585659471980">
+    <state x="275" y="22" key="#Project_Structure" timestamp="1585667006084">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="22" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1585659471980" />
-    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585659408728">
+    <state x="275" y="22" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1585667006084" />
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585666981052">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1585659408728" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1585659691368">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1585666981052" />
+    <state x="526" y="253" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585666870493">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585659691368" />
+    <state x="526" y="253" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1585666870493" />
+    <state x="463" y="115" key="FileChooserDialogImpl" timestamp="1585667314062">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="115" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585667314062" />
     <state width="893" height="156" key="GridCell.Tab.0.bottom" timestamp="1585659694528">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -233,5 +226,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="893" height="156" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1585659694529" />
+    <state x="307" y="0" width="1059" height="728" key="NewModule_or_Project.wizard" timestamp="1585666825635">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="307" y="0" width="1059" height="728" key="NewModule_or_Project.wizard/0.0.1366.728@0.0.1366.728" timestamp="1585666825635" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1585667050994">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1585667050994" />
   </component>
 </project>

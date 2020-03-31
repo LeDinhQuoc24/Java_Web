@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Ung_dung_Product_Discount_CalculatorAssignment.iml" filepath="$PROJECT_DIR$/Ung_dung_Product_Discount_CalculatorAssignment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Product_Discount.iml" filepath="$PROJECT_DIR$/Product_Discount.iml" />
     </modules>
   </component>
 </project>

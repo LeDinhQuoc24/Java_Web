@@ -6,15 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "Ung_dung_Product_Discount_CalculatorAssignment", urlPatterns = "/display_discount")
-public class Ung_dung_Product_Discount_CalculatorAssignment extends HttpServlet {
+@WebServlet(name = "Product_Discount", urlPatterns = "/display_discount")
+public class Product_Discount extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String product_description = request.getParameter("description");
         float price = Float.parseFloat(request.getParameter("price"));
         float discount_percent = Float.parseFloat(request.getParameter("discount_percent"));
         float discount_amount=price*discount_percent/100;
         float total=price-discount_amount;
-
 
         PrintWriter writer = response.getWriter();
         writer.println("<html>");
