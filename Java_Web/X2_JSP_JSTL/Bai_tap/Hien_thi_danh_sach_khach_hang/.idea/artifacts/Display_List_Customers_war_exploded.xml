@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Display_List_Customers:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Display_List_Customers_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Display_List_Customers/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Display_List_Customers" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
