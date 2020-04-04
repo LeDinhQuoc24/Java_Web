@@ -31,6 +31,5 @@
       </tr>
     </c:forEach>
   </table>
-
   </body>
 </html>
