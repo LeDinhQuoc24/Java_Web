@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="display.css">
   </head>
   <body>
-  <div class="container">
-  <table cellpadding="30px" cellspacing="0">
+  <table  cellpadding="30px" cellspacing="0">
     <h2>Danh sách khách hàng</h2>
     <tr>
       <th>Tên</th>
@@ -32,6 +31,6 @@
       </tr>
     </c:forEach>
   </table>
-  </div>
+
   </body>
 </html>
