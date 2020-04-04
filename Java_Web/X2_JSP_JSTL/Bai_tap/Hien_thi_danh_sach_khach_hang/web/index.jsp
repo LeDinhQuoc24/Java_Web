@@ -11,8 +11,10 @@
 <html>
   <head>
     <title>$Title$</title>
+    <link rel="stylesheet" href="display.css">
   </head>
   <body>
+  <div class="container">
   <table cellpadding="30px" cellspacing="0">
     <h2>Danh sách khách hàng</h2>
     <tr>
@@ -21,9 +23,15 @@
       <th>Địa chỉ</th>
       <th>Ảnh</th>
     </tr>
-
-
-
+    <c:forEach items="${listCustomer}" var="customer">
+      <tr>
+        <td>${customer.name}</td>
+        <td>${customer.hireDate}</td>
+        <td>${customer.address}</td>
+        <td><img src="${customer.image}" alt=""></td>
+      </tr>
+    </c:forEach>
   </table>
+  </div>
   </body>
 </html>

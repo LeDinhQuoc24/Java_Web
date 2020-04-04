@@ -1,0 +1,35 @@
+table {
+    border: 1px solid black;
+}
+
+table td {
+    padding-right: 96px;
+    padding-bottom: 10px;
+    padding-top: 12px;
+
+}
+
+table tr:last-child {
+    border-bottom: none;
+}
+
+table th {
+    padding-right: 96px;
+}
+table td img {
+    width: 60px;
+    height: 60px;
+}
+
+h2 {
+    margin-left: 255px;
+
+}
+
+table {
+    border-collapse: collapse
+}
+
+tr {
+    border-bottom: 1px solid red
+}
