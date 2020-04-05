@@ -18,6 +18,16 @@ public class ProductServiceImpl implements ProductService{
         products.put(5,new Product(5,"Chuột quang Fuhlen L102",45000,8,"img/5.png"));
         products.put(6,new Product(6,"Chuột Game Led 7 Màu",25000,20,"img/6.png"));
     }
+    private static Map<String,Product> products2;
+    static {
+        products2 = new HashMap<>();
+        products2.put("Chuột quang Logitech B100",new Product(1,"Chuột quang Logitech B100",54000,10,"img/1.png"));
+        products2.put("Chuột quang Logitech G102",new Product(2,"Chuột quang Logitech G102",362000,5,"img/2.png"));
+        products2.put("Chuột không dây 6D 7500",new Product(3,"Chuột không dây 6D 7500",39000,2,"img/3.png"));
+        products2.put("Chuột không dây Logitech B175",new Product(4,"Chuột không dây Logitech B175",151000,12,"img/4.png"));
+        products2.put("Chuột quang Fuhlen L102",new Product(5,"Chuột quang Fuhlen L102",45000,8,"img/5.png"));
+        products2.put("Chuột Game Led 7 Màu",new Product(6,"Chuột Game Led 7 Màu",25000,20,"img/6.png"));
+    }
 
 
 
@@ -35,6 +45,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product findById(int id) {
         return products.get(id);
+    }
+    @Override
+    public Product findByName(String name) {
+        return products2.get(name);
     }
 
     @Override

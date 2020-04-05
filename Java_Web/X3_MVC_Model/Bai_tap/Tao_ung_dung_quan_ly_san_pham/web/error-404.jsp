@@ -11,6 +11,6 @@
     <title>Error 404</title>
 </head>
 <body>
-<h1>Resource not found</h1>
+<h1>Không tìm thấy</h1>
 </body>
 </html>

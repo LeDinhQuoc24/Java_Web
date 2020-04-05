@@ -17,6 +17,12 @@
     <a href="/products?action=create">Thêm mới sản phẩm</a>
 </p>
 
+<form action="/products?action=find" method="post">
+    <input type="text" name="txtSearch" placeholder="Nhập tên sản phẩm: "/>
+    <input type = "submit" id = "submit" value = "Tìm kiếm" />
+</form>
+
+
 <table class="table table-dark">
     <thead>
     <tr>
