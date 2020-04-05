@@ -23,12 +23,13 @@ public class ProductServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createCustomer(request, response);
+                createProduct(request, response);
                 break;
             case "edit":
-                updateCustomer(request, response);
+                updateProduct(request, response);
                 break;
             case "delete":
+                deleteProduct(request, response);
                 break;
             default:
                 break;
@@ -47,6 +48,7 @@ public class ProductServlet extends HttpServlet {
                 showEditForm(request, response);
                 break;
             case "delete":
+                showDeleteForm(request, response);
                 break;
             default:
                 listProduct(request, response);
@@ -75,7 +77,7 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    private void createCustomer(HttpServletRequest request, HttpServletResponse response) {
+    private void createProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
@@ -112,7 +114,7 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    private void updateCustomer(HttpServletRequest request, HttpServletResponse response) {
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
@@ -136,6 +138,39 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = this.productService.findById(id);
+        RequestDispatcher dispatcher;
+        if(product == null){
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("product", product);
+            dispatcher = request.getRequestDispatcher("delete.jsp");
+        }
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = this.productService.findById(id);
+        RequestDispatcher dispatcher;
+        if(product == null){
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            this.productService.remove(id);
+            try {
+                response.sendRedirect("/products");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
