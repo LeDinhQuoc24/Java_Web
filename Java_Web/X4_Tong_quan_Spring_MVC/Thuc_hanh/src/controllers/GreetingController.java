@@ -3,6 +3,7 @@ package controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class GreetingController {
@@ -10,9 +11,16 @@ public class GreetingController {
 //    public String greeting(){
 //        return "index1";
 //    }
+//    @GetMapping("/greeting")
+//    public String getIndex(Model model){
+//        model.addAttribute("hello","Greeting hello class");
+//        return "index1";
+//    }
     @GetMapping("/greeting")
-    public String getIndex(Model model){
-        model.addAttribute("hello","Greeting hello class");
+    public String greeting(@RequestParam String name, Model modle){
+        modle.addAttribute("name", name);
         return "index1";
     }
+    //Chạy câu lệnh kiểm tra:
+    //http://localhost:8080/greeting?name=Lam
 }
