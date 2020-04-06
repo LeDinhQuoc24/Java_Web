@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class GreetingController {
-//    @GetMapping("/greeting")
-//    public String greeting(){
-//        return "index1";
-//    }
-//    @GetMapping("/greeting")
-//    public String getIndex(Model model){
-//        model.addAttribute("hello","Greeting hello class");
-//        return "index1";
-//    }
-    @GetMapping("/greeting")
+    @GetMapping("/greeting1")
     public String greeting(@RequestParam String name, Model modle){
         modle.addAttribute("name", name);
         return "index1";
     }
     //Chạy câu lệnh kiểm tra:
-    //http://localhost:8080/greeting?name=Lam
+    //http://localhost:8080/greeting1?name=Lam
+    @GetMapping("/greeting2")
+    public String greeting(){
+        return "index2";
+    }
+    @GetMapping("/greeting3")
+    public String getIndex(Model model){
+        model.addAttribute("hello","Greeting hello class");
+        return "index3";
+    }
 }
