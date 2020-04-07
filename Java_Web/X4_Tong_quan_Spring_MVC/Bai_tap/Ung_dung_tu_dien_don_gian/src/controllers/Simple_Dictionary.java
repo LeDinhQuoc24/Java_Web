@@ -27,7 +27,6 @@ public class Simple_Dictionary {
         } else {
             model.addAttribute("notFound", "Không tìm thấy");
         }
-
-        return "index1";
+        return "index2";
     }
 }
