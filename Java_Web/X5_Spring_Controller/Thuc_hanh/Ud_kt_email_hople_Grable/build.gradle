@@ -1,9 +1,10 @@
+plugins {
+    id 'java'
+    id 'war'
+}
 
-group 'com.codegym'
+group 'vn.codegym'
 version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-apply plugin: 'war'
 
 sourceCompatibility = 1.8
 
@@ -16,4 +17,5 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.17.RELEASE'
+
 }
