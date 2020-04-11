@@ -54,4 +54,9 @@ public class ProductController {
         redirect.addFlashAttribute("success", "Update customer successfully!");
         return "redirect:/";
     }
+    @GetMapping("/product/{id}/view")
+    public String view(@PathVariable int id,Model model){
+        model.addAttribute("product",productService.findById(id));
+        return "view";
+    }
 }
