@@ -29,8 +29,8 @@
     <tr th:each="row,rowStat : ${listproduct}">
         <td th:text="${row.getName()}"></td>
         <td th:text="${row.getPrice()}"></td>
-        <td><img th:src="@{${row.getImage()}}" alt=""></td>
-        <!--        <td><img th:src="@{row.getImage()} "></td>-->
+        <td><img th:src="@{${row.getImage()}}"  ></td>
+<!--                <td><img th:src="@{row.getImage()} "></td>-->
         <td th:text="${row.getOrigin()}"></td>
 
         <td><a th:href="@{/product/{id}/edit(id=${row.getId()})}">edit</a></td>
