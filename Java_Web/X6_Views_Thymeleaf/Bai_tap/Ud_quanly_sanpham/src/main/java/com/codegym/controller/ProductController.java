@@ -28,7 +28,7 @@ public class ProductController {
     public String save( Product product, RedirectAttributes redirect){
         product.setId((int)(Math.random()*1000));
         productService.save(product);
-        redirect.addFlashAttribute("success","add product successly!!!");
+        redirect.addFlashAttribute("success","Add product successly!!!");
         return "redirect:/";
 
     }
@@ -45,8 +45,13 @@ public class ProductController {
     @PostMapping("/product/delete")
     public String delete(  int id, RedirectAttributes redirect){
         productService.remove(id);
-        redirect.addFlashAttribute("success","delete product successly!!!");
+        redirect.addFlashAttribute("success","Delete product successly!!!");
         return "redirect:/";
-
+    }
+    @PostMapping("/product/update")
+    public String update(Product product,RedirectAttributes redirect){
+        productService.update(product.getId(),product);
+        redirect.addFlashAttribute("success", "Update customer successfully!");
+        return "redirect:/";
     }
 }

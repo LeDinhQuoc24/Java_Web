@@ -16,8 +16,8 @@ public class ProductServiceImpl implements ProductService {
         listProduct.put(2,new Product(2,"Chuot quang Logitech G102",362000,"img/2.png","Korea"));
         listProduct.put(3,new Product(3,"Chuot khong day 6D 7500",39000,"img/3.png","Taiwan"));
         listProduct.put(4,new Product(4,"Chuot khong day Logitech B175",151000,"img/4.png","China"));
-        listProduct.put(4,new Product(5,"Chuot quang Fuhlen L102",45000,"img/5.png","USA"));
-        listProduct.put(4,new Product(6,"Chuot Game Led 7 Mau",25000,"img/6.png","EU"));
+        listProduct.put(5,new Product(5,"Chuot quang Fuhlen L102",45000,"img/5.png","USA"));
+        listProduct.put(6,new Product(6,"Chuot Game Led 7 Mau",25000,"img/6.png","EU"));
 
     }
 
