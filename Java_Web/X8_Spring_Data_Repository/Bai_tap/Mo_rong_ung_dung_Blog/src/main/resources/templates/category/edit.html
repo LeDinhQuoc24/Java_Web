@@ -2,28 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Delete category</title>
+    <title>Edit category</title>
 </head>
 <body>
-<h1>Delete category</h1>
-<h2>Are you sure?</h2>
+<h1>Edit category</h1>
 <p>
     <a href="/categories">Category list</a>
 </p>
-<form th:action="@{/delete-category}" th:object="${category}" method="post">
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-category}" th:object="${category}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
             <td>Name:</td>
-            <td th:text="${category.name}"></td>
+            <td><input type="text" th:field="*{name}"/></td>
         </tr>
         <tr>
             <td>Describe:</td>
-            <td th:text="${category.describe}"></td>
+            <td><input type="text" th:field="*{describeCategory}"/></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Delete category"></td>
+            <td><input type="submit" value="Update category"></td>
         </tr>
     </table>
 </form>

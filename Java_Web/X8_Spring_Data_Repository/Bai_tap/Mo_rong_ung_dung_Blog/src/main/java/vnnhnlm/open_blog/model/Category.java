@@ -9,13 +9,13 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String describe;
+    private String describeCategory;
 
     public Category() {
     }
-    public Category(String name, String describe) {
+    public Category(String name, String describeCategory) {
         this.name=name;
-        this.describe=describe;
+        this.describeCategory=describeCategory;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", describe='" + describe + '\'' +
+                ", describeCategory='" + describeCategory + '\'' +
                 '}';
     }
 
@@ -43,11 +43,11 @@ public class Category {
         this.name = name;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescribeCategory() {
+        return describeCategory;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescribeCategory(String describeCategory) {
+        this.describeCategory = describeCategory;
     }
 }
