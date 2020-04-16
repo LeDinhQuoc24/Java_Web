@@ -121,6 +121,7 @@ public class User implements Validator {
 
 
         //Validated email
+        String email = user.getEmail();
         ValidationUtils.rejectIfEmpty(errors, "email", "email.empty");
         if (email.length()>45 || email.length()<5){
             errors.rejectValue("email", "email.length");
