@@ -1,9 +1,10 @@
 package vnnhnlm.open_blog.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Category")
+@Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,12 +12,17 @@ public class Category {
     private String name;
     private String describeCategory;
 
+    @OneToMany(targetEntity = Blog.class)
+    private List<Blog> blogs;
+
     public Category() {
     }
-    public Category(String name, String describeCategory) {
+    public Category(String name, String describeCategory,List<Blog> blogs) {
         this.name=name;
         this.describeCategory=describeCategory;
+        this.blogs = blogs;
     }
+
 
     @Override
     public String toString() {
@@ -24,6 +30,7 @@ public class Category {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", describeCategory='" + describeCategory + '\'' +
+                ", blogs=" + blogs +
                 '}';
     }
 
@@ -49,5 +56,13 @@ public class Category {
 
     public void setDescribeCategory(String describeCategory) {
         this.describeCategory = describeCategory;
+    }
+
+    public List<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
     }
 }

@@ -5,9 +5,12 @@ import org.springframework.data.domain.Pageable;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import vnnhnlm.open_blog.model.Blog;
+import vnnhnlm.open_blog.model.Category;
 
 public interface BlogRepository extends PagingAndSortingRepository<Blog,Long> {
     Page<Blog> findAllByNameContaining(String name, Pageable pageable);
+    Page<Blog> findAllByCategory(Category category, Pageable pageable);
+
 
 
 

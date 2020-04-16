@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import vnnhnlm.open_blog.model.Blog;
+import vnnhnlm.open_blog.model.Category;
 import vnnhnlm.open_blog.repository.BlogRepository;
 import vnnhnlm.open_blog.service.BlogService;
 
@@ -41,6 +41,14 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Page<Blog> findAllByNameContaining(String name, Pageable pageable) {
-        return blogRepository.findAllByNameContaining(name,pageable);
+        return blogRepository.findAllByNameContaining(name, pageable);
     }
+
+
+    @Override
+    public Page<Blog> findAllByCategory(Category category, Pageable pageable) {
+        return blogRepository.findAllByCategory(category,pageable);
+    }
+
+
 }

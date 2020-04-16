@@ -6,6 +6,7 @@
 </head>
 <body>
 <a href="/create-blog">Create new blog</a>
+<a href="/create-category">Create new category</a>
 <h1>Blogs</h1>
 <form>
     Search by name:
@@ -16,6 +17,7 @@
     <tr>
         <th>Name</th>
         <th>Content</th>
+        <th>Category</th>
         <th>Datetime</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -25,6 +27,7 @@
         <tr>
             <td th:text="${blog.name}"></td>
             <td th:text="${blog.contentBlog}"></td>
+            <td th:text="${blog.category.name}"></td>
             <td th:text="${blog.dateTime}"></td>
             <td><a th:href="@{/edit-blog/__${blog.id}__ }">Edit</a></td>
             <td><a th:href="@{/delete-blog/__${blog.id}__ }">Delete</a></td>

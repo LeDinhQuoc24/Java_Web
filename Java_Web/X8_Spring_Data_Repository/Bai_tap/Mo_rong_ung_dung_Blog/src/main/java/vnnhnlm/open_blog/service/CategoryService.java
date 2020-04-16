@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort;
 import vnnhnlm.open_blog.model.Category;
 
 public interface CategoryService {
-    Page<Category> findAll( Pageable pageable);
+    Page<Category> findAll(Pageable pageable);
 
     Category findById(Long id);
 

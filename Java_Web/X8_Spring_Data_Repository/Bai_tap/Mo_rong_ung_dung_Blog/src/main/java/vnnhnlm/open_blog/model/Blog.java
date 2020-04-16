@@ -4,22 +4,28 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Blog")
+@Table(name = "blog")
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String contentBlog;
 
+    private String name;
+
+    private String contentBlog;
     private Date dateTime;
+    //Catrlogy là tên bảng,còn id là trường id là khóa chính của bảng Catelogy
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
 
     public Blog() {
     }
-    public Blog(String name,String contentBlog,Date dateTime) {
+    public Blog(String name,String contentBlog,Date dateTime,Category category) {
         this.name=name;
         this.contentBlog=contentBlog;
         this.dateTime=dateTime;
+        this.category=category;
     }
 
     @Override
@@ -29,6 +35,7 @@ public class Blog {
                 ", name='" + name + '\'' +
                 ", contentBlog='" + contentBlog + '\'' +
                 ", dateTime=" + dateTime +
+                ", category=" + category +
                 '}';
     }
 
@@ -64,4 +71,11 @@ public class Blog {
         this.dateTime = dateTime;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
