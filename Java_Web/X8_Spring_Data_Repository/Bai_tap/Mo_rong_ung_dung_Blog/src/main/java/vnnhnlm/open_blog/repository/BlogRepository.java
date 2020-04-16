@@ -10,8 +10,5 @@ import vnnhnlm.open_blog.model.Category;
 public interface BlogRepository extends PagingAndSortingRepository<Blog,Long> {
     Page<Blog> findAllByNameContaining(String name, Pageable pageable);
     Page<Blog> findAllByCategory(Category category, Pageable pageable);
-
-
-
-
+    Page<Blog> findByCategory_Id(Long id , Pageable pageable);
 }
