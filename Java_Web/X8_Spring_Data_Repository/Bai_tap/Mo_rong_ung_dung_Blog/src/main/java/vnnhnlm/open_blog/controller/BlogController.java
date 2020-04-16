@@ -110,4 +110,12 @@ public class BlogController {
         modelAndView.addObject("blogs", blogs);
         return modelAndView;
     }
+
+    @GetMapping("/blogview/{id}")
+    public ModelAndView viewBlog(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView(("/blog/view"));
+        Blog blog = blogService.findById(id);
+        modelAndView.addObject("blog", blog);
+        return modelAndView;
+    }
 }

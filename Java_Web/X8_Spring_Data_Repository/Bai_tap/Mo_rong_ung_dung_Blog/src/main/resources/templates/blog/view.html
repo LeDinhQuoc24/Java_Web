@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+<a href="/blogs">Blog list</a>
+<h1>
+<label>Category:</label>
+<label th:text="${blog.category.name}"></label>
+</h1>
+
+<br>
+<br>
+<br>
+<br>
+<label >NameBlog:</label>
+<label th:text="${blog.name}"></label>
+<br>
+<label >Content:</label>
+<label th:text="${blog.contentBlog}"></label>
+<br>
+<label >DateTime:</label>
+<label th:text="${blog.dateTime}"></label>
+<br>
+
+<label></label>
+<label></label>
+<label></label>
+</body>
+</html>
