@@ -17,6 +17,9 @@ public class Count {
     public void setCount(int count) {
         this.count = count;
     }
+//    public void increment() {
+//        count++;
+//    }
     public int increment() {
         return count++;
     }

@@ -8,18 +8,24 @@ import org.springframework.web.servlet.ModelAndView;
 import vnnhnlm.count_view.model.Count;
 
 @Controller
-@SessionAttributes
+@SessionAttributes("count")
 public class CountController {
     /* add MyCounter in model attribute */
-    @ModelAttribute("Count")
+    @ModelAttribute("count")
     public Count setNewCount() {
         return new Count();
     }
 
-    @GetMapping
-    public ModelAndView get(@ModelAttribute("Count") Count count) {
-        ModelAndView modelAndView=new ModelAndView("views");
-        modelAndView.addObject("count", count);
-        return modelAndView;
+//    @GetMapping("/count")
+//    public ModelAndView get(@ModelAttribute("count") Count count) {
+//        ModelAndView modelAndView=new ModelAndView("views");
+//        modelAndView.addObject("count", count.increment());
+//        return modelAndView;
+//    }
+    @GetMapping("/")
+    public String get2(@ModelAttribute("count") Count count) {
+        count.increment();
+        return "index";
     }
 }
+
