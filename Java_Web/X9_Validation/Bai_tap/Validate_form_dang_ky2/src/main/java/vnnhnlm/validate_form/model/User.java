@@ -88,27 +88,20 @@ public class User implements Validator {
         if (firstName.length()>45 || firstName.length()<5){
             errors.rejectValue("firstName", "firstName.length");
         }
-        if (!firstName.startsWith("Q")){
-            errors.rejectValue("firstName", "firstName.startsWith");
-        }
-        if (!firstName.matches("(^$|[a-zA-Z ]*$)")){
+        if (!firstName.matches("\\b[A-Z][a-z]*( [A-Z][a-z]*)*\\b")){
             errors.rejectValue("firstName", "firstName.matches");
         }
+
         //Validated LastName
         String lastName = user.getLastName();
         ValidationUtils.rejectIfEmpty(errors, "lastName", "lastName.empty");
         if (lastName.length()>45 || lastName.length()<5){
             errors.rejectValue("lastName", "lastName.length");
         }
-        if (!firstName.startsWith("Q")){
-            errors.rejectValue("lastName", "lastName.startsWith");
-        }
-        if (!firstName.matches("(^$|[a-zA-Z ]*$)")){
+        if (!firstName.matches("\\b[A-Z][a-z]*( [A-Z][a-z]*)*\\b")){
             errors.rejectValue("lastName", "lastName.matches");
         }
-//        if (!firstName.matches("(^[0-9]{1,3}$)")){
-//            errors.rejectValue("age", "age.matches");
-//        }
+
         //Validated age
         int age = user.getAge();
         ValidationUtils.rejectIfEmpty(errors, "age", "age.empty");
@@ -125,6 +118,9 @@ public class User implements Validator {
         ValidationUtils.rejectIfEmpty(errors, "email", "email.empty");
         if (email.length()>45 || email.length()<5){
             errors.rejectValue("email", "email.length");
+        }
+        if (!email.matches("\\b\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+\\b")){
+            errors.rejectValue("email", "email.matches");
         }
     }
 }
