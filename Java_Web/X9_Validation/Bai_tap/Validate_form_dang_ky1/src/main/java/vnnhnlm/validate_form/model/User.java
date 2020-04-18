@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.*;
 
 
-
 @Entity
 @Table(name="user")
 public class User  {

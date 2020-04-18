@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-@Component
+
 @Entity
 @Table(name="user")
 public class User implements Validator {
