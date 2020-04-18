@@ -13,24 +13,24 @@
     <table>
         <tr>
             <td>FirstName:</td>
-            <td><input type="text" th:field="*{firstName}"/></td>
-            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>
+            <td><input th:field="*{name}"></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
         </tr>
-        <tr>
-            <td>LastName:</td>
-            <td><input type="text" th:field="*{lastName}"/></td>
-            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</td>
-        </tr>
-        <tr>
-            <td>Age:</td>
-            <td><input type="text" th:field="*{age}"/></td>
-            <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type="text" th:field="*{email}"/></td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>
-        </tr>
+<!--        <tr>-->
+<!--            <td>LastName:</td>-->
+<!--            <td><input type="text" th:field="*{lastName}"/></td>-->
+<!--&lt;!&ndash;            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name Error</td>&ndash;&gt;-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Age:</td>-->
+<!--            <td><input type="text" th:field="*{age}"/></td>-->
+<!--&lt;!&ndash;            <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</td>&ndash;&gt;-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Email:</td>-->
+<!--            <td><input type="text" th:field="*{email}"/></td>-->
+<!--&lt;!&ndash;            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>&ndash;&gt;-->
+<!--        </tr>-->
 
         <tr>
             <td></td>
