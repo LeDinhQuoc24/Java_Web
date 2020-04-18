@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class User {
-    @NotEmpty
+    @NotEmpty(message = "Email không được để trống")
     @Size(min = 2, max = 30)
     private String name;
     @Min(18)
