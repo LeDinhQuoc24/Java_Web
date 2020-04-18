@@ -1,6 +1,7 @@
 package vnnhnlm.validate_form.model;
 
-import org.springframework.stereotype.Component;
+import net.bytebuddy.implementation.bind.annotation.Default;
+
 
 
 import javax.persistence.Entity;
@@ -14,18 +15,19 @@ import javax.validation.constraints.*;
 @Table(name="user")
 public class User  {
     @Id
-    @NotNull(message = "Tên không được để trống")
+    @NotEmpty(message = "Tên không được để trống")
     @Size(min=5,max = 45,message = "Tên phải gồm từ 5-45 ký tự")
     private String firstName;
-    @NotNull(message = "Tên không được để trống")
+    @NotEmpty(message = "Họ không được để trống")
     @Size(min=5,max = 45,message = "Họ phải gồm từ 5-45 ký tự")
     private String lastName;
 
     @Min(value =18,message = "Tuổi phải lớn hơn 18")
     @Max(value=50,message="Tuổi phải nhỏ hơn 50")
+    
     private int age;
 
-    @NotNull(message = "Email không được để trống")
+    @NotEmpty(message = "Email không được để trống")
     @Email(message = "Email không đúng định dạng")
     private String email;
 

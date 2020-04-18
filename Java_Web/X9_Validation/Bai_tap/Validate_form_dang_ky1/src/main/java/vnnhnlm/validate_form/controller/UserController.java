@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @PostMapping("create-user")
-    public ModelAndView saveUser(@Validated @ModelAttribute("user")User user, Pageable pageable,BindingResult bindingResult) {
+    public ModelAndView saveUser(@Validated @ModelAttribute("user")User user,BindingResult bindingResult,Pageable pageable) {
         ModelAndView modelAndView;
         if (bindingResult.hasFieldErrors()) {
             modelAndView = new ModelAndView("/user/create");
