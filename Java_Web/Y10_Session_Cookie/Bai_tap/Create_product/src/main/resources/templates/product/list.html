@@ -14,42 +14,16 @@
     <input type="submit" value="Search"/>
 </form><br/>
 <table border="1">
+    <tr>
     <th:block th:each="product : ${products}">
-        <td>
-            <tr> <img  th:src="@{${product.image.image_url}}" ></tr>
-        </td>
-        <td>
-            <tr th:text="${product.name}"></tr>
-        </td>
+            <a th:href="@{/view-product/__${product.id}__ }"><img  th:src="@{${product.image.image_url}}" ></a>
     </th:block>
-<!--    private String name;-->
-<!--    private String image;-->
-<!--    private int quantity;-->
-<!--    private String price;-->
-<!--    private String detail;-->
-<!--    private Date dateTime;-->
-
-<!--    <tr>-->
-<!--        <th>Name</th>-->
-<!--        <th>Content</th>-->
-<!--        <th>Category</th>-->
-<!--        <th>Datetime</th>-->
-<!--        <th>Edit</th>-->
-<!--        <th>Delete</th>-->
-<!--        <th>View</th>-->
-<!--    </tr>-->
-
-<!--    <th:block th:each="blog : ${blogs}">-->
-<!--        <tr>-->
-<!--            <td th:text="${blog.name}"></td>-->
-<!--            <td th:text="${blog.contentBlog}"></td>-->
-<!--            <td th:text="${blog.category.name}"></td>-->
-<!--            <td th:text="${blog.dateTime}"></td>-->
-<!--            <td><a th:href="@{/edit-blog/__${blog.id}__ }">Edit</a></td>-->
-<!--            <td><a th:href="@{/delete-blog/__${blog.id}__ }">Delete</a></td>-->
-<!--            <td><a th:href="@{/blogview/__${blog.id}__ }">View</a></td>-->
-<!--        </tr>-->
-<!--    </th:block>-->
+    <tr>
+    <tr>
+    <th:block th:each="product : ${products}">
+            <p th:text="${product.name}">
+    </th:block>
+    <tr>
 </table>
 <div>
     <a th:href="@{'/products'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>

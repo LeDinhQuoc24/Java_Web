@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import vnnhnlm.create_product.model.Image;
@@ -45,6 +46,7 @@ public class ProductController {
         modelAndView.addObject("product", new Product());
         return modelAndView;
     }
+
     @PostMapping("create-product")
     public ModelAndView saveProduct(@ModelAttribute("product") Product product) {
         ModelAndView modelAndView = new ModelAndView("/product/create");
@@ -52,6 +54,13 @@ public class ProductController {
         productService.save(product);
         modelAndView.addObject("message", "New product created successfully");
         modelAndView.addObject("product", new Product());
+        return modelAndView;
+    }
+    @GetMapping("view-product/{id}")
+    public ModelAndView viewProduct(@PathVariable("id")Long id) {
+        ModelAndView modelAndView = new ModelAndView("/product/view");
+        Product product = productService.findById(id);
+        modelAndView.addObject("product", product);
         return modelAndView;
     }
 }

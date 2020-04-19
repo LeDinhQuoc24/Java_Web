@@ -25,7 +25,7 @@
     <th:block th:each="image : ${images}">
         <tr>
             <td th:text="${image.id_product}"></td>
-            <td th:text="${image.getImage_url()}"></td>
+            <td th:text="${image.image_url}"></td>
             <td><img  th:src="@{${image.image_url}}" ></td>
             <td><a th:href="@{/edit-image/__${image.id}__ }">Edit</a></td>
             <td><a th:href="@{/delete-image/__${image.id}__ }">Delete</a></td>
