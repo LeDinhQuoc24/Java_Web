@@ -1,6 +1,8 @@
 package vnnhnlm.create_product.model;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Entity
 @Table(name="image")
 public class Image {
@@ -9,12 +11,15 @@ public class Image {
     private Long id;
     private String id_product;
     private String image_url;
+    @OneToMany(targetEntity = Product.class)
+    private List<Product> product;
+
     public Image() {
     }
 
-    public Image(String image_url,String id_product) {
+    public Image(String image_url,List<Product> product) {
         this.image_url = image_url;
-        this.id_product=id_product;
+        this.product=product;
     }
 
     @Override
@@ -23,6 +28,7 @@ public class Image {
                 "id=" + id +
                 ", id_product='" + id_product + '\'' +
                 ", image_url='" + image_url + '\'' +
+                ", product=" + product +
                 '}';
     }
 
@@ -48,5 +54,13 @@ public class Image {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
     }
 }

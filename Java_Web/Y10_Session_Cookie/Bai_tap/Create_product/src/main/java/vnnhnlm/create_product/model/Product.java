@@ -2,24 +2,28 @@ package vnnhnlm.create_product.model;
 
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="product")
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String image;
     private int quantity;
     private String price;
     private String detail;
     private Date dateTime;
 
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private Image image;
+
     public Product() {
+
     }
 
     public Long getId() {
@@ -38,13 +42,6 @@ public class Product {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -76,5 +73,13 @@ public class Product {
 
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
