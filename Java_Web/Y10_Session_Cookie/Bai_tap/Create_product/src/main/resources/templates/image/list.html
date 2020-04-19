@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Image List</title>
+</head>
+<body>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<a href="/create-image">Create new image</a>
+
+<h1>Image List</h1>
+
+<table border="1">
+    <tr>
+        <th>Id_Product</th>
+        <th>Image_Url</th>
+        <th>Image</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+
+    <th:block th:each="image : ${images}">
+        <tr>
+            <td th:text="${image.id_product}"></td>
+            <td th:text="${image.getImage_url()}"></td>
+            <td><img  th:src="@{${image.image_url}}" ></td>
+            <td><a th:href="@{/edit-image/__${image.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-image/__${image.id}__ }">Delete</a></td>
+            <td><a th:href="@{/view-image/__${image.id}__ }">View</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

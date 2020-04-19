@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Image</title>
+</head>
+<body>
+<h1>Edit Image</h1>
+<p>
+    <a href="/images">Blog list</a>
+</p>
+
+<form th:action="@{/edit-image}" th:object="${image}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Id:</td>
+            <td><input type="text" th:field="*{id_product}"/></td>
+        </tr>
+        <tr>
+            <td>Image_Url:</td>
+            <td><input type="text" th:field="*{image_url}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update Image"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
