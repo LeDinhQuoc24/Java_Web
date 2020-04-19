@@ -56,11 +56,33 @@ public class ProductController {
         modelAndView.addObject("product", new Product());
         return modelAndView;
     }
+
     @GetMapping("view-product/{id}")
-    public ModelAndView viewProduct(@PathVariable("id")Long id) {
+    public ModelAndView viewProduct(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("/product/view");
         Product product = productService.findById(id);
         modelAndView.addObject("product", product);
+        return modelAndView;
+    }
+
+    @GetMapping("edit-product/{id}")
+    public ModelAndView showFormEdit(@PathVariable("id") Long id) {
+        ModelAndView modelAndView;
+        Product product = productService.findById(id);
+        if (product != null) {
+            modelAndView = new ModelAndView("/product/edit");
+            modelAndView.addObject("product", product);
+        } else {
+            modelAndView = new ModelAndView("/product/error.404");
+        }
+        return modelAndView;
+    }
+    @PostMapping("edit-product")
+    public ModelAndView updateProduct(@ModelAttribute("product") Product product) {
+        ModelAndView modelAndView = new ModelAndView("/product/edit");
+        product.setDateTime(new Date());
+        productService.save(product);
+        modelAndView.addObject("message", "Product updated successfully");
         return modelAndView;
     }
 }
