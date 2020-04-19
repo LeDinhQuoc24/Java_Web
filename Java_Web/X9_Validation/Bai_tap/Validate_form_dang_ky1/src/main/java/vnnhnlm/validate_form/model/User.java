@@ -1,12 +1,15 @@
 package vnnhnlm.validate_form.model;
 
+import jdk.nashorn.internal.objects.annotations.Property;
 import net.bytebuddy.implementation.bind.annotation.Default;
-
+import org.hibernate.annotations.Check;
+import org.springframework.beans.factory.annotation.Value;
 
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 
@@ -17,18 +20,20 @@ public class User  {
     @Id
     @NotEmpty(message = "Tên không được để trống")
     @Size(min=5,max = 45,message = "Tên phải gồm từ 5-45 ký tự")
+    @Pattern(regexp ="\\b[A-Z][a-z]*( [A-Z][a-z]*)*\\b",message = "Tên phải viết thường,viết hoa chữ cái đầu,không được nhập số")
     private String firstName;
     @NotEmpty(message = "Họ không được để trống")
     @Size(min=5,max = 45,message = "Họ phải gồm từ 5-45 ký tự")
+    @Pattern(regexp ="\\b[A-Z][a-z]*( [A-Z][a-z]*)*\\b",message = "Họ phải viết thường,viết hoa chữ cái đầu,không được nhập số")
     private String lastName;
 
     @Min(value =18,message = "Tuổi phải lớn hơn 18")
     @Max(value=50,message="Tuổi phải nhỏ hơn 50")
-    
     private int age;
 
     @NotEmpty(message = "Email không được để trống")
     @Email(message = "Email không đúng định dạng")
+
     private String email;
 
     public User() {
