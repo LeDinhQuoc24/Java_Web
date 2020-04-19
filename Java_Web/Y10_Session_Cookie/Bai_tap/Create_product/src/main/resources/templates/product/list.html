@@ -15,8 +15,12 @@
 </form><br/>
 <table border="1">
     <th:block th:each="product : ${products}">
-        <tr> <img  th:src="@{${product.image.image_url}}" ></tr>
-        <tr th:text="${product.name}"></tr>
+        <td>
+            <tr> <img  th:src="@{${product.image.image_url}}" ></tr>
+        </td>
+        <td>
+            <tr th:text="${product.name}"></tr>
+        </td>
     </th:block>
 <!--    private String name;-->
 <!--    private String image;-->
