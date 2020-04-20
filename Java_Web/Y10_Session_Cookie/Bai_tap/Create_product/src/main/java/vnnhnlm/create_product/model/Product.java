@@ -2,6 +2,8 @@ package vnnhnlm.create_product.model;
 
 
 
+import org.hibernate.type.NTextType;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;

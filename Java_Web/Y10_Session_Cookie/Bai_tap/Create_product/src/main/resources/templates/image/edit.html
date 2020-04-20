@@ -9,6 +9,9 @@
 <p>
     <a href="/images">Blog list</a>
 </p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
 
 <form th:action="@{/edit-image}" th:object="${image}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">

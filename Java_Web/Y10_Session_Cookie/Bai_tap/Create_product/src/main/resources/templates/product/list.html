@@ -16,7 +16,7 @@
 <table border="1">
     <tr>
     <th:block th:each="product : ${products}">
-            <td><a th:href="@{/view-product/__${product.id}__ }"><img  th:src="@{${product.image.image_url}}" ></a></td>
+            <td><a th:href="@{/view-product/__${product.id}__ }"><img th:src="@{${product.image.image_url}}" ></a></td>
     </th:block>
     <tr>
     <tr>

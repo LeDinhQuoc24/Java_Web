@@ -5,17 +5,26 @@
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{/edit-product/__${product.id}__ }">Edit product</a>
 <center>
 <table border="1">
     <tr>
-    <th:block th:object="${product}">
-        <td rowspan="7"><a><img  th:src="@{${product.image.image_url}}" ></a></td>
-    </th:block>
+        <th:block th:object="${product}">
+            <td rowspan="7">
+                <a><img th:src="@{${product.image.image_url}}"></a>
+            </td>
+        </th:block>
     </tr>
+
     <tr>
     <th:block th:object="${product}">
         <td><center><p th:text="*{name}"></center></td>
     </th:block>
+        <th:block th:object="${product}">
+            <td rowspan="4">
+                <img th:src="@{~/img/sp/detail.png}">
+            </td>
+        </th:block>
     </tr>
     <tr>
     <th:block th:object="${product}">
@@ -36,13 +45,17 @@
     <th:block th:object="${product}">
        <td><center><p th:text="*{image.id_product}"></center></td>
     </th:block>
+        <th:block th:object="${product}">
+            <td rowspan="2">
+                <center><p th:text="*{detail}"></center>
+            </td>
+        </th:block>
     </tr>
     <tr>
         <td><center><h3>Mua Ngay</h3></center></td>
-    </tr>
-<!--            <td><a th:href="@{/edit-product/__${product.id}__ }">Edit</a></td>-->
-<!--            <td><a th:href="@{/delete-product/__${product.id}__ }">Delete</a></td>-->
 
+    </tr>
+    <tr>
 </table>
 </center>
 
