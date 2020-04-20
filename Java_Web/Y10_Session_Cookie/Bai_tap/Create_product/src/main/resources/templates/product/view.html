@@ -11,7 +11,7 @@
     <tr>
         <th:block th:object="${product}">
             <td rowspan="7">
-                <a><img th:src="@{${product.image.image_url}}"></a>
+                <a><img th:src="@{'../'+${product.image.image_url}}"></a>
             </td>
         </th:block>
     </tr>
@@ -22,7 +22,7 @@
     </th:block>
         <th:block th:object="${product}">
             <td rowspan="4">
-                <img th:src="@{~/img/sp/detail.png}">
+                <img th:src="@{../img/sp/detail.png}">
             </td>
         </th:block>
     </tr>
