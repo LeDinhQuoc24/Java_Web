@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Product List</title>
     <script>
-        function changeTotal(price, quantity) {
-            document.getElementById("total").innerText = price * quantity;
+        function changeTotal(price, quantity,id) {
+            document.getElementById(id).innerText = price * quantity;
         }
     </script>
 </head>
@@ -22,14 +22,14 @@
     <th:block th:each="c : ${cart.products}">
     <tr>
         <td th:text="${c.name}"></td>
-        <td th:id="${c.id}" th:text="${c.price}">VND</td>
-        <td><input value="1" type="text" name="quantity" th:onkeyup="'changeTotal('+ ${c.price}+',this.value)'" >VND</td>
-        <td id="total"></td>
+        <td  th:text="${c.price}"></td>
+        <td><input value="1" type="text" name="quantity" th:onkeyup="'changeTotal('+ ${c.price}+',this.value,'+${c.id}+')'" ></td>
+        <td th:id="${c.id}"></td>
     </tr>
     </th:block>
     <tr>
-        <td colspan="2"><a href="/products">Mua Tiếp</a></td>
-        <td >Thanh Toán</td>
+        <td colspan="2"><a href="/products"><input type="submit" value="Mua Tiếp"></a></td>
+        <td ><input type="submit" value="Thanh Toán" th:onclick="payTotal()"></td>
         <td><input name ="total" type="submit" value="Tổng tiền"></td>
     </tr>
 
