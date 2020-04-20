@@ -3,26 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>View</title>
+    <title>View Image</title>
 </head>
 <body>
 <a href="/images">Image list</a>
-<br>
-<br>
+
+<center>
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Id_product</td>
+        <td>Image_Url</td>
+    </tr>
+    <tr>
+        <th:block th:object="${image}">
+            <td><p th:text="*{id}"></td>
+            <td><p th:text="*{id_product}"></td>
+            <td><p th:text="*{image_url}"></td>
+        </th:block>
+    </tr>
+
+</table>
+</center>
 
 
-<label >Id:</label>
-<label th:text="${image.id}"></label>
-<br>
-<label >Content:</label>
-<label th:text="${blog.contentBlog}"></label>
-<br>
-<label >DateTime:</label>
-<label th:text="${blog.dateTime}"></label>
-<br>
-
-<label></label>
-<label></label>
-<label></label>
 </body>
 </html>

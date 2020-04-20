@@ -34,7 +34,7 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public ModelAndView listBlog( @PageableDefault(value = 3)Pageable pageable) {
+    public ModelAndView listBlog(@PageableDefault(value = 3) Pageable pageable) {
         Page<Product> products = productService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("/product/list");
         modelAndView.addObject("products", products);
@@ -78,6 +78,7 @@ public class ProductController {
         }
         return modelAndView;
     }
+
     @PostMapping("edit-product")
     public ModelAndView updateProduct(@ModelAttribute("product") Product product) {
         ModelAndView modelAndView = new ModelAndView("/product/edit");
@@ -85,5 +86,23 @@ public class ProductController {
         productService.save(product);
         modelAndView.addObject("message", "Product updated successfully");
         return modelAndView;
+    }
+
+    @GetMapping("delete-product/{id}")
+    public ModelAndView showFormDelete(@PathVariable("id") Long id) {
+        ModelAndView modelAndView;
+        Product product = productService.findById(id);
+        if (product != null) {
+            modelAndView = new ModelAndView("/product/delete");
+            modelAndView.addObject("product", product);
+        } else {
+            modelAndView = new ModelAndView("product/error.404");
+        }
+        return modelAndView;
+    }
+    @PostMapping("delete-product")
+    public String deleteProduct(@ModelAttribute("product") Product product) {
+        productService.remove(product.getId());
+        return "redirect:products";
     }
 }

@@ -82,9 +82,11 @@ public class ImageController {
         return "redirect:images";
     }
 
-//    @GetMapping("view-image/{id}")
-//    public ModelAndView viewImage() {
-//        ModelAndView modelAndView = new ModelAndView("/image/view");
-//
-//    }
+    @GetMapping("view-image/{id}")
+    public ModelAndView viewImage(@PathVariable("id")Long id) {
+        ModelAndView modelAndView = new ModelAndView("/image/view");
+        Image image = imageService.findById(id);
+        modelAndView.addObject("image", image);
+        return modelAndView;
+    }
 }
