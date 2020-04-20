@@ -16,6 +16,8 @@ import vnnhnlm.create_product.service.ProductService;
 import java.util.Date;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 @SessionAttributes("cart")
 @Controller
 public class ProductController {
@@ -123,9 +125,9 @@ public class ProductController {
         modelAndView.addObject("cart", cart);
         return modelAndView;
     }
-    @GetMapping("cart-remove/{id}")
-    public String removeProduct(@ModelAttribute("cart")Cart cart,@PathVariable("id")int id) {
-        cart.removeFromCart(id);
+    @GetMapping("cart-remove/{iter.index+1}")
+    public String removeProduct(@ModelAttribute("cart")Cart cart,@PathVariable("iter.index+1")String id) {
+        cart.removeFromCart(parseInt(id));
         return "redirect:cart";
     }
 }

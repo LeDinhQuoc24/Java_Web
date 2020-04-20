@@ -14,6 +14,7 @@
 
 <table border="1">
     <tr>
+        <td>STT</td>
         <td>Name</td>
         <td>Price</td>
         <td>Quantity</td>
@@ -22,6 +23,7 @@
     </tr>
     <th:block th:each="c,iter : ${cart.products}">
     <tr>
+        <td th:text="${iter.index+1}"></td>
         <td th:text="${c.name}"></td>
         <td  th:text="${c.price}"></td>
         <td><input value="1" type="text" name="quantity" th:onkeyup="'changeTotal('+ ${c.price}+',this.value,'+${c.id}+')'" ></td>
@@ -31,9 +33,9 @@
     </tr>
     </th:block>
     <tr>
-            <td colspan="2"><a href="/products"><input type="submit" value="Mua Tiếp"></a></td>
-        <td ><input type="submit" value="Thanh Toán" th:onclick="payTotal()"></td>
-        <td><input name ="total" type="submit" value="Tổng tiền"></td>
+        <td colspan="2"><a href="/products"><button style="color: red" type="submit" >Mua Tiếp</button></a></td>
+        <td ><button style="color: red" type="submit"  th:onclick="payTotal()">Thanh Toán</button></td>
+        <td colspan="2"><button style="color: red" name ="total" type="submit" value="">Tổng tiền</button></td>
     </tr>
 
 </table>

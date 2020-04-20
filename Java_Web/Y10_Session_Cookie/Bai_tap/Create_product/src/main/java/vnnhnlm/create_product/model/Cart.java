@@ -26,8 +26,12 @@ public class Cart {
     public void addToCart(Product product) {
         products.add(product);
     }
-
     public void removeFromCart(int id) {
-        products.remove(id);
+        for(Product product : products){
+            if (product.getId() == id) {
+                products.remove(product);
+                return;
+            }
+        }
     }
 }
