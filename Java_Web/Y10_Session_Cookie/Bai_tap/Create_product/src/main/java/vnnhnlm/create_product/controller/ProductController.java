@@ -123,10 +123,4 @@ public class ProductController {
         modelAndView.addObject("cart", cart);
         return modelAndView;
     }
-
-    @GetMapping("pay")
-    public ModelAndView Pay() {
-        ModelAndView modelAndView = new ModelAndView("/product/totalPrice");
-        return modelAndView;
-    }
 }

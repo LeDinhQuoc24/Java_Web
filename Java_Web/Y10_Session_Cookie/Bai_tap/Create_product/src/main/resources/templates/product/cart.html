@@ -22,15 +22,15 @@
     <th:block th:each="c : ${cart.products}">
     <tr>
         <td th:text="${c.name}"></td>
-        <td th:text="${c.price}">VND</td>
-        <td><input type="text" name="quantity" th:onkeyup="'changeTotal('+ ${c.price}+',this.value)'" >VND</td>
+        <td th:id="${c.id}" th:text="${c.price}">VND</td>
+        <td><input value="1" type="text" name="quantity" th:onkeyup="'changeTotal('+ ${c.price}+',this.value)'" >VND</td>
         <td id="total"></td>
     </tr>
     </th:block>
     <tr>
         <td colspan="2"><a href="/products">Mua Tiếp</a></td>
-        <td ><a href="/pay">Thanh Toán</a></td>
-        <td ><a href="/pay">Tổng tiền</a></td>
+        <td >Thanh Toán</td>
+        <td><input name ="total" type="submit" value="Tổng tiền"></td>
     </tr>
 
 </table>
