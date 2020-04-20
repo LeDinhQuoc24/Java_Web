@@ -16,7 +16,7 @@ public class Product {
     private Long id;
     private String name;
     private int quantity;
-    private String price;
+    private int price;
     private String detail;
     private Date dateTime;
 
@@ -61,11 +61,11 @@ public class Product {
         this.detail = detail;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

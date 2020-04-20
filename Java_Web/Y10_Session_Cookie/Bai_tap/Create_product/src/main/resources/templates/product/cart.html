@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <script>
+        function changeTotal(price, quantity) {
+            document.getElementById("total").innerText = price * quantity;
+        }
+    </script>
+</head>
+<body>
+<h1>Cart</h1>
+
+<table border="1">
+    <tr>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Amount</td>
+    </tr>
+    <th:block th:each="c : ${cart.products}">
+    <tr>
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.price}">VND</td>
+        <td><input type="text" name="quantity" th:onkeyup="'changeTotal('+ ${c.price}+',this.value)'" >VND</td>
+        <td id="total"></td>
+    </tr>
+    </th:block>
+    <tr>
+        <td colspan="2"><a href="/products">Mua Tiếp</a></td>
+        <td colspan="2"><a href="/pay">Thanh Toán</a></td>
+    </tr>
+
+</table>
+</body>
+</html>

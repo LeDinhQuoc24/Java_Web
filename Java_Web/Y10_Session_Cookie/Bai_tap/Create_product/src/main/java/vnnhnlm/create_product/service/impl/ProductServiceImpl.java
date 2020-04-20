@@ -8,6 +8,8 @@ import vnnhnlm.create_product.model.Product;
 import vnnhnlm.create_product.repository.ProductRepository;
 import vnnhnlm.create_product.service.ProductService;
 
+import java.util.List;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -17,6 +19,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<Product> findAll(Pageable pageable) {
         return productRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return productRepository.findAll();
     }
 
     @Override

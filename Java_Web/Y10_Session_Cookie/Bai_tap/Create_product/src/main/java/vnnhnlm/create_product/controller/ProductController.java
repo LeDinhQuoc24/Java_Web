@@ -5,11 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import vnnhnlm.create_product.model.Cart;
 import vnnhnlm.create_product.model.Image;
 import vnnhnlm.create_product.model.Product;
 import vnnhnlm.create_product.service.ImageService;
@@ -18,10 +16,9 @@ import vnnhnlm.create_product.service.ProductService;
 import java.util.Date;
 import java.util.List;
 
-
+@SessionAttributes("cart")
 @Controller
 public class ProductController {
-
     @Autowired
     private ProductService productService;
     @Autowired
@@ -30,7 +27,11 @@ public class ProductController {
     @ModelAttribute("images")
     public List<Image> images() {
         return imageService.findAll();
+    }
 
+    @ModelAttribute("cart")
+    public Cart setUpForm() {
+        return new Cart();
     }
 
     @GetMapping("/products")
@@ -100,9 +101,32 @@ public class ProductController {
         }
         return modelAndView;
     }
+
     @PostMapping("delete-product")
     public String deleteProduct(@ModelAttribute("product") Product product) {
         productService.remove(product.getId());
         return "redirect:products";
+    }
+
+    @GetMapping("cart/{id}")
+    public ModelAndView addProduct(@ModelAttribute("cart") Cart cart, @PathVariable("id") Long id) {
+        Product product = productService.findById(id);
+        cart.addToCart(product);
+        ModelAndView modelAndView = new ModelAndView("/product/cart");
+        modelAndView.addObject("cart", cart);
+        return modelAndView;
+    }
+
+    @GetMapping("cart")
+    public ModelAndView Cart(@ModelAttribute("cart") Cart cart) {
+        ModelAndView modelAndView = new ModelAndView("/product/cart");
+        modelAndView.addObject("cart", cart);
+        return modelAndView;
+    }
+
+    @GetMapping("pay")
+    public ModelAndView Pay() {
+        ModelAndView modelAndView = new ModelAndView("/product/totalPrice");
+        return modelAndView;
     }
 }
