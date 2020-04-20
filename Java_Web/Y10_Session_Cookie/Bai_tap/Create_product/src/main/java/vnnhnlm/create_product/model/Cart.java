@@ -1,6 +1,7 @@
 package vnnhnlm.create_product.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Cart {
@@ -23,9 +24,10 @@ public class Cart {
     }
 
     public void addToCart(Product product) {
-        products.add (product);
+        products.add(product);
     }
-    public void removeFromCart(Product product) {
-        products.remove(product);
+
+    public void removeFromCart(int id) {
+        products.remove(id);
     }
 }

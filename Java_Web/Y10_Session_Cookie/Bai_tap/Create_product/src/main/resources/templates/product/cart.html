@@ -18,17 +18,20 @@
         <td>Price</td>
         <td>Quantity</td>
         <td>Amount</td>
+        <td>Remove</td>
     </tr>
-    <th:block th:each="c : ${cart.products}">
+    <th:block th:each="c,iter : ${cart.products}">
     <tr>
         <td th:text="${c.name}"></td>
         <td  th:text="${c.price}"></td>
         <td><input value="1" type="text" name="quantity" th:onkeyup="'changeTotal('+ ${c.price}+',this.value,'+${c.id}+')'" ></td>
         <td th:id="${c.id}"></td>
+        <td><a th:href="@{/cart-remove/__${iter.index+1}__ }">Hủy mua</a></td>
+
     </tr>
     </th:block>
     <tr>
-        <td colspan="2"><a href="/products"><input type="submit" value="Mua Tiếp"></a></td>
+            <td colspan="2"><a href="/products"><input type="submit" value="Mua Tiếp"></a></td>
         <td ><input type="submit" value="Thanh Toán" th:onclick="payTotal()"></td>
         <td><input name ="total" type="submit" value="Tổng tiền"></td>
     </tr>

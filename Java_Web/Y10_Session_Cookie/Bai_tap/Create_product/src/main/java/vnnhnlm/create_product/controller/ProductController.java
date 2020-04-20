@@ -123,4 +123,9 @@ public class ProductController {
         modelAndView.addObject("cart", cart);
         return modelAndView;
     }
+    @GetMapping("cart-remove/{id}")
+    public String removeProduct(@ModelAttribute("cart")Cart cart,@PathVariable("id")int id) {
+        cart.removeFromCart(id);
+        return "redirect:cart";
+    }
 }
