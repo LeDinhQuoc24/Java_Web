@@ -2,12 +2,14 @@ package webservice.restful.service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import webservice.restful.model.Customer;
 import webservice.restful.repository.CustomerRepository;
 import webservice.restful.service.CustomerService;
 
 import java.util.List;
 
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
