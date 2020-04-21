@@ -112,10 +112,15 @@ public class ProductController {
 
     @GetMapping("cart/{id}")
     public ModelAndView addProduct(@ModelAttribute("cart") Cart cart, @PathVariable("id") Long id) {
-        Product product = productService.findById(id);
-        cart.addToCart(product);
         ModelAndView modelAndView = new ModelAndView("/product/cart");
         modelAndView.addObject("cart", cart);
+        Product product = productService.findById(id);
+        for(Product product1 : cart.getProducts()){
+            if (product1.getId()==id ) {
+                return modelAndView;
+            }
+        }
+        cart.addToCart(product);
         return modelAndView;
     }
 
@@ -125,9 +130,10 @@ public class ProductController {
         modelAndView.addObject("cart", cart);
         return modelAndView;
     }
-    @GetMapping("cart-remove/{iter.index+1}")
-    public String removeProduct(@ModelAttribute("cart")Cart cart,@PathVariable("iter.index+1")String id) {
+    @GetMapping("cart-remove/{id}")
+    public ModelAndView removeProduct(@ModelAttribute("cart")Cart cart,@PathVariable("id")String id) {
         cart.removeFromCart(parseInt(id));
-        return "redirect:cart";
+        return Cart(cart);
+//        return "redirect:cart";
     }
 }
