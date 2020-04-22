@@ -10,8 +10,9 @@
 </p>
 <div id="form">
     <form action="#" th:action="@{/product/save}" th:object="${product}"
-          method="POST" novalidate="novalidate">
+          method="POST" novalidate="novalidate" enctype="multipart/form-data" >
         <input type="hidden" th:field="*{id}"/>
+        <input type="file" th:field="*{fileDatas}"/>
         <div>
             <label>Name</label>
             <input type="text" th:field="*{name}"/>

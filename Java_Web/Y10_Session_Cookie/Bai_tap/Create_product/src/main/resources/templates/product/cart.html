@@ -11,6 +11,9 @@
 </head>
 <body>
 <h1>Cart</h1>
+<th:block th:if="${message}">
+    <p style="color: blue" th:text="${message}"></p>
+</th:block>
 
 <table border="1">
     <tr>

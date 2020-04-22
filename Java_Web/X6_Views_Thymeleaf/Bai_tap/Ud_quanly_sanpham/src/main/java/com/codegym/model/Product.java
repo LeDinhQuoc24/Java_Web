@@ -1,13 +1,15 @@
 package com.codegym.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Product {
     private int id;
     private String name;
     private int price;
     private String image;
     private String origin;
-
-
+    private String photo;
+    private MultipartFile[] fileDatas;
     public Product() {
     }
 
@@ -17,6 +19,31 @@ public class Product {
         this.price = price;
         this.image = image;
         this.origin = origin;
+    }
+
+    public MultipartFile[] getFileDatas() {
+        return fileDatas;
+    }
+
+    public void setFileDatas(MultipartFile[] fileDatas) {
+        this.fileDatas = fileDatas;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Product(int id, String name, int price, String image, String origin, String photo) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.image = image;
+        this.origin = origin;
+        this.photo = photo;
     }
 
     public int getId() {

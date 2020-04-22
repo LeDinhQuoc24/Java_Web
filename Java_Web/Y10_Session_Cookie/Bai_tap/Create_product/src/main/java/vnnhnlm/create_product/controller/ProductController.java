@@ -117,10 +117,12 @@ public class ProductController {
         Product product = productService.findById(id);
         for(Product product1 : cart.getProducts()){
             if (product1.getId()==id ) {
+                modelAndView.addObject("message", "You bought this product");
                 return modelAndView;
             }
         }
         cart.addToCart(product);
+        modelAndView.addObject("message","Product bought successfully");
         return modelAndView;
     }
 
