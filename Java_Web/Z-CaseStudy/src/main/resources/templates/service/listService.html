@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Service List</title>
+</head>
+<body>
+<a href="/create-service">Create new Service</a>
+
+<h1>Services</h1>
+<form>
+    Search by name:
+    <input name="s" type="text"/>
+    <input type="submit" value="Search"/>
+</form><br/>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>AreaUsed</th>
+        <th>Amount</th>
+        <th>Maximum_people</th>
+        <th>TypeRent</th>
+        <th>TypeService</th>
+        <th>RoomStandard</th>
+        <th>OtherConvenienceDescription</th>
+        <th>FloorAmount</th>
+        <th>PoolArea</th>
+        <th>FreeAccompanyService</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+
+    <th:block th:each="service : ${services}">
+        <tr>
+            <td th:text="${service.name}"></td>
+            <td th:text="${service.areaUsed}"></td>
+            <td th:text="${service.amount}"></td>
+            <td th:text="${service.maximumPeople}"></td>
+            <td th:text="${service.typeRent}"></td>
+            <td th:text="${service.typeService}"></td>
+            <td th:text="${service.roomStandard}"></td>
+            <td th:text="${service.otherConvenienceDescription}"></td>
+            <td th:text="${service.floorAmount}"></td>
+            <td th:text="${service.poolArea}"></td>
+            <td th:text="${service.freeAccompanyService}"></td>
+
+
+            <td><a th:href="@{/edit-service/__${service.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-service/__${service.id}__ }">Delete</a></td>
+            <td><a th:href="@{/serviceview/__${service.id}__ }">View</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/services'(page=${services.number - 1})}" th:if="${services.hasPrevious()}">Previous</a>
+    <span th:text="${services.number + 1}"></span>/<span th:text="${services.totalPages}"></span>
+    <a th:href="@{'/services'(page=${services.number + 1})}" th:if="${services.hasNext()}">Next</a>
+</div>
+</body>
+</html>

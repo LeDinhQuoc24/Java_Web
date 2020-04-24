@@ -7,6 +7,17 @@
         function changeTotal(price, quantity,id) {
             document.getElementById(id).innerText = price * quantity;
         }
+
+
+        function changeSumTotal() {
+            let total=document.getElementsByName("total");
+            let sum=0;
+            for(let i=0;i<total.length;i++){
+                sum+=parseInt(total[i].innerText);
+            }
+            document.getElementById("sumTotal").value = sum;
+
+        }
     </script>
 </head>
 <body>
@@ -30,15 +41,15 @@
         <td th:text="${c.name}"></td>
         <td  th:text="${c.price}"></td>
         <td><input value="1" type="text" name="quantity" th:onkeyup="'changeTotal('+ ${c.price}+',this.value,'+${c.id}+')'" ></td>
-        <td th:id="${c.id}"><input  th:value="${c.price}"></td>
+        <td th:id="${c.id}" th:name="total" th:text="${c.price}"></td>
         <td><a th:href="@{/cart-remove/__${c.id}__ }">Hủy mua</a></td>
 
     </tr>
     </th:block>
     <tr>
         <td colspan="2"><a href="/products"><button style="color: red" type="submit" >Mua Tiếp</button></a></td>
-        <td ><button style="color: red" type="submit"  th:onclick="payTotal()">Thanh Toán</button></td>
-        <td colspan="2"><button style="color: red" name ="total" type="submit" value="">Tổng tiền</button></td>
+        <td ><button style="color: red" type="submit"  onclick="changeSumTotal()">Thanh Toán</button></td>
+        <td colspan="2"><input style="color: red" id="sumTotal" th:name ="sumtotal" type="button" value="Tổng tiền" ></td>
     </tr>
 
 </table>
