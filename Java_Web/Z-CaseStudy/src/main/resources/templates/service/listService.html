@@ -9,6 +9,9 @@
 <a href="/create-service">Create new Service</a>
 
 <h1>Services</h1>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
 <form>
     Search by name:
     <input name="s" type="text"/>
@@ -45,8 +48,6 @@
             <td th:text="${service.floorAmount}"></td>
             <td th:text="${service.poolArea}"></td>
             <td th:text="${service.freeAccompanyService}"></td>
-
-
             <td><a th:href="@{/edit-service/__${service.id}__ }">Edit</a></td>
             <td><a th:href="@{/delete-service/__${service.id}__ }">Delete</a></td>
             <td><a th:href="@{/serviceview/__${service.id}__ }">View</a></td>

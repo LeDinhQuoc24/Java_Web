@@ -46,15 +46,15 @@
             </td>
         </tr>
 
-        <tr name="Villa" style="display: block">
+        <tr name="VillaHouse" style="display: block">
             <td>RoomStandard:</td>
             <td><input type="text" th:field="*{roomStandard}"></td>
         </tr >
-        <tr name="Villa" style="display: block">
+        <tr name="VillaHouse" style="display: block">
             <td>OtherConvenienceDescription:</td>
             <td><input type="text" th:field="*{otherConvenienceDescription}"></td>
         </tr>
-        <tr name="Villa" style="display: block">
+        <tr name="VillaHouse" style="display: block">
             <td>FloorAmount:</td>
             <td><input type="text" th:field="*{floorAmount}"></td>
         </tr>
@@ -62,23 +62,6 @@
             <td>PoolArea:</td>
             <td><input type="text" th:field="*{poolArea}"></td>
         </tr>
-
-
-
-
-        <tr name="House" style="display: none">
-            <td>RoomStandard:</td>
-            <td><input type="text" th:field="*{roomStandard}"></td>
-        </tr >
-        <tr name="House" style="display: none">
-            <td>OtherConvenienceDescription:</td>
-            <td><input type="text" th:field="*{otherConvenienceDescription}"></td>
-        </tr>
-        <tr name="House" style="display: none">
-            <td>FloorAmount:</td>
-            <td><input type="text" th:field="*{floorAmount}"></td>
-        </tr>
-
 
         <tr name="Room" style="display: none">
             <td>FreeAccompanyService:</td>
@@ -90,27 +73,29 @@
         </tr>
     </table>
 
+
 </form>
 <script>
     function change(obj) {
         var value=obj.value;
         if(value==="Villa"){
-            let showVilla=document.getElementsByName("Villa");
-            for(let i=0;i<showVilla.length;i++){
-                showVilla[i].style.display="block";
+            let showVillaHouse=document.getElementsByName("VillaHouse");
+            for(let i=0;i<showVillaHouse.length;i++){
+                showVillaHouse[i].style.display="block";
             }
-            let showHouse = document.getElementsByName("House");
-            for (let i = 0; i < showHouse.length; i++) {
-                showHouse[i].style.display = "none";
+            let showVilla = document.getElementsByName("Villa");
+            for (let i = 0; i < showVilla.length; i++) {
+                showVilla[i].style.display = "block";
             }
             let showRoom = document.getElementsByName("Room");
             for (let i = 0; i < showRoom.length; i++) {
                 showRoom[i].style.display = "none";
             }
+
         }else if (value === "House") {
-            let showHouse = document.getElementsByName("House");
-            for (let i = 0; i < showHouse.length; i++) {
-                showHouse[i].style.display = "block";
+            let showVillaHouse=document.getElementsByName("VillaHouse");
+            for(let i=0;i<showVillaHouse.length;i++){
+                showVillaHouse[i].style.display="block";
             }
             let showVilla=document.getElementsByName("Villa");
             for(let i=0;i<showVilla.length;i++){
@@ -125,14 +110,15 @@
             for (let i = 0; i < showRoom.length; i++) {
                 showRoom[i].style.display = "block";
             }
+            let showVillaHouse=document.getElementsByName("VillaHouse");
+            for(let i=0;i<showVillaHouse.length;i++){
+                showVillaHouse[i].style.display="none";
+            }
             let showVilla=document.getElementsByName("Villa");
             for(let i=0;i<showVilla.length;i++){
                 showVilla[i].style.display="none";
             }
-            let showHouse = document.getElementsByName("House");
-            for (let i = 0; i < showHouse.length; i++) {
-                showHouse[i].style.display = "none";
-            }
+
         }
     }
 </script>
