@@ -12,15 +12,16 @@
         body {
             font-family: Arial;
             padding: 10px;
-            background: #e9d8f4;
+            background-image: url("img/mylove.jpg");
+
         }
 
         /* Header/Blog Title ------------------------------------------------------------------------*/
         .header {
             padding: 10px;
             text-align: center;
-            background: white;
-            color: #58257b;
+            background-image: url("img/girl.jpg");
+            color: white;
         }
 
         .header h1 {
@@ -34,14 +35,14 @@
         /* Style the top navigation bar ------------------------------------------------------------------------*/
         .topnav {
             overflow: hidden;
-            background-color: #58257b;
+            background-color: black;
         }
 
         /* Định dạng link điều hướng */
         .topnav a {
             float: left;
             display: block;
-            color: #f2f2f2;
+            color: white;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
@@ -49,86 +50,51 @@
 
         /* Thay đổi màu liên kết khi di chuột qua */
         .topnav a:hover {
-            background-color: #db7093;
+            background-color: dimgrey;
             color: white;
         }
 
-        /* Tạo hai cột không bằng nhau, float cạnh nhau -----------------------------------------------------*/
-        /* Cột trái */    /* Cột phải */
-        .column.side {
+        .column {
             float: left;
+            padding: 10px;
+        }
+
+        /* Left and right column */
+        .column.side {
             width: 25%;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
         }
 
 
         /* Middle column */
         .column.middle {
-            content:"";
-            clear:both;
-            display:table;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
+            width: 50%;
+
         }
 
-        /* Hình ảnh tượng trưng */
-        .fakeimg {
-            background-color: #baa1cc;
-            width: 100%;
-            padding: 20px;
-        }
-
-        /* Thêm định dạng thẻ cho bài viết */
-        .card {
-            background-color: white;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        /* Clear float khác sau các cột */
+        /* Clear floats after the columns */
         .row:after {
             content: "";
             display: table;
             clear: both;
         }
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .column.side, .column.middle {
+                width: 100%;
+            }
+        }
 
-        /* Footer */
+        /* Style the footer */
         .footer {
-            padding: 10px;
+            background-image: url("img/banner1.jpg");
+            padding: 5px;
             text-align: center;
-            background: white;
-            margin-top: 10px;
-        }
+            color: white;
 
-        /* Bố cục linh hoạt: các cột xếp chồng lên nhau thay vì cạnh nhau khi màn hình
-        có chiều rộng dưới 700px */
-        @media screen and (max-width: 700px) {
-            .leftcolumn, .rightcolumn {
-                width: 100%;
-                padding: 0;
-            }
-        }
-
-        /* Bố cục linh hoạt: Thanh menu điều hướng xếp chồng lên nhau thay vì cạnh nhau
-        khi màn hình có chiều rộng dưới 300px  */
-        @media screen and (max-width: 300px) {
-            .topnav a {
-                float: none;
-                width: 100%;
-            }
         }
     </style>
 </head>
 <body>
-<div th:fragment="copy">
-    &copy; 2011 The Good Thymes Virtual Grocery
-</div>
 
 </body>
 </html>
