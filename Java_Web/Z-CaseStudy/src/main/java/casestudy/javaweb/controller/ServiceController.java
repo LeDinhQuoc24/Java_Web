@@ -6,21 +6,26 @@ import casestudy.javaweb.persistence.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class ServiceController {
     @Autowired
     private ServiceService serviceService;
 
-    @GetMapping("/services")
-    public ModelAndView listServies(Pageable pageable) {
-        Page<Service> services = serviceService.findAll(pageable);
+    @GetMapping("services")
+    public ModelAndView listServices(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
+        Page<Service> services;
+        if (s.isPresent()) {
+            services = serviceService.findByNameContaining(s.get(),pageable);
+        } else {
+            services= serviceService.findAll(pageable);
+        }
         return new ModelAndView("service/listService", "services", services);
     }
 
@@ -32,9 +37,8 @@ public class ServiceController {
     @PostMapping("createService")
     public ModelAndView createService(@ModelAttribute("service") Service service, Pageable pageable) {
         serviceService.save(service);
-        ModelAndView modelAndView;
+        ModelAndView modelAndView= new ModelAndView("service/listService");
         Page<Service> services = serviceService.findAll(pageable);
-        modelAndView = new ModelAndView("service/listService");
         modelAndView.addObject("services", services);
         modelAndView.addObject("message", "New Service created successfully");
         return modelAndView;
@@ -50,7 +54,7 @@ public class ServiceController {
         } else if (service.getTypeService().equals("Room")) {
             return new ModelAndView("service/editRoom", "service", service);
         }
-        return new ModelAndView("service/error.404");
+        return new ModelAndView("error.404");
     }
 
     @PostMapping("editService")
@@ -73,7 +77,7 @@ public class ServiceController {
         } else if (service.getTypeService().equals("Room")) {
             return new ModelAndView("service/deleteRoom", "service", service);
         }
-        return new ModelAndView("service/error.404");
+        return new ModelAndView("error.404");
     }
 
     @PostMapping("deleteService")
@@ -92,11 +96,11 @@ public class ServiceController {
         } else if (service.getTypeService().equals("Room")) {
             return new ModelAndView("service/viewRoom", "service", service);
         }
-        return new ModelAndView("service/error.404");
+        return new ModelAndView("error.404");
     }
 
     @GetMapping("services/{typeService}")
-    public ModelAndView listVilla(@PathVariable("typeService") String typeService,Pageable pageable) {
+    public ModelAndView listVilla(@PathVariable("typeService") String typeService,@PageableDefault(value=5) Pageable pageable) {
         Page<Service> services = serviceService.findByTypeServiceContaining(typeService, pageable);
         return new ModelAndView("service/listService", "services", services);
     }

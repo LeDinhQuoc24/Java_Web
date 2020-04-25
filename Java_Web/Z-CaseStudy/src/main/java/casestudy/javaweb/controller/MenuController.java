@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MenuController {
 
-    @GetMapping("/menu")
+    @GetMapping("menu")
     public ModelAndView menu() {
         return new ModelAndView("show/menu");
     }

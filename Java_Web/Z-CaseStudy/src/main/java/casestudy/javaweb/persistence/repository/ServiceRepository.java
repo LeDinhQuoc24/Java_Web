@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ServiceRepository extends PagingAndSortingRepository<Service,Long> {
     Page<Service> findByTypeServiceContaining(String typeService, Pageable pageable);
+    Page<Service> findByNameContaining(String name, Pageable pageable);
 }

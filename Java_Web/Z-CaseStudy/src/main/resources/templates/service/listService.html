@@ -29,17 +29,9 @@
         <th>Name</th>
         <th>AreaUsed</th>
         <th>Amount</th>
-<!--        <th>Maximum_people</th>-->
         <th>TypeRent</th>
         <th>TypeService</th>
-<!--        <th>RoomStandard</th>-->
-<!--        <th>OtherConvenienceDescription</th>-->
-<!--        <th>FloorAmount</th>-->
-<!--        <th>PoolArea</th>-->
-<!--        <th>FreeAccompanyService</th>-->
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>View</th>
+        <th colspan="3">Action</th>
     </tr>
 
     <th:block th:each="service : ${services}">
@@ -47,14 +39,8 @@
             <td th:text="${service.name}"></td>
             <td th:text="${service.areaUsed}"></td>
             <td th:text="${service.amount}"></td>
-<!--            <td th:text="${service.maximumPeople}"></td>-->
             <td th:text="${service.typeRent}"></td>
             <td th:text="${service.typeService}"></td>
-<!--            <td th:text="${service.roomStandard}"></td>-->
-<!--            <td th:text="${service.otherConvenienceDescription}"></td>-->
-<!--            <td th:text="${service.floorAmount}"></td>-->
-<!--            <td th:text="${service.poolArea}"></td>-->
-<!--            <td th:text="${service.freeAccompanyService}"></td>-->
             <td><a th:href="@{/editService/__${service.id}__ }" style="color: black">Edit</a></td>
             <td><a th:href="@{/deleteService/__${service.id}__ }" style="color: black">Delete</a></td>
             <td><a th:href="@{/viewService/__${service.id}__ }" style="color: black">View</a></td>

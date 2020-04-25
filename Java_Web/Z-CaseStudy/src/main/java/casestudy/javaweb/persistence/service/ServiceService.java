@@ -10,6 +10,8 @@ public interface ServiceService {
 
     Page<Service> findByTypeServiceContaining(String typeService, Pageable pageable);
 
+    Page<Service> findByNameContaining(String name, Pageable pageable);
+
     Service findById(Long id);
 
     void save(Service service);

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Entity
 public  class Service {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="service_id")
     private Long id;
     @Column(name="service_name")

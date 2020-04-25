@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Create Customer</title>
+</head>
+<body>
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/customers" style="color: black">List Customer</a>
+    <h1>Create Customer </h1>
+
+    <form th:action="@{createCustomer}" method="post" th:object="${customer}">
+        <!--    <input type="hidden" th:field="*{id}">-->
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="*{fullName}"></td>
+            </tr>
+            <tr>
+                <td>Birth:</td>
+                <td><input type="text" th:field="*{birth}"></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td><input type="text" th:field="*{gender}"></td>
+            </tr>
+            <tr>
+                <td>IdNumber:</td>
+                <td><input type="text" th:field="*{idNumber}"></td>
+            </tr>
+            <tr>
+                <td>PhoneNumber:</td>
+                <td><input type="text" th:field="*{phoneNumber}"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" th:field="*{email}"></td>
+            </tr>
+            <tr>
+                <td>TypeCustomer:</td>
+                <td>
+                    <select th:field="*{customerType}" onchange="change(this)">
+                        <option th:value="Diamond" th:text="Diamond"></option>
+                        <option th:value="Platinium" th:text="Platinium"></option>
+                        <option th:value="Gold" th:text="Gold"></option>
+                        <option th:value="Silver" th:text="Silver"></option>
+                        <option th:value="Member" th:text="Member"></option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Image:</td>
+                <td>
+                    <select th:field="*{image}" >
+                        <option th:each="i:${images}" th:value="${i.id}" th:text="${i.image_url}"></option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Create Customer"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+
+</body>
+</html>
