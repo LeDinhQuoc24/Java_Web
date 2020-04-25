@@ -30,6 +30,8 @@ public class Customer {
     @JoinColumn(name = "image_id")
     private Image image;
 
+    private String status = "NotRegistered";
+
 
     public Customer(){}
 
@@ -111,5 +113,13 @@ public class Customer {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

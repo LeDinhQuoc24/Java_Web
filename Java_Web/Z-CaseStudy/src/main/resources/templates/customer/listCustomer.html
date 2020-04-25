@@ -28,8 +28,7 @@
         <tr>
             <th>Name</th>
             <th>Gender</th>
-            <th>IdNumber</th>
-            <th>PhoneNumber</th>
+            <th>Status</th>
             <th>Image</th>
             <th colspan="3">Action</th>
         </tr>
@@ -37,8 +36,7 @@
             <tr>
                 <td th:text="${customer.fullName}"></td>
                 <td th:text="${customer.gender}"></td>
-                <td th:text="${customer.idNumber}"></td>
-                <td th:text="${customer.phoneNumber}"></td>
+                <td th:text="${customer.status}"></td>
                 <td><img height="50" th:src="@{${customer.image.image_url}}"></td>
                 <td><a th:href="@{/editCustomer/__${customer.id}__ }" style="color: black">Edit</a></td>
                 <td><a th:href="@{/deleteCustomer/__${customer.id}__ }" style="color: black">Delete</a></td>

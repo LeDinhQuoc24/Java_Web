@@ -2,21 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head">
     <meta charset="UTF-8">
-    <title>Create Customer</title>
-</head>
-<body>
+    <title>Edit Customer </title>
+</head >
+
+<body >
 <div th:replace="layout :: title"> </div>
 <div th:replace="layout :: columnLeft"> </div>
 
 
 <div class="column middle">
+
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/customers" style="color: black">List Customer</a>
-    <h1>Create Customer </h1>
+    <h1>Edit Customer</h1>
 
-    <form th:action="@{createCustomer}" method="post" th:object="${customer}">
-        <!--    <input type="hidden" th:field="*{id}">-->
-            <input type="hidden" th:field="*{status}">
+
+    <form th:action="@{/editCustomer}" th:object="${customer}" method="post">
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <input th:type="hidden" name="id" th:field="*{status}">
         <table>
             <tr>
                 <td>Name:</td>
@@ -54,7 +57,6 @@
                     </select>
                 </td>
             </tr>
-
             <tr>
                 <td>Image:</td>
                 <td>
@@ -63,15 +65,13 @@
                     </select>
                 </td>
             </tr>
-
             <tr>
-                <td><input type="submit" value="Create Customer"></td>
+                <td><input type="submit" value="Edit Customer"></td>
             </tr>
         </table>
     </form>
 </div>
 <div th:replace="layout :: columnRight"> </div>
-
 
 </body>
 </html>

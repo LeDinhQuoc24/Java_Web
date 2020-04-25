@@ -10,10 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -25,6 +22,7 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     private ImageService imageService;
+
     @ModelAttribute("images")
     public List<Image> images() {
         return imageService.findAll();
@@ -34,23 +32,68 @@ public class CustomerController {
     public ModelAndView listCustomer(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
         Page<Customer> customers;
         if (s.isPresent()) {
-            customers = customerService.findByFullNameContaining(s.get(),pageable);
+            customers = customerService.findByFullNameContaining(s.get(), pageable);
         } else {
-            customers= customerService.findAll(pageable);
+            customers = customerService.findAll(pageable);
         }
         return new ModelAndView("customer/listCustomer", "customers", customers);
     }
+
     @GetMapping("createCustomer")
     public ModelAndView showFormCreate() {
         return new ModelAndView("customer/createCustomer", "customer", new Customer());
     }
+
     @PostMapping("createCustomer")
-    public ModelAndView saveCustomer(@ModelAttribute("customer")Customer customer,Pageable pageable) {
+    public ModelAndView saveCustomer(@ModelAttribute("customer") Customer customer, Pageable pageable) {
         customerService.save(customer);
         Page<Customer> customers = customerService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("customer/listCustomer");
         modelAndView.addObject("message", "New Customer created successfully");
         modelAndView.addObject("customers", customers);
         return modelAndView;
+    }
+
+    @GetMapping("editCustomer/{id}")
+    public ModelAndView showFormEdit(@PathVariable("id") Long id) {
+        Customer customer = customerService.findById(id);
+        if (customer != null) {
+            return new ModelAndView("customer/editCustomer", "customer", customer);
+        }
+        return new ModelAndView("error.404");
+    }
+
+    @PostMapping("editCustomer")
+    public ModelAndView updateCustomer(@ModelAttribute("customer") Customer customer, Pageable pageable) {
+        customerService.save(customer);
+        Page<Customer> customers = customerService.findAll(pageable);
+        ModelAndView modelAndView = new ModelAndView("customer/listCustomer");
+        modelAndView.addObject("message", "Customer updated successfully");
+        modelAndView.addObject("customers", customers);
+        return modelAndView;
+    }
+
+    @GetMapping("deleteCustomer/{id}")
+    public ModelAndView showFormDelete(@PathVariable("id") Long id) {
+        Customer customer = customerService.findById(id);
+        if (customer != null) {
+            return new ModelAndView("customer/deleteCustomer", "customer", customer);
+        }
+        return new ModelAndView("error.404");
+    }
+
+    @PostMapping("deleteCustomer")
+    public String deleteCustomer(@ModelAttribute("customer") Customer customer) {
+        customerService.remove(customer.getId());
+        return "redirect:customers";
+    }
+
+    @GetMapping("viewCustomer/{id}")
+    public ModelAndView viewCustomer(@PathVariable("id")Long id) {
+        Customer customer=customerService.findById(id);
+        if (customer != null) {
+            return new ModelAndView("customer/viewCustomer", "customer", customer);
+        }
+        return new ModelAndView("error.404");
     }
 }
