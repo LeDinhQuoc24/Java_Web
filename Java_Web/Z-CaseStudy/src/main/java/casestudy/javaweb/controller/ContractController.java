@@ -1,5 +1,5 @@
 package casestudy.javaweb.controller;
 
-public class Contract {
+public class ContractController {
 
 }

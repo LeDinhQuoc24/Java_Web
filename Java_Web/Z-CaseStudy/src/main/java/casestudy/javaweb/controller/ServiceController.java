@@ -19,7 +19,7 @@ public class ServiceController {
     private ServiceService serviceService;
 
     @GetMapping("services")
-    public ModelAndView listServices(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
+    public ModelAndView listService(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
         Page<Service> services;
         if (s.isPresent()) {
             services = serviceService.findByNameContaining(s.get(),pageable);
