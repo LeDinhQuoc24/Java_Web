@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="layout :: head">
     <meta charset="UTF-8">
-    <title>Create Service</title>
-</head>
-<body>
-<h1>Create Service</h1>
-<p>
-    <a href="/services">List Services</a>
-</p>
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
-<form th:action="@{create-service}" method="post" th:object="${service}">
-    <!--    <input type="hidden" th:field="*{id}">-->
+    <title>Edit Service </title>
+</head >
+
+<body >
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+
+<a href="/menu" style="color: black">Back to Menu</a>
+<a href="/services" style="color: black">List Service</a>
+<h1>Edit Service</h1>
+
+
+<form th:action="@{/editService}" th:object="${service}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <!--    <input th:type="hidden" name="id" th:field="*{image_id}">-->
     <table>
         <tr>
             <td>Name:</td>
@@ -69,12 +75,13 @@
         </tr>
 
         <tr>
-            <td><input type="submit" value="Create Service"></td>
+            <td><input type="submit" value="Edit Service"></td>
         </tr>
     </table>
-
-
 </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
 <script>
     function change(obj) {
         var value=obj.value;
@@ -122,6 +129,5 @@
         }
     }
 </script>
-
 </body>
 </html>

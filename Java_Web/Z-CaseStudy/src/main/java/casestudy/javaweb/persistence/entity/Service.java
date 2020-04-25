@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Entity
 public  class Service {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="service_id")
     private Long id;
     @Column(name="service_name")
@@ -20,17 +20,17 @@ public  class Service {
     @Column(name = "typeRent")
     private String typeRent;
     @Column(name="typeService")
-    private String typeService="null";
+    private String typeService;
     //Villa/House
-    private String roomStandard="";
+    private String roomStandard;
     //Villa/House
-    private String otherConvenienceDescription="";
+    private String otherConvenienceDescription;
     //Villa/House
-    private int floorAmount=0;
+    private int floorAmount;
     //Villa
-    private double poolArea=0;
+    private double poolArea;
     //Room
-    private String freeAccompanyService="";
+    private String freeAccompanyService;
 
     public Service() {
     }

@@ -4,81 +4,11 @@
 <head th:replace="layout :: head">
     <Title>Menu</Title>
 </head>
-<body>
-<div class="header">
-    <img  src="img/logo.png" height="50" align="left"/>
-    <h1>Furama Resort Đà Nẵng </h1>
-    <p>CaseStudy - JavaWeb - VnNhnLm</p>
-</div>
-<div class="topnav">
-    <a href="#">Home</a>
-    <a href="#">Dịch vụ</a>
-    <a href="#">Tìm kiếm</a>
-    <a href="#">Review</a>
-    <a href="#" style="float:right">Đăng ký</a>
-    <a href="#" style="float:right">Đăng nhập</a>
-</div>
-
-    <div class="row">
-        <div class="column side">
-                <table>
-                    <tr>
-                        <th>Section 1</th>
-                    </tr>
-                    <tr>
-                        <th>Section 1</th>
-                    </tr>
-                    <tr>
-                        <th>Section 1</th>
-                    </tr>
-                    <tr>
-                        <th>Section 1</th>
-                    </tr>
-                    <tr>
-                        <th>Section 1</th>
-                    </tr>
-                    <tr>
-                        <th>Section 1</th>
-                    </tr>
-                    <tr>
-                        <th>Section 1</th>
-                    </tr>
-                </table>
-        </div>
-
-        <div class="column middle">
-                <p>Hoa nở ngàn năm hoa Bỉ ngạn</p>
-                <p>Hoàng tuyền huyết nhuộm nỗi bi thương</p>
-                <p>Vô hoa hữu diệp vô tương ngộ</p>
-                <p>Vạn kiếp luân hồi vạn kiếp vương</p>
-
-        </div>
-
-        <div class="column side">
-            <table>
-                <tr>
-                    <th>Feature 1</th>
-                </tr>
-                <tr>
-                    <th>Feature 2</th>
-                </tr>
-                <tr>
-                    <th>Feature 3</th>
-                </tr>
-                <tr>
-                    <th>Feature 4</th>
-                </tr>
-                <tr>
-                    <th>Feature 5</th>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-<div class="footer">
-    <p>VnNhnLm 4/2020 C0120G1</p>
-
-</div>
+<body >
+<div th:replace="layout :: title" > </div>
+<div th:replace="layout :: columnLeft" > </div>
+<div th:replace="layout :: columnMid" > </div>
+<div th:replace="layout :: columnRight" > </div>
 
 
 

@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class CustomerController {
+public class MenuController {
 
     @GetMapping("/menu")
-    public ModelAndView modelAndView() {
+    public ModelAndView menu() {
         return new ModelAndView("show/menu");
     }
+
+
 }

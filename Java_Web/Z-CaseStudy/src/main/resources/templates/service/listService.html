@@ -1,13 +1,20 @@
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="layout :: head">
     <meta charset="UTF-8">
     <title>Service List</title>
 </head>
 <body>
-<a href="/create-service">Create new Service</a>
 
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+
+<a href="/menu" style="color: black">Back to Menu</a>
+<a href="/createService" style="color: black">Create new Service</a>
 <h1>Services</h1>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
@@ -22,14 +29,14 @@
         <th>Name</th>
         <th>AreaUsed</th>
         <th>Amount</th>
-        <th>Maximum_people</th>
+<!--        <th>Maximum_people</th>-->
         <th>TypeRent</th>
         <th>TypeService</th>
-        <th>RoomStandard</th>
-        <th>OtherConvenienceDescription</th>
-        <th>FloorAmount</th>
-        <th>PoolArea</th>
-        <th>FreeAccompanyService</th>
+<!--        <th>RoomStandard</th>-->
+<!--        <th>OtherConvenienceDescription</th>-->
+<!--        <th>FloorAmount</th>-->
+<!--        <th>PoolArea</th>-->
+<!--        <th>FreeAccompanyService</th>-->
         <th>Edit</th>
         <th>Delete</th>
         <th>View</th>
@@ -40,17 +47,17 @@
             <td th:text="${service.name}"></td>
             <td th:text="${service.areaUsed}"></td>
             <td th:text="${service.amount}"></td>
-            <td th:text="${service.maximumPeople}"></td>
+<!--            <td th:text="${service.maximumPeople}"></td>-->
             <td th:text="${service.typeRent}"></td>
             <td th:text="${service.typeService}"></td>
-            <td th:text="${service.roomStandard}"></td>
-            <td th:text="${service.otherConvenienceDescription}"></td>
-            <td th:text="${service.floorAmount}"></td>
-            <td th:text="${service.poolArea}"></td>
-            <td th:text="${service.freeAccompanyService}"></td>
-            <td><a th:href="@{/edit-service/__${service.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete-service/__${service.id}__ }">Delete</a></td>
-            <td><a th:href="@{/serviceview/__${service.id}__ }">View</a></td>
+<!--            <td th:text="${service.roomStandard}"></td>-->
+<!--            <td th:text="${service.otherConvenienceDescription}"></td>-->
+<!--            <td th:text="${service.floorAmount}"></td>-->
+<!--            <td th:text="${service.poolArea}"></td>-->
+<!--            <td th:text="${service.freeAccompanyService}"></td>-->
+            <td><a th:href="@{/editService/__${service.id}__ }" style="color: black">Edit</a></td>
+            <td><a th:href="@{/deleteService/__${service.id}__ }" style="color: black">Delete</a></td>
+            <td><a th:href="@{/viewService/__${service.id}__ }" style="color: black">View</a></td>
         </tr>
     </th:block>
 </table>
@@ -59,5 +66,8 @@
     <span th:text="${services.number + 1}"></span>/<span th:text="${services.totalPages}"></span>
     <a th:href="@{'/services'(page=${services.number + 1})}" th:if="${services.hasNext()}">Next</a>
 </div>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
 </body>
 </html>

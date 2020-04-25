@@ -16,6 +16,8 @@
 
         }
 
+
+
         /* Header/Blog Title ------------------------------------------------------------------------*/
         .header {
             padding: 10px;
@@ -60,14 +62,18 @@
         }
 
         /* Left and right column */
-        .column.side {
-            width: 25%;
+        .column.left {
+            width: 18%;
+        }
+        .column.right {
+            width: 12%;
         }
 
 
         /* Middle column */
         .column.middle {
-            width: 50%;
+            width: 70%;
+            background-image: url("img/love2.png");
 
         }
 
@@ -92,9 +98,101 @@
             color: white;
 
         }
+
     </style>
+
+
+
 </head>
-<body>
+<body >
+<!--Tiêu đề-->
+<div th:fragment="title">
+    <div class="header" >
+        <img  src="img/logo.png" height="50" align="left"/>
+        <h1>Furama Resort Đà Nẵng </h1>
+        <p>CaseStudy - JavaWeb - VnNhnLm</p>
+    </div>
+    <div class="topnav">
+        <a href="/menu">Home</a>
+        <a href="#">Dịch vụ</a>
+        <a href="#">Tìm kiếm</a>
+        <a href="#">Review</a>
+        <a href="#" style="float:right">Đăng ký</a>
+        <a href="#" style="float:right">Đăng nhập</a>
+    </div>
+</div>
+
+<!--Cột trái-->
+<div th:fragment="columnLeft" class="column left" >
+
+        <table>
+            <tr>
+                <th ><a href="/services" style="color: black">DS Dịch vụ</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/services/Villa" style="color: black">DS Villa</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/services/House" style="color: black">DS House</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/services/Room" style="color: black">DS Room</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/customers" style="color: black">DS Khách hàng</a></th>
+            </tr>
+            <tr>
+                <th>Section 1</th>
+            </tr>
+            <tr>
+                <th>Section 1</th>
+            </tr>
+        </table>
+</div>
+
+<!--Cột giữa-->
+<div th:fragment="columnMid" class="column middle">
+
+        <h1>Welcome to VnNhnLm 's CaseStudy</h1>
+    <center>
+        <p style="color: red">Hoa nở ngàn năm hoa bỉ ngạn</p>
+        <p style="color: red">Hoàng tuyền huyết nhuộm nỗi bi thương</p>
+        <p style="color: red">Vô hoa hữu diệp vô tương ngộ</p>
+        <p style="color: red">Vạn kiếp luân hồi vạn kiếp vương</p>
+    </center>
+
+</div>
+
+
+<!--Cột phải-->
+<div th:fragment="columnRight" class="column right">
+
+        <table>
+            <tr>
+                <th>Feature 1</th>
+            </tr>
+            <tr>
+                <th>Feature 2</th>
+            </tr>
+            <tr>
+                <th>Feature 3</th>
+            </tr>
+            <tr>
+                <th>Feature 4</th>
+            </tr>
+            <tr>
+                <th>Feature 5</th>
+            </tr>
+        </table>
+
+</div>
+
+<!--Footer-->
+<div th:fragment="footer" class="footer">
+    <p>VnNhnLm 4/2020 C0120G1</p>
+
+</div>
+
 
 </body>
 </html>

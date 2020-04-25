@@ -18,6 +18,11 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
+    public Page<Service> findByTypeServiceContaining(String typeService, Pageable pageable) {
+        return serviceRepository.findByTypeServiceContaining(typeService, pageable);
+    }
+
+    @Override
     public casestudy.javaweb.persistence.entity.Service findById(Long id) {
         return serviceRepository.findById(id).orElse(null);
     }
