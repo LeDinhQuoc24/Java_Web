@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class RentType {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "rent_type_id")
     private Long id;
 

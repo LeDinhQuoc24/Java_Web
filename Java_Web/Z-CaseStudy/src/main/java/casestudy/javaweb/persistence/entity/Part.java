@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class Part {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "part_id")
     private Long id;
     private String name;

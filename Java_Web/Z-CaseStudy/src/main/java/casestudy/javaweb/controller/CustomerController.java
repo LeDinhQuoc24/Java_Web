@@ -90,7 +90,7 @@ public class CustomerController {
         return new ModelAndView("error.404");
     }
 
-    @PostMapping("/deleteCustomer")
+    @PostMapping("deleteCustomer")
     public String deleteCustomer(@ModelAttribute("customer") Customer customer) {
         customerService.remove(customer.getId());
         return "redirect:customers";

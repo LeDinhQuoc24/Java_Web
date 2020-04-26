@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class CustomerType {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customer_type_id")
     private Long id;
 
