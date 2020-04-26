@@ -30,8 +30,8 @@
         <th>Name</th>
         <th>AreaUsed</th>
         <th>Amount</th>
-        <th>TypeRent</th>
-        <th>TypeService</th>
+        <th>RentType</th>
+        <th>ServiceType</th>
         <th colspan="3">Action</th>
     </tr>
 
@@ -40,8 +40,8 @@
             <td th:text="${service.name}"></td>
             <td th:text="${service.areaUsed}"></td>
             <td th:text="${service.amount}"></td>
-            <td th:text="${service.typeRent}"></td>
-            <td th:text="${service.typeService}"></td>
+            <td th:text="${service.rentType.name}"></td>
+            <td th:text="${service.serviceType.name}"></td>
             <td><a th:href="@{/editService/__${service.id}__ }" style="color: black">Edit</a></td>
             <td><a th:href="@{/deleteService/__${service.id}__ }" style="color: black">Delete</a></td>
             <td><a th:href="@{/viewService/__${service.id}__ }" style="color: black">View</a></td>

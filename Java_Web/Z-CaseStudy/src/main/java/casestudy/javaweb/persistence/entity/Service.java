@@ -16,13 +16,16 @@ public  class Service {
     @Column(name="amount")
     private int amount;
     @Column(name = "maximum_people")
+    private int maximumPeople;
 
     @ManyToOne(targetEntity = RentType.class)
     @JoinColumn(name = "rent_type_id")
     private RentType rentType;
+
     @ManyToOne(targetEntity = ServiceType.class)
     @JoinColumn(name = "service_type_id")
     private ServiceType serviceType;
+
 
     private String typeService;
     //Villa/House
@@ -69,6 +72,14 @@ public  class Service {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public int getMaximumPeople() {
+        return maximumPeople;
+    }
+
+    public void setMaximumPeople(int maximumPeople) {
+        this.maximumPeople = maximumPeople;
     }
 
     public RentType getRentType() {

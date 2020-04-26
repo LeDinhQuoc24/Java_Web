@@ -37,16 +37,19 @@
                 <td><input type="text" th:field="*{maximumPeople}"></td>
             </tr>
             <tr>
-                <td>TypeRent:</td>
-                <td><input type="text" th:field="*{typeRent}"></td>
-            </tr>
-            <tr>
-                <td>TypeService:</td>
+                <td>RentType:</td>
                 <td>
-                    <select th:field="*{typeService}" onchange="change(this)">
-                        <option th:value="House" th:text="House"></option>
-                        <option th:value="Villa" th:text="Villa"></option>
-                        <option th:value="Room" th:text="Room"></option>
+                    <select th:field="*{rentType}">
+                        <option th:each="r:${rentTypes}" th:value="${r.id}" th:text="${r.name}"></option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>ServiceType:</td>
+                <td>
+                    <select th:field="*{serviceType}" onchange="change(this)">
+                        <option th:each="s:${serviceTypes}" th:value="${s.id}" th:text="${s.name}"></option>
                     </select>
                 </td>
             </tr>
