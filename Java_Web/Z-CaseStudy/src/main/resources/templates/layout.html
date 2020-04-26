@@ -51,30 +51,46 @@
         }
 
         /* Thay đổi màu liên kết khi di chuột qua */
-        .topnav a:hover {
+        .topnav :hover {
             background-color: dimgrey;
-            color: white;
+            color: blueviolet;
         }
 
         .column {
             float: left;
-            padding: 10px;
+            color: black;
+
+        }
+        .column a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 5px 7px;
+            text-decoration: none;
         }
 
         /* Left and right column */
         .column.left {
             width: 18%;
+
         }
         .column.right {
-            width: 12%;
+            width: 14%;
+
         }
 
 
         /* Middle column */
         .column.middle {
-            width: 70%;
+            width: 68%;
             background-image: url("img/love2.png");
 
+
+        }
+        .column a:hover {
+            background-color: dimgrey;
+            color: white;
         }
 
         /* Clear floats after the columns */
@@ -85,7 +101,7 @@
         }
         /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 600px) {
-            .column.side, .column.middle {
+            .column.left, .column.middle,.column.right {
                 width: 100%;
             }
         }
@@ -109,71 +125,81 @@
 <div th:fragment="title">
     <div class="header" >
         <img  src="img/logo.png" height="50" align="left"/>
-        <h1>Furama Resort Đà Nẵng </h1>
+        <font face="VNI-Butlong">
+        <h1>Furama Resort Da Nang </h1>
         <p>CaseStudy - JavaWeb - VnNhnLm</p>
+        </font>
     </div>
     <div class="topnav">
+        <font face="VNI-Butlong">
         <a href="/menu">Home</a>
-        <a href="/services">Dịch vụ</a>
-        <a href="/images">Ảnh</a>
-        <a href="#">Tìm kiếm</a>
+        <a href="/services">Service</a>
+        <a href="/images">Image</a>
+        <a href="#">Search</a>
         <a href="#">Review</a>
-        <a href="#" style="float:right">Đăng ký</a>
-        <a href="#" style="float:right">Đăng nhập</a>
+        <a href="#" style="float:right">Register</a>
+        <a href="#" style="float:right">Login</a>
+        </font>
     </div>
 </div>
 
 <!--Cột trái-->
 <div th:fragment="columnLeft" class="column left" >
+    <font face="VNI-Butlong">
 
         <table>
             <tr>
-                <th ><a href="/services" style="color: black">DS Dịch vụ</a></th>
+                <th ><a href="/services" style="color: black">List Service</a></th>
             </tr>
             <tr>
-                <th ><a href="/services/Villa" style="color: black">DS Villa</a></th>
+                <th ><a href="/services/Villa" style="color: black">List Villa</a></th>
             </tr>
             <tr>
-                <th ><a href="/services/House" style="color: black">DS House</a></th>
+                <th ><a href="/services/House" style="color: black">List House</a></th>
             </tr>
             <tr>
-                <th ><a href="/services/Room" style="color: black">DS Room</a></th>
+                <th ><a href="/services/Room" style="color: black">List Room</a></th>
             </tr>
             <tr>
-                <th ><a href="/customers" style="color: black">DS Khách hàng</a></th>
+                <th ><a href="/customers" style="color: black">List Customer</a></th>
             </tr>
             <tr>
-                <th><a href="/degrees" style="color: black">DS Trình độ</a></th>
+                <th><a href="/degrees" style="color: black">List Degree</a></th>
             </tr>
             <tr>
-                <th><a href="/parts" style="color: black">DS Vị trí</a></th>
+                <th><a href="/parts" style="color: black">List Part</a></th>
             </tr>
             <tr>
-                <th><a href="/positions" style="color: black">DS Chức vụ</a></th>
+                <th><a href="/positions" style="color: black">List Position</a></th>
             </tr>
         </table>
+
+    </font>
 </div>
 
 <!--Cột giữa-->
 <div th:fragment="columnMid" class="column middle">
-
-        <h1>Welcome to VnNhnLm 's CaseStudy</h1>
+    <font face="VNI-Butlong">
     <center>
-        <p style="color: red">Hoa nở ngàn năm hoa bỉ ngạn</p>
-        <p style="color: red">Hoàng tuyền huyết nhuộm nỗi bi thương</p>
-        <p style="color: red">Vô hoa hữu diệp vô tương ngộ</p>
-        <p style="color: red">Vạn kiếp luân hồi vạn kiếp vương</p>
+        <h2>Welcome to VnNhnLm 's CaseStudy</h2>
+
+        <p style="color: red" >Hoa no ngan nam hoa bi ngan</p>
+        <p style="color: red">Hoang tuyen huyet nhuom noi bi thuong</p>
+        <p style="color: red">Vo hoa huu diep vo tuong ngo</p>
+        <p style="color: red">Van kiep luan hoi van kiep vuong</p>
     </center>
+    </font>
 
 </div>
 
 
 <!--Cột phải-->
 <div th:fragment="columnRight" class="column right">
+    <font face="VNI-Butlong">
 
         <table>
             <tr>
-                <th>Feature 1</th>
+                <th><a href="/images">Image</a></th>
             </tr>
             <tr>
                 <th>Feature 2</th>
@@ -188,6 +214,7 @@
                 <th>Feature 5</th>
             </tr>
         </table>
+    </font>
 
 </div>
 
