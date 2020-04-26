@@ -17,6 +17,10 @@ public class MenuController {
     public ModelAndView search() {
         return new ModelAndView("show/search");
     }
+    @GetMapping("image")
+    public ModelAndView image() {
+        return new ModelAndView("show/image");
+    }
 
 
 }

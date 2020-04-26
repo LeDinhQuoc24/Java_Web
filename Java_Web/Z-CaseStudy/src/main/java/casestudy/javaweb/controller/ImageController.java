@@ -20,19 +20,19 @@ public class ImageController {
     @GetMapping("images")
     public ModelAndView listImage() {
         List<Image> images = imageService.findAll();
-        return new ModelAndView("image/listImage", "images", images);
+        return new ModelAndView("imageCustomer/listImage", "images", images);
     }
 
     @GetMapping("createImage")
     public ModelAndView showFormCreate() {
-        return new ModelAndView("image/createImage", "image", new Image());
+        return new ModelAndView("imageCustomer/createImage", "image", new Image());
     }
 
     @PostMapping("createImage")
     public ModelAndView saveImage(@ModelAttribute("image") Image image) {
         imageService.save(image);
         List<Image> images = imageService.findAll();
-        ModelAndView modelAndView = new ModelAndView("image/listImage");
+        ModelAndView modelAndView = new ModelAndView("imageCustomer/listImage");
         modelAndView.addObject("images", images);
         modelAndView.addObject("message", "New Image created successfully");
         return modelAndView;
@@ -42,7 +42,7 @@ public class ImageController {
     public ModelAndView showFormEdit(@PathVariable("id") Long id) {
         Image image = imageService.findById(id);
         if (image != null) {
-            return new ModelAndView("image/editImage", "image", image);
+            return new ModelAndView("imageCustomer/editImage", "image", image);
         }
         return new ModelAndView("error.404");
     }
@@ -51,7 +51,7 @@ public class ImageController {
     public ModelAndView updateImage(@ModelAttribute("image") Image image) {
         imageService.save(image);
         List<Image> images = imageService.findAll();
-        ModelAndView modelAndView = new ModelAndView("image/listImage");
+        ModelAndView modelAndView = new ModelAndView("imageCustomer/listImage");
         modelAndView.addObject("message", "Image updated successfully");
         modelAndView.addObject("images", images);
         return modelAndView;
@@ -61,7 +61,7 @@ public class ImageController {
     public ModelAndView showFormDelete(@PathVariable("id") Long id) {
         Image image = imageService.findById(id);
         if (image != null) {
-            return new ModelAndView("image/deleteImage", "image", image);
+            return new ModelAndView("imageCustomer/deleteImage", "image", image);
         }
         return new ModelAndView("error.404");
     }
