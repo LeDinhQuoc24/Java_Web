@@ -81,7 +81,7 @@ public class CustomerController {
         return modelAndView;
     }
 
-    @GetMapping("deleteCustomer/{id}")
+    @GetMapping("/deleteCustomer/{id}")
     public ModelAndView showFormDelete(@PathVariable("id") Long id) {
         Customer customer = customerService.findById(id);
         if (customer != null) {
@@ -90,7 +90,7 @@ public class CustomerController {
         return new ModelAndView("error.404");
     }
 
-    @PostMapping("deleteCustomer")
+    @PostMapping("/deleteCustomer")
     public String deleteCustomer(@ModelAttribute("customer") Customer customer) {
         customerService.remove(customer.getId());
         return "redirect:customers";

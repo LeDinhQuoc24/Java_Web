@@ -5,10 +5,12 @@ package casestudy.javaweb.persistence.entity;
 import javax.persistence.*;
 import java.util.Date;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customer_id")
     private Long id;
 
@@ -23,7 +25,7 @@ public class Customer {
 
     private String email;private String address;
 
-    @ManyToOne(targetEntity = CustomerType.class)
+    @ManyToOne(targetEntity = CustomerType.class,cascade = ALL)
     @JoinColumn(name = "customer_type_id")
     private CustomerType customerType;
 
@@ -35,7 +37,7 @@ public class Customer {
         this.customerType = customerType;
     }
 
-    @ManyToOne
+    @ManyToOne(targetEntity =Image.class,cascade = ALL)
     @JoinColumn(name = "image_id")
     private Image image;
 

@@ -28,7 +28,7 @@ public class Employee {
     @ManyToOne(targetEntity = Part.class)
     @JoinColumn(name="part_id")
     private Part part;
-    @ManyToOne
+    @ManyToOne(targetEntity = Image.class)
     @JoinColumn(name = "image_id")
     private Image image;
 
