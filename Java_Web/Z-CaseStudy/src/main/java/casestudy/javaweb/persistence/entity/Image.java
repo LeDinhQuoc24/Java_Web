@@ -10,6 +10,7 @@ public class Image {
     private Long id;
     private String name;
     private String image_url;
+    private String type;
     @OneToMany(targetEntity = Customer.class)
     private List<Customer> customer;
 
@@ -46,5 +47,13 @@ public class Image {
 
     public void setCustomer(List<Customer> customer) {
         this.customer = customer;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

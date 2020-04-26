@@ -33,7 +33,7 @@
             <tr>
                 <td th:text="${image.name}"></td>
                 <td th:text="${image.image_url}"></td>
-                <td><img height="50" th:src="@{${image.image_url}}"></td>
+                <td><img height="50" th:src="@{'../'+${image.image_url}}"></td>
 
                 <td><a th:href="@{/editImage/__${image.id}__ }" style="color: black">Edit</a></td>
                 <td><a th:href="@{/deleteImage/__${image.id}__ }" style="color: black">Delete</a></td>

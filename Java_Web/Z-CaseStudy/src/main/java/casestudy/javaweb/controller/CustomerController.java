@@ -25,7 +25,7 @@ public class CustomerController {
 
     @ModelAttribute("images")
     public List<Image> images() {
-        return imageService.findAll();
+        return imageService.findByTypeContaining("Customer");
     }
 
     @GetMapping("customers")

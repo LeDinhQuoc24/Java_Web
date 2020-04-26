@@ -10,6 +10,8 @@ import java.util.List;
 public interface ImageService {
     List<Image> findAll();
 
+    List<Image> findByTypeContaining(String type);
+
 
     Image findById(Long id);
 

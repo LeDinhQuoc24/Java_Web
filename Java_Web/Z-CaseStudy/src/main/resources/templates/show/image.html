@@ -17,12 +17,18 @@
 
     <h1>Image</h1>
     <center>
-
         <form th:action="@{images}" method="get">
+            <h2>All</h2>
+            <input type="submit" value="View"/>
+        </form><br/>
+        <form th:action="@{images/Customer}" method="get">
             <h2>Customer</h2>
             <input type="submit" value="View"/>
         </form><br/>
-
+        <form th:action="@{images/Employee}" method="get">
+            <h2>Employee</h2>
+            <input type="submit" value="View"/>
+        </form><br/>
     </center>
 
 </div>
