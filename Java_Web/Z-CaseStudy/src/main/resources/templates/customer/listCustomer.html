@@ -19,6 +19,7 @@
     <th:block th:if="${message}">
         <p th:text="${message}"></p>
     </th:block>
+    <center>
     <form>
         Search by name:
         <input name="s" type="text"/>
@@ -49,6 +50,7 @@
         <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
         <a th:href="@{'/customers'(page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
     </div>
+        </center>
 </div>
 <div th:replace="layout :: columnRight"> </div>
 

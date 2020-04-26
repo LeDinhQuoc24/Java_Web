@@ -15,11 +15,11 @@
 
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/createPart" style="color: black">Create new Part</a>
-    <h1>Parts</h1>
+        <h1>Parts</h1>
     <th:block th:if="${message}">
         <p th:text="${message}"></p>
     </th:block>
-
+    <center>
     <table border="1">
         <tr>
             <th>Name</th>
@@ -36,7 +36,7 @@
             </tr>
         </th:block>
     </table>
-
+    </center>
 </div>
 <div th:replace="layout :: columnRight"> </div>
 
