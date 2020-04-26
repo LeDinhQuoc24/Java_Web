@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 public interface ServiceService {
     Page<Service> findAll(Pageable pageable);
 
-    Page<Service> findByTypeServiceContaining(String typeService, Pageable pageable);
+    Page<Service> findByServiceType_Name(String name, Pageable pageable);
 
     Page<Service> findByNameContaining(String name, Pageable pageable);
 

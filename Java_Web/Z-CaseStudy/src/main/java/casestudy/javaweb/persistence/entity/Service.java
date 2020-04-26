@@ -27,17 +27,6 @@ public  class Service {
     private ServiceType serviceType;
 
 
-    private String typeService;
-    //Villa/House
-    private String roomStandard;
-    //Villa/House
-    private String otherConvenienceDescription;
-    //Villa/House
-    private int floorAmount;
-    //Villa
-    private double poolArea;
-    //Room
-    private String freeAccompanyService;
 
     public Service() {
     }
@@ -98,51 +87,4 @@ public  class Service {
         this.serviceType = serviceType;
     }
 
-    public String getTypeService() {
-        return typeService;
-    }
-
-    public void setTypeService(String typeService) {
-        this.typeService = typeService;
-    }
-
-    public String getRoomStandard() {
-        return roomStandard;
-    }
-
-    public void setRoomStandard(String roomStandard) {
-        this.roomStandard = roomStandard;
-    }
-
-    public String getOtherConvenienceDescription() {
-        return otherConvenienceDescription;
-    }
-
-    public void setOtherConvenienceDescription(String otherConvenienceDescription) {
-        this.otherConvenienceDescription = otherConvenienceDescription;
-    }
-
-    public int getFloorAmount() {
-        return floorAmount;
-    }
-
-    public void setFloorAmount(int floorAmount) {
-        this.floorAmount = floorAmount;
-    }
-
-    public double getPoolArea() {
-        return poolArea;
-    }
-
-    public void setPoolArea(double poolArea) {
-        this.poolArea = poolArea;
-    }
-
-    public String getFreeAccompanyService() {
-        return freeAccompanyService;
-    }
-
-    public void setFreeAccompanyService(String freeAccompanyService) {
-        this.freeAccompanyService = freeAccompanyService;
-    }
 }

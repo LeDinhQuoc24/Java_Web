@@ -1,7 +1,6 @@
 package casestudy.javaweb.controller;
 
 
-import casestudy.javaweb.persistence.entity.Image;
 import casestudy.javaweb.persistence.entity.RentType;
 import casestudy.javaweb.persistence.entity.Service;
 import casestudy.javaweb.persistence.entity.ServiceType;
@@ -27,6 +26,7 @@ public class ServiceController {
     private ServiceTypeService serviceTypeService;
     @Autowired
     private RentTypeService rentTypeService;
+
     @ModelAttribute("rentTypes")
     public List<RentType> rentTypes() {
         return rentTypeService.findAll();
@@ -46,9 +46,9 @@ public class ServiceController {
         }
         return new ModelAndView("service/listService", "services", services);
     }
-    @GetMapping("services/{typeService}")
-    public ModelAndView listVilla(@PathVariable("typeService") String typeService,@PageableDefault(value=5) Pageable pageable) {
-        Page<Service> services = serviceService.findByTypeServiceContaining(typeService, pageable);
+    @GetMapping("services/{name}")
+    public ModelAndView listVilla(@PathVariable("name") String name,@PageableDefault(value=5) Pageable pageable) {
+        Page<Service> services = serviceService.findByServiceType_Name(name, pageable);
         return new ModelAndView("service/listService", "services", services);
     }
 
@@ -61,8 +61,8 @@ public class ServiceController {
     @PostMapping("createService")
     public ModelAndView createService(@ModelAttribute("service") Service service, Pageable pageable) {
         serviceService.save(service);
-        ModelAndView modelAndView= new ModelAndView("service/listService");
         Page<Service> services = serviceService.findAll(pageable);
+        ModelAndView modelAndView= new ModelAndView("service/listService");
         modelAndView.addObject("services", services);
         modelAndView.addObject("message", "New Service created successfully");
         return modelAndView;
@@ -71,12 +71,8 @@ public class ServiceController {
     @GetMapping("editService/{id}")
     public ModelAndView showFormEdit(@PathVariable("id") Long id) {
         Service service = serviceService.findById(id);
-        if (service.getTypeService().equals("Villa")) {
-            return new ModelAndView("service/editVilla", "service", service);
-        } else if (service.getTypeService().equals("House")) {
-            return new ModelAndView("service/editHouse", "service", service);
-        } else if (service.getTypeService().equals("Room")) {
-            return new ModelAndView("service/editRoom", "service", service);
+        if (service!=null) {
+            return new ModelAndView("service/editService", "service", service);
         }
         return new ModelAndView("error.404");
     }
@@ -94,12 +90,8 @@ public class ServiceController {
     @GetMapping("deleteService/{id}")
     public ModelAndView showFormDelete(@PathVariable("id") Long id) {
         Service service = serviceService.findById(id);
-        if (service.getTypeService().equals("Villa")) {
-            return new ModelAndView("service/deleteVilla", "service", service);
-        } else if (service.getTypeService().equals("House")) {
-            return new ModelAndView("service/deleteHouse", "service", service);
-        } else if (service.getTypeService().equals("Room")) {
-            return new ModelAndView("service/deleteRoom", "service", service);
+        if (service!=null) {
+            return new ModelAndView("service/deleteService", "service", service);
         }
         return new ModelAndView("error.404");
     }
@@ -113,15 +105,10 @@ public class ServiceController {
     @GetMapping("viewService/{id}")
     public ModelAndView viewService(@PathVariable("id") Long id) {
         Service service = serviceService.findById(id);
-        if (service.getTypeService().equals("Villa")) {
-            return new ModelAndView("service/viewVilla", "service", service);
-        } else if (service.getTypeService().equals("House")) {
-            return new ModelAndView("service/viewHouse", "service", service);
-        } else if (service.getTypeService().equals("Room")) {
-            return new ModelAndView("service/viewRoom", "service", service);
+        if (service!=null) {
+            return new ModelAndView("service/viewService", "service", service);
         }
         return new ModelAndView("error.404");
     }
-
 
 }
