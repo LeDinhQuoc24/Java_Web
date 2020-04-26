@@ -23,8 +23,17 @@ public class Customer {
 
     private String email;private String address;
 
-    @Column(name = "customer_type")
-    private String customerType;
+    @ManyToOne(targetEntity = CustomerType.class)
+    @JoinColumn(name = "customer_type_id")
+    private CustomerType customerType;
+
+    public CustomerType getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
+    }
 
     @ManyToOne
     @JoinColumn(name = "image_id")
@@ -99,13 +108,7 @@ public class Customer {
         this.address = address;
     }
 
-    public String getCustomerType() {
-        return customerType;
-    }
 
-    public void setCustomerType(String customerType) {
-        this.customerType = customerType;
-    }
 
     public Image getImage() {
         return image;

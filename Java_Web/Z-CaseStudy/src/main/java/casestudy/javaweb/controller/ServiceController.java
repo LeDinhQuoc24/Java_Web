@@ -1,8 +1,13 @@
 package casestudy.javaweb.controller;
 
 
+import casestudy.javaweb.persistence.entity.Image;
+import casestudy.javaweb.persistence.entity.RentType;
 import casestudy.javaweb.persistence.entity.Service;
+import casestudy.javaweb.persistence.entity.ServiceType;
+import casestudy.javaweb.persistence.service.RentTypeService;
 import casestudy.javaweb.persistence.service.ServiceService;
+import casestudy.javaweb.persistence.service.ServiceTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,12 +16,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class ServiceController {
     @Autowired
     private ServiceService serviceService;
+    @Autowired
+    private ServiceTypeService serviceTypeService;
+    @Autowired
+    private RentTypeService rentTypeService;
+    @ModelAttribute("rentTypes")
+    public List<RentType> rentTypes() {
+        return rentTypeService.findAll();
+    }
+    @ModelAttribute("serviceTypes")
+    public List<ServiceType> serviceTypes() {
+        return serviceTypeService.findAll();
+    }
 
     @GetMapping("services")
     public ModelAndView listService(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
@@ -26,6 +44,11 @@ public class ServiceController {
         } else {
             services= serviceService.findAll(pageable);
         }
+        return new ModelAndView("service/listService", "services", services);
+    }
+    @GetMapping("services/{typeService}")
+    public ModelAndView listVilla(@PathVariable("typeService") String typeService,@PageableDefault(value=5) Pageable pageable) {
+        Page<Service> services = serviceService.findByTypeServiceContaining(typeService, pageable);
         return new ModelAndView("service/listService", "services", services);
     }
 
@@ -100,9 +123,5 @@ public class ServiceController {
         return new ModelAndView("error.404");
     }
 
-    @GetMapping("services/{typeService}")
-    public ModelAndView listVilla(@PathVariable("typeService") String typeService,@PageableDefault(value=5) Pageable pageable) {
-        Page<Service> services = serviceService.findByTypeServiceContaining(typeService, pageable);
-        return new ModelAndView("service/listService", "services", services);
-    }
+
 }

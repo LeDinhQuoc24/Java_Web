@@ -48,12 +48,8 @@
             <tr>
                 <td>TypeCustomer:</td>
                 <td>
-                    <select th:field="*{customerType}" onchange="change(this)">
-                        <option th:value="Diamond" th:text="Diamond"></option>
-                        <option th:value="Platinium" th:text="Platinium"></option>
-                        <option th:value="Gold" th:text="Gold"></option>
-                        <option th:value="Silver" th:text="Silver"></option>
-                        <option th:value="Member" th:text="Member"></option>
+                    <select th:field="*{customerType}" >
+                        <option th:each="c:${customerTypes}" th:value="${c.id}" th:text="${c.name}"></option>
                     </select>
                 </td>
             </tr>

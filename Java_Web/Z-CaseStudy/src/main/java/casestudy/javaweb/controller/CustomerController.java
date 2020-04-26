@@ -1,9 +1,11 @@
 package casestudy.javaweb.controller;
 
 import casestudy.javaweb.persistence.entity.Customer;
+import casestudy.javaweb.persistence.entity.CustomerType;
 import casestudy.javaweb.persistence.entity.Image;
 import casestudy.javaweb.persistence.entity.Service;
 import casestudy.javaweb.persistence.service.CustomerService;
+import casestudy.javaweb.persistence.service.CustomerTypeService;
 import casestudy.javaweb.persistence.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,10 +24,16 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     private ImageService imageService;
+    @Autowired
+    private CustomerTypeService customerTypeService;
 
     @ModelAttribute("images")
     public List<Image> images() {
         return imageService.findByTypeContaining("Customer");
+    }
+    @ModelAttribute("customerTypes")
+    public List<CustomerType> customerTypes() {
+        return customerTypeService.findAll();
     }
 
     @GetMapping("customers")

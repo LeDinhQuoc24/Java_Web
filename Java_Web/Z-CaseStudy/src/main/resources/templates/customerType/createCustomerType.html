@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Create CustomerType</title>
+</head>
+<body>
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/customerTypes" style="color: black">List CustomerType</a>
+    <h1>Create CustomerType </h1>
+
+    <form th:action="@{createCustomerType}" method="post" th:object="${customerType}">
+        <!--    <input type="hidden" th:field="*{id}">-->
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Create CustomerType"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+
+</body>
+</html>
