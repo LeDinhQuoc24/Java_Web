@@ -3,6 +3,8 @@ package casestudy.javaweb.persistence.entity;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Entity
 public class CustomerType {
     @Id
@@ -10,7 +12,7 @@ public class CustomerType {
     @Column(name = "customer_type_id")
     private Long id;
 
-    @OneToMany(targetEntity = Customer.class)
+    @OneToMany(targetEntity = Customer.class,cascade = ALL)
     private List<Customer> customers;
 
     private String name;

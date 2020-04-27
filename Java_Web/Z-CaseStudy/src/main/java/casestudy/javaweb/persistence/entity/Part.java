@@ -3,6 +3,8 @@ package casestudy.javaweb.persistence.entity;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+
 //Vi tri
 @Entity
 public class Part {
@@ -11,7 +13,7 @@ public class Part {
     @Column(name = "part_id")
     private Long id;
     private String name;
-    @OneToMany(targetEntity = Employee.class)
+    @OneToMany(targetEntity = Employee.class,cascade = ALL)
     private List<Employee> employees;
     public Part() {
     }

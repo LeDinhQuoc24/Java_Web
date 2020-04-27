@@ -3,6 +3,8 @@ package casestudy.javaweb.persistence.entity;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Entity
 public class RentType {
     @Id
@@ -13,7 +15,7 @@ public class RentType {
     private String name;
     private long price;
 
-    @OneToMany(targetEntity = Service.class)
+    @OneToMany(targetEntity = Service.class,cascade = ALL)
     @JoinColumn(name="service_id")
     private List<Service> services;
 

@@ -2,8 +2,11 @@ package casestudy.javaweb.persistence.entity;
 
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -16,6 +19,7 @@ public class Customer {
 
     @Column(name = "full_name")
     private String fullName;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
     private String gender;
     @Column(name = "id_number")
@@ -25,7 +29,7 @@ public class Customer {
 
     private String email;private String address;
 
-    @ManyToOne(targetEntity = CustomerType.class,cascade = ALL)
+    @ManyToOne(targetEntity = CustomerType.class)
     @JoinColumn(name = "customer_type_id")
     private CustomerType customerType;
 
@@ -37,14 +41,20 @@ public class Customer {
         this.customerType = customerType;
     }
 
-    @ManyToOne(targetEntity =Image.class,cascade = ALL)
+    @ManyToOne(targetEntity =Image.class)
     @JoinColumn(name = "image_id")
     private Image image;
 
     private String status = "NotRegistered";
 
+    @OneToMany(targetEntity = Contract.class,cascade = ALL)
+    @JoinColumn(name="contract_id")
+    private List<Contract> contracts;
 
-    public Customer(){}
+
+    public Customer() {
+
+    }
 
     public Long getId() {
         return id;
@@ -126,5 +136,13 @@ public class Customer {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 }

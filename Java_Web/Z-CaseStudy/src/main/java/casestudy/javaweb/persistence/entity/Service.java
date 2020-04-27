@@ -1,6 +1,9 @@
 package casestudy.javaweb.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 
 @Entity
@@ -25,6 +28,10 @@ public  class Service {
     @ManyToOne(targetEntity = ServiceType.class)
     @JoinColumn(name = "service_type_id")
     private ServiceType serviceType;
+
+    @OneToMany(targetEntity = Contract.class,cascade = ALL)
+    @JoinColumn(name="contract_id")
+    private List<Contract> contracts;
 
 
 
@@ -87,4 +94,11 @@ public  class Service {
         this.serviceType = serviceType;
     }
 
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
 }

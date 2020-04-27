@@ -3,6 +3,8 @@ package casestudy.javaweb.persistence.entity;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Entity
 public class Image {
     @Id
@@ -11,7 +13,7 @@ public class Image {
     private String name;
     private String image_url;
     private String type;
-    @OneToMany(targetEntity = Customer.class)
+    @OneToMany(targetEntity = Customer.class,cascade = ALL)
     private List<Customer> customer;
 
     public Image() {

@@ -24,11 +24,16 @@
             </tr>
             <tr>
                 <td>Birth:</td>
-                <td><input type="text" th:field="*{birth}"></td>
+                <td><input type="date" th:field="*{birth}"></td>
             </tr>
             <tr>
                 <td>Gender:</td>
-                <td><input type="text" th:field="*{gender}"></td>
+                <td>
+                    <select  th:field="*{gender}">
+                        <option th:value="Nam">Nam</option>
+                        <option th:value="Nu">Nu</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>IdNumber:</td>

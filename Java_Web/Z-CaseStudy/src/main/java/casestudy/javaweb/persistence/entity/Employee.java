@@ -1,7 +1,12 @@
 package casestudy.javaweb.persistence.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 public class Employee {
@@ -11,6 +16,7 @@ public class Employee {
     private Long id;
     @Column(name = "full_name")
     private String fullName;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
     @Column(name = "id_number")
     private String idNumber;
@@ -19,18 +25,26 @@ public class Employee {
     private String email;
     private String address;
     private long salary;
+
     @ManyToOne(targetEntity = Degree.class)
     @JoinColumn(name = "degree_id")
     private Degree degree;
+
     @ManyToOne(targetEntity = Position.class)
     @JoinColumn(name = "position_id")
     private Position position;
+
     @ManyToOne(targetEntity = Part.class)
     @JoinColumn(name="part_id")
     private Part part;
+
     @ManyToOne(targetEntity = Image.class)
     @JoinColumn(name = "image_id")
     private Image image;
+
+    @OneToMany(targetEntity = Contract.class,cascade = ALL)
+    @JoinColumn(name="contract_id")
+    private List<Contract> contracts;
 
     public Employee() {
     }
@@ -129,5 +143,13 @@ public class Employee {
 
     public void setImage(Image image) {
         this.image = image;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 }
