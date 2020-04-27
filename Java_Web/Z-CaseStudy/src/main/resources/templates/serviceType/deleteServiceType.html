@@ -17,6 +17,7 @@
     <h2>Are you sure?</h2>
 
     <form th:action="@{/deleteServiceType}" th:object="${serviceType}" method="post">
+        <input th:type="hidden" name="id" th:field="*{id}">
         <table>
             <tr>
                 <td>Id:</td>

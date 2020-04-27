@@ -17,7 +17,9 @@
     <h2>Are you sure?</h2>
 
     <form th:action="@{/deleteDegree}" th:object="${degree}" method="post">
+        <input th:type="hidden" name="id" th:field="*{id}">
         <table>
+            <input th:type="hidden" name="id" th:field="*{id}">
             <tr>
                 <td>Id:</td>
                 <td th:text="*{id}"></td>

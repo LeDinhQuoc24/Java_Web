@@ -24,7 +24,7 @@
     <table border="1">
         <tr>
             <th>Name</th>
-            <th>Image_Url</th>
+            <th>Type</th>
             <th>Image</th>
             <th colspan="2">Action</th>
         </tr>
@@ -32,7 +32,7 @@
         <th:block th:each="image : ${images}">
             <tr>
                 <td th:text="${image.name}"></td>
-                <td th:text="${image.image_url}"></td>
+                <td th:text="${image.type}"></td>
                 <td><img height="50" th:src="@{'../'+${image.image_url}}"></td>
 
                 <td><a th:href="@{/editImage/__${image.id}__ }" style="color: black">Edit</a></td>
