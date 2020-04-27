@@ -1,6 +1,8 @@
 package casestudy.javaweb.persistence.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
@@ -12,6 +14,11 @@ public  class Service {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="service_id")
     private Long id;
+
+    @NotEmpty(message = "Mã dịch vụ không được để trống")
+    @Pattern(regexp = "(DV-)[0-9]{4}", message ="Mã dịch vụ có định dạng là DV-XXXX (X là số 0-9)" )
+    private String codeService;
+
     @Column(name="service_name")
     private String name;
     @Column(name="areaUsed")
@@ -32,6 +39,8 @@ public  class Service {
     @OneToMany(targetEntity = Contract.class,cascade = ALL)
     @JoinColumn(name="contract_id")
     private List<Contract> contracts;
+
+    private String status = "NotRegistered";
 
 
 
@@ -100,5 +109,21 @@ public  class Service {
 
     public void setContracts(List<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    public String getCodeService() {
+        return codeService;
+    }
+
+    public void setCodeService(String codeService) {
+        this.codeService = codeService;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

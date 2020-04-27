@@ -56,13 +56,17 @@ public class CustomerController {
 
     @PostMapping("createCustomer")
     public ModelAndView saveCustomer(@Validated @ModelAttribute("customer") Customer customer,BindingResult bindingResult, Pageable pageable) {
-        
-
-        customerService.save(customer);
-        Page<Customer> customers = customerService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("customer/listCustomer");
-        modelAndView.addObject("message", "New Customer created successfully");
-        modelAndView.addObject("customers", customers);
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/customer/createCustomer");
+            modelAndView.addObject("message", "New Customer created not successfully");
+        } else {
+            customerService.save(customer);
+            Page<Customer> customers = customerService.findAll(pageable);
+            modelAndView = new ModelAndView("customer/listCustomer");
+            modelAndView.addObject("message", "New Customer created successfully");
+            modelAndView.addObject("customers", customers);
+        }
         return modelAndView;
     }
 
@@ -76,12 +80,18 @@ public class CustomerController {
     }
 
     @PostMapping("editCustomer")
-    public ModelAndView updateCustomer(@ModelAttribute("customer") Customer customer, Pageable pageable) {
-        customerService.save(customer);
-        Page<Customer> customers = customerService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("customer/listCustomer");
-        modelAndView.addObject("message", "Customer updated successfully");
-        modelAndView.addObject("customers", customers);
+    public ModelAndView updateCustomer(@Validated @ModelAttribute("customer") Customer customer,BindingResult bindingResult,Pageable pageable) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/customer/editCustomer");
+            modelAndView.addObject("message", "Customer updated not successfully");
+        } else {
+            customerService.save(customer);
+            Page<Customer> customers = customerService.findAll(pageable);
+            modelAndView = new ModelAndView("customer/listCustomer");
+            modelAndView.addObject("message", "Customer updated successfully");
+            modelAndView.addObject("customers", customers);
+        }
         return modelAndView;
     }
 

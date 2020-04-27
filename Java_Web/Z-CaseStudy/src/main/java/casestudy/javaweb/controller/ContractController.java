@@ -63,6 +63,9 @@ public class ContractController {
         Customer customer=contract.getCustomer();
         customer.setStatus("Registered");
         customerService.save(customer);
+        Service service = contract.getService();
+        service.setStatus("Registered");
+        serviceService.save(service);
         Page<Contract> contracts = contractService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("contract/listContract");
         modelAndView.addObject("message", "New Contract created successfully");
@@ -85,6 +88,9 @@ public class ContractController {
         Customer customer=contract.getCustomer();
         customer.setStatus("Registered");
         customerService.save(customer);
+        Service service = contract.getService();
+        service.setStatus("Registered");
+        serviceService.save(service);
         Page<Contract> contracts = contractService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("contract/listContract");
         modelAndView.addObject("message", "Contract updated successfully");

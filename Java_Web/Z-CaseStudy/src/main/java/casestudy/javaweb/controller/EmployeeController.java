@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -61,12 +63,18 @@ public class EmployeeController {
     }
 
     @PostMapping("createEmployee")
-    public ModelAndView saveEmployee(@ModelAttribute("employee") Employee employee, Pageable pageable) {
-        employeeService.save(employee);
-        Page<Employee> employees = employeeService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("employee/listEmployee");
-        modelAndView.addObject("message", "New Employee created successfully");
-        modelAndView.addObject("employees", employees);
+    public ModelAndView saveEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult bindingResult, Pageable pageable) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/employee/createEmployee");
+            modelAndView.addObject("message", "New Employee created not successfully");
+        } else {
+            employeeService.save(employee);
+            Page<Employee> employees = employeeService.findAll(pageable);
+            modelAndView = new ModelAndView("employee/listEmployee");
+            modelAndView.addObject("message", "New Employee created successfully");
+            modelAndView.addObject("employees", employees);
+        }
         return modelAndView;
     }
 
@@ -80,12 +88,19 @@ public class EmployeeController {
     }
 
     @PostMapping("editEmployee")
-    public ModelAndView updateCustomer(@ModelAttribute("employee") Employee employee, Pageable pageable) {
-        employeeService.save(employee);
-        Page<Employee> employees = employeeService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("employee/listEmployee");
-        modelAndView.addObject("message", "Employee updated successfully");
-        modelAndView.addObject("employees", employees);
+    public ModelAndView updateCustomer(@Validated @ModelAttribute("employee") Employee employee,BindingResult bindingResult, Pageable pageable) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/employee/editEmployee");
+            modelAndView.addObject("message", "Employee updated not successfully");
+        } else {
+            employeeService.save(employee);
+            Page<Employee> employees = employeeService.findAll(pageable);
+            modelAndView = new ModelAndView("employee/listEmployee");
+            modelAndView.addObject("message", "Employee updated successfully");
+            modelAndView.addObject("employees", employees);
+        }
+
         return modelAndView;
     }
 

@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.List;
 
@@ -19,14 +20,26 @@ public class Customer {
     @Column(name = "customer_id")
     private Long id;
 
+
+    @NotEmpty(message = "Mã khách hàng không được để trống")
+    @Pattern(regexp = "(KH-)[0-9]{4}", message ="Mã Khách hàng có định dạng là KH-XXXX (X là số từ 0-9)" )
+    private String codeCustomer;
+
     @Column(name = "full_name")
     private String fullName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
     private String gender;
+
     @Column(name = "id_number")
+    @NotEmpty(message = "Chứng minh nhân dân không được để trống")
+    @Pattern(regexp = "[0-9]{9}", message ="Chứng minh nhân dân có 9 số" )
     private String idNumber;
+
+
     @Column(name = "phone_number")
+    @NotEmpty(message = "Sdt không được để trống")
+    @Pattern(regexp = "((090)|(091))[0-9]{7}", message ="Sdt có 10 số,bắt đầu bằng 090/091" )
     private String phoneNumber;
 
     @NotEmpty(message = "Email không được để trống")
@@ -148,5 +161,13 @@ public class Customer {
 
     public void setContracts(List<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    public String getCodeCustomer() {
+        return codeCustomer;
+    }
+
+    public void setCodeCustomer(String codeCustomer) {
+        this.codeCustomer = codeCustomer;
     }
 }

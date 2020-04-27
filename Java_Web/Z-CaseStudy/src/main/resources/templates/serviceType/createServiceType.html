@@ -14,9 +14,11 @@
     <a href="/serviceTypes" style="color: black">List ServiceType</a>
     <h1>Create ServiceType </h1>
 
+
     <form th:action="@{createServiceType}" method="post" th:object="${serviceType}">
         <!--    <input type="hidden" th:field="*{id}">-->
         <table>
+
             <tr>
                 <td>Name:</td>
                 <td><input type="text" th:field="*{name}"></td>

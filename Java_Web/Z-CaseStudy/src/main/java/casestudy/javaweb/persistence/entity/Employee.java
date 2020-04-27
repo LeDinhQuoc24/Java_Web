@@ -3,6 +3,9 @@ package casestudy.javaweb.persistence.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +21,19 @@ public class Employee {
     private String fullName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
+
     @Column(name = "id_number")
+    @NotEmpty(message = "Chứng minh nhân dân không được để trống")
+    @Pattern(regexp = "[0-9]{9}", message ="Chứng minh nhân dân có 9 số" )
     private String idNumber;
+
     @Column(name = "phone_number")
+    @NotEmpty(message = "Sdt không được để trống")
+    @Pattern(regexp = "((090)|(091))[0-9]{7}", message ="Sdt có 10 số,bắt đầu bằng 090/091" )
     private String phoneNumber;
+
+    @NotEmpty(message = "Email không được để trống")
+    @Email(message = "Email không đúng định dạng")
     private String email;
     private String address;
     private long salary;

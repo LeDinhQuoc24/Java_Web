@@ -14,7 +14,7 @@
     <a href="/contractDetails" style="color: black">List ContractDetail</a>
     <h1>Edit ContractDetail </h1>
 
-    <form th:action="@{editContractDetail}" method="post" th:object="${contractDetail}">
+    <form th:action="@{/editContractDetail}" method="post" th:object="${contractDetail}">
             <input type="hidden" th:field="*{id}">
         <table>
             <tr>

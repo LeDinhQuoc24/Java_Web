@@ -17,7 +17,7 @@
 <a href="/createService" style="color: black">Create new Service</a>
 <h1>Services</h1>
 <th:block th:if="${message}">
-    <p th:text="${message}"></p>
+    <p style="color: red" th:text="${message}"></p>
 </th:block>
     <center>
 <form>
@@ -28,8 +28,8 @@
 <table border="1">
     <tr>
         <th>Name</th>
-        <th>AreaUsed</th>
-        <th>Amount</th>
+        <th>Code Service</th>
+        <th>Status</th>
         <th>RentType</th>
         <th>ServiceType</th>
         <th colspan="3">Action</th>
@@ -38,8 +38,8 @@
     <th:block th:each="service : ${services}">
         <tr>
             <td th:text="${service.name}"></td>
-            <td th:text="${service.areaUsed}"></td>
-            <td th:text="${service.amount}"></td>
+            <td th:text="${service.codeService}"></td>
+            <td th:text="${service.status}"></td>
             <td th:text="${service.rentType.name}"></td>
             <td th:text="${service.serviceType.name}"></td>
             <td><a th:href="@{/editService/__${service.id}__ }" style="color: black">Edit</a></td>

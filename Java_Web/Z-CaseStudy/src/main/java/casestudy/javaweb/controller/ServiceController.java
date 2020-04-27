@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,12 +61,18 @@ public class ServiceController {
     }
 
     @PostMapping("createService")
-    public ModelAndView createService(@ModelAttribute("service") Service service, Pageable pageable) {
-        serviceService.save(service);
-        Page<Service> services = serviceService.findAll(pageable);
-        ModelAndView modelAndView= new ModelAndView("service/listService");
-        modelAndView.addObject("services", services);
-        modelAndView.addObject("message", "New Service created successfully");
+    public ModelAndView createService(@Validated  @ModelAttribute("service") Service service, BindingResult bindingResult, Pageable pageable) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/service/createService");
+            modelAndView.addObject("message", "New Service created not successfully");
+        } else {
+            serviceService.save(service);
+            Page<Service> services = serviceService.findAll(pageable);
+            modelAndView= new ModelAndView("service/listService");
+            modelAndView.addObject("services", services);
+            modelAndView.addObject("message", "New Service created successfully");
+        }
         return modelAndView;
     }
 
@@ -78,12 +86,18 @@ public class ServiceController {
     }
 
     @PostMapping("editService")
-    public ModelAndView saveService(@ModelAttribute("service") Service service, Pageable pageable) {
-        serviceService.save(service);
-        Page<Service> services = serviceService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("service/listService");
-        modelAndView.addObject("services", services);
-        modelAndView.addObject("message", "Service updated successfully");
+    public ModelAndView saveService(@Validated @ModelAttribute("service") Service service,BindingResult bindingResult, Pageable pageable) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/service/editService");
+            modelAndView.addObject("message", "Service updated not successfully");
+        } else {
+            serviceService.save(service);
+            Page<Service> services = serviceService.findAll(pageable);
+            modelAndView = new ModelAndView("service/listService");
+            modelAndView.addObject("services", services);
+            modelAndView.addObject("message", "Service updated successfully");
+        }
         return modelAndView;
     }
 

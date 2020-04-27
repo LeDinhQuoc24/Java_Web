@@ -13,6 +13,9 @@
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/employees" style="color: black">List Employee</a>
     <h1>Create Employee </h1>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
 
     <form th:action="@{createEmployee}" method="post" th:object="${employee}">
         <!--    <input type="hidden" th:field="*{id}">-->
@@ -31,12 +34,21 @@
                 <td><input type="text" th:field="*{idNumber}"></td>
             </tr>
             <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('idNumber')}" style="color: red" th:errors="*{idNumber}">IdNumber Error</td>
+            </tr>
+            <tr>
                 <td>PhoneNumber:</td>
                 <td><input type="text" th:field="*{phoneNumber}"></td>
             </tr>
             <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('phoneNumber')}" style="color: red" th:errors="*{phoneNumber}">PhoneNumber Error</td>
+            </tr>
+            <tr>
                 <td>Email:</td>
                 <td><input type="text" th:field="*{email}"></td>
+            </tr>
+            <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('email')}" style="color: red" th:errors="*{email}">Email Error</td>
             </tr>
             <tr>
                 <td>Address:</td>

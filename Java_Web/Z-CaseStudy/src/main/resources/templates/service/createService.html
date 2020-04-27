@@ -13,10 +13,20 @@
 <a href="/menu" style="color: black">Back to Menu</a>
 <a href="/services" style="color: black">List Service</a>
 <h1>Create Service </h1>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
 
 <form th:action="@{createService}" method="post" th:object="${service}">
     <!--    <input type="hidden" th:field="*{id}">-->
     <table>
+        <tr>
+            <td>Code Service:</td>
+            <td><input type="text" th:field="*{codeService}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" th:if="${#fields.hasErrors('codeService')}" style="color: red" th:errors="*{codeService}">Code Service Error</td>
+        </tr>
         <tr>
             <td>Name:</td>
             <td><input type="text" th:field="*{name}"></td>

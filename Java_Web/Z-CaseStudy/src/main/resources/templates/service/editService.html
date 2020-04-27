@@ -15,12 +15,20 @@
 <a href="/menu" style="color: black">Back to Menu</a>
 <a href="/services" style="color: black">List Service</a>
 <h1>Edit Service</h1>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
 
 
 <form th:action="@{/editService}" th:object="${service}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
+    <input th:type="hidden" name="id" th:field="*{status}">
     <!--    <input th:type="hidden" name="id" th:field="*{image_id}">-->
     <table>
+        <tr>
+            <td>Code Service:</td>
+            <td><input type="text" th:field="*{codeService}"></td>
+        </tr>
         <tr>
             <td>Name:</td>
             <td><input type="text" th:field="*{name}"></td>

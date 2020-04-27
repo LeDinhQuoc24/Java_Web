@@ -13,11 +13,21 @@
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/customers" style="color: black">List Customer</a>
     <h1>Create Customer </h1>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
 
     <form th:action="@{createCustomer}" method="post" th:object="${customer}">
         <!--    <input type="hidden" th:field="*{id}">-->
             <input type="hidden" th:field="*{status}">
         <table>
+            <tr>
+                <td>Code Customer:</td>
+                <td><input type="text" th:field="*{codeCustomer}"></td>
+            </tr>
+            <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('codeCustomer')}" style="color: red" th:errors="*{codeCustomer}">CodeCustomer Error</td>
+            </tr>
             <tr>
                 <td>Name:</td>
                 <td><input type="text" th:field="*{fullName}"></td>
@@ -40,12 +50,21 @@
                 <td><input type="text" th:field="*{idNumber}"></td>
             </tr>
             <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('idNumber')}" style="color: red" th:errors="*{idNumber}">IdNumber Error</td>
+            </tr>
+            <tr>
                 <td>PhoneNumber:</td>
                 <td><input type="text" th:field="*{phoneNumber}"></td>
             </tr>
             <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('phoneNumber')}" style="color: red" th:errors="*{phoneNumber}">PhoneNumber Error</td>
+            </tr>
+            <tr>
                 <td>Email:</td>
                 <td><input type="text" th:field="*{email}"></td>
+            </tr>
+            <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('email')}" style="color: red" th:errors="*{email}">Email Error</td>
             </tr>
             <tr>
                 <td>TypeCustomer:</td>
