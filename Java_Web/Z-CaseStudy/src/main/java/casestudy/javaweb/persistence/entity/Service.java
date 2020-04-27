@@ -1,6 +1,7 @@
 package casestudy.javaweb.persistence.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.util.List;
@@ -21,11 +22,18 @@ public  class Service {
 
     @Column(name="service_name")
     private String name;
+
     @Column(name="areaUsed")
+//    @NotEmpty(message = "Diện tích không được để trống")
+    @Min(value=0,message = "Diện tích phải là số dương lớn hơn 0")
     private double areaUsed;
     @Column(name="amount")
+//    @NotEmpty(message = "Chi phí thuê không được để trống")
+    @Min(value=0,message = "Chi phí thuê phải là số dương lớn hơn 0")
     private int amount;
     @Column(name = "maximum_people")
+//    @NotEmpty(message = "Số người tối đa không được để trống")
+    @Min(value=0,message = "Số người tối đa phải là số dương lớn hơn 0")
     private int maximumPeople;
 
     @ManyToOne(targetEntity = RentType.class)

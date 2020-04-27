@@ -38,12 +38,21 @@
             <td><input type="text" th:field="*{areaUsed}"></td>
         </tr>
         <tr>
+            <td colspan="2" th:if="${#fields.hasErrors('areaUsed')}" style="color: red" th:errors="*{areaUsed}">Area Used Error</td>
+        </tr>
+        <tr>
             <td>Amount:</td>
             <td><input type="text" th:field="*{amount}"></td>
         </tr>
         <tr>
+            <td colspan="2" th:if="${#fields.hasErrors('amount')}" style="color: red" th:errors="*{amount}">Amount Error</td>
+        </tr>
+        <tr>
             <td>Maximum_people:</td>
             <td><input type="text" th:field="*{maximumPeople}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" th:if="${#fields.hasErrors('maximumPeople')}" style="color: red" th:errors="*{maximumPeople}">Maximum People Error</td>
         </tr>
         <tr>
             <td>RentType:</td>

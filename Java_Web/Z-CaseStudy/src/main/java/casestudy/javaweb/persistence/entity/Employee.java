@@ -24,7 +24,7 @@ public class Employee {
 
     @Column(name = "id_number")
     @NotEmpty(message = "Chứng minh nhân dân không được để trống")
-    @Pattern(regexp = "[0-9]{9}", message ="Chứng minh nhân dân có 9 số" )
+    @Pattern(regexp = "[0-9]{9}", message ="Chứng minh nhân dân nhập đúng 9 số" )
     private String idNumber;
 
     @Column(name = "phone_number")

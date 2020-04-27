@@ -27,13 +27,16 @@ public class Customer {
 
     @Column(name = "full_name")
     private String fullName;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    @Pattern(regexp = "((0)[1-9]|[1-2][0-9]|(3)[0-1])(/)((0)[1-9]|(1)[0-2])(/)((19)|(20))([0-2]{2})",
+//            message ="Nhập đúng định dạng ngày tháng năm sinh" )
     private Date birth;
     private String gender;
 
     @Column(name = "id_number")
     @NotEmpty(message = "Chứng minh nhân dân không được để trống")
-    @Pattern(regexp = "[0-9]{9}", message ="Chứng minh nhân dân có 9 số" )
+    @Pattern(regexp = "[0-9]{9}", message ="Chứng minh nhân dân nhập đúng 9 số" )
     private String idNumber;
 
 
