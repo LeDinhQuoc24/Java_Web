@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head">
     <meta charset="UTF-8">
-    <title>Edit Employee</title>
+    <title>View Employee</title>
 </head>
 <body>
 
@@ -13,10 +13,10 @@
 <div class="column middle">
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/employees" style="color: black">List Employee</a>
-    <h1>Edit Employee</h1>
+    <h1>View Employee</h1>
 
 
-    <form th:action="@{/editEmployee}" th:object="${employee}" method="post">
+    <form  th:object="${employee}" >
         <input th:type="hidden" name="id" th:field="*{id}">
         <table>
             <input th:type="hidden" name="id" th:field="*{id}">

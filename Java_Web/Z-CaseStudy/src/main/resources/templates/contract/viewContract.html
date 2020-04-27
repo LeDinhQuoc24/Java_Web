@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head">
     <meta charset="UTF-8">
-    <title>Delete Contract</title>
+    <title>View Contract</title>
 </head>
 <body>
 
@@ -13,10 +13,9 @@
 <div class="column middle">
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/contracts" style="color: black">List Contract</a>
-    <h1>Delete Contract</h1>
-    <h2>Are you sure?</h2>
+    <h1>View Contract</h1>
 
-    <form th:action="@{/deleteContract}" th:object="${contract}" method="post">
+    <form th:action="@{/viewContract}" th:object="${contract}" method="post">
         <input th:type="hidden" name="id" th:field="*{id}">
         <table>
             <tr>
@@ -47,7 +46,6 @@
                 <td>Customer:</td>
                 <td th:text="*{customer.fullName}"></td>
                 <td><img height="50" th:src="@{'../'+${contract.customer.image.image_url}}"></td>
-
             </tr>
 
             <tr>
@@ -61,10 +59,6 @@
             </tr>
 
 
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Delete Contract"></td>
-            </tr>
         </table>
     </form>
 </div>

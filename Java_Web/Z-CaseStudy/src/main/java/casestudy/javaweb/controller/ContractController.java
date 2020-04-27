@@ -60,6 +60,9 @@ public class ContractController {
     @PostMapping("createContract")
     public ModelAndView saveContract(@ModelAttribute("contract") Contract contract, Pageable pageable) {
         contractService.save(contract);
+        Customer customer=contract.getCustomer();
+        customer.setStatus("Registered");
+        customerService.save(customer);
         Page<Contract> contracts = contractService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("contract/listContract");
         modelAndView.addObject("message", "New Contract created successfully");
@@ -79,6 +82,9 @@ public class ContractController {
     @PostMapping("editContract")
     public ModelAndView updateCustomer(@ModelAttribute("contract") Contract contract, Pageable pageable) {
         contractService.save(contract);
+        Customer customer=contract.getCustomer();
+        customer.setStatus("Registered");
+        customerService.save(customer);
         Page<Contract> contracts = contractService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("contract/listContract");
         modelAndView.addObject("message", "Contract updated successfully");

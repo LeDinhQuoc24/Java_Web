@@ -1,5 +1,7 @@
 package casestudy.javaweb.persistence.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,8 +17,10 @@ public class Contract {
     @Column(name = "contract_number")
     private String contractNumber;
     @Column(name = "begin_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date beginDate;
     @Column(name = "end_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     private long deposit;
