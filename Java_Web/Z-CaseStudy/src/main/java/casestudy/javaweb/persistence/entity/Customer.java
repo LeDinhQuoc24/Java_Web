@@ -5,6 +5,8 @@ package casestudy.javaweb.persistence.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +29,8 @@ public class Customer {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @NotEmpty(message = "Email không được để trống")
+    @Email(message = "Email không đúng định dạng")
     private String email;private String address;
 
     @ManyToOne(targetEntity = CustomerType.class)

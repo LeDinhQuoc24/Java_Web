@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head">
     <meta charset="UTF-8">
-    <title>Delete Part</title>
+    <title>Edit ContractDetail</title>
 </head>
 <body>
 
@@ -12,11 +12,11 @@
 
 <div class="column middle">
     <a href="/menu" style="color: black">Back to Menu</a>
-    <a href="/parts" style="color: black">List Part</a>
-    <h1>Delete Part</h1>
-    <h2>Are you sure?</h2>
+    <a href="/contractDetails" style="color: black">List ContractDetail</a>
+    <h1>Edit ContractDetail</h1>
+ 
 
-    <form th:action="@{/deletePart}" th:object="${part}" method="post">
+    <form  th:object="${contractDetail}" >
         <input th:type="hidden" name="id" th:field="*{id}">
         <table>
             <tr>
@@ -24,12 +24,18 @@
                 <td th:text="*{id}"></td>
             </tr>
             <tr>
-                <td>Name:</td>
-                <td th:text="*{name}"></td>
+                <td>Contract Begin Date:</td>
+                <td th:text="*{contract.beginDate}"></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Delete Part"></td>
+                <td>Accompany Name:</td>
+                <td th:text="*{accompany.name}"></td>
             </tr>
+            <tr>
+                <td>Quantity:</td>
+                <td th:text="*{quantity}"></td>
+            </tr>
+
         </table>
     </form>
 </div>

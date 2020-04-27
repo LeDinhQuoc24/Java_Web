@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -38,6 +39,9 @@ public class Contract {
     @ManyToOne(targetEntity = Service.class)
     @JoinColumn(name = "service_id")
     private Service service;
+
+    @OneToMany(targetEntity = ContractDetail.class,cascade = ALL)
+    private List<ContractDetail> contractDetails;
 
     public Contract() {
     }
@@ -113,4 +117,13 @@ public class Contract {
     public void setService(Service service) {
         this.service = service;
     }
+
+    public List<ContractDetail> getContractDetails() {
+        return contractDetails;
+    }
+
+    public void setContractDetails(List<ContractDetail> contractDetails) {
+        this.contractDetails = contractDetails;
+    }
+
 }
