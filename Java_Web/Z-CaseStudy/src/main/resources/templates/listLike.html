@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head">
     <meta charset="UTF-8">
-    <title>ServiceType List</title>
+    <title>ListLike</title>
 </head>
 <body>
 
@@ -14,8 +14,7 @@
 <div class="column middle">
 
     <a href="/menu" style="color: black">Back to Menu</a>
-    <a href="/createServiceType" style="color: black">Create new ServiceType</a>
-    <h1>ServiceTypes</h1>
+    <h1>ListLike</h1>
     <th:block th:if="${message}">
         <p style="color: red" th:text="${message}"></p>
     </th:block>
@@ -23,15 +22,22 @@
         <table border="1">
             <tr>
                 <th>Name</th>
+                <th>Code Service</th>
+                <th>Status</th>
+                <th>RentType</th>
+                <th>ServiceType</th>
                 <th colspan="2">Action</th>
             </tr>
 
-            <th:block th:each="serviceType : ${serviceTypes}">
+            <th:block th:each="services : ${listLike.serviceList}">
                 <tr>
-                    <td th:text="${serviceType.name}"></td>
-
-                    <td><a th:href="@{/editServiceType/__${serviceType.id}__ }" style="color: black">Edit</a></td>
-                    <td><a th:href="@{/deleteServiceType/__${serviceType.id}__ }" style="color: black">Delete</a></td>
+                    <td th:text="${services.name}"></td>
+                    <td th:text="${services.codeService}"></td>
+                    <td th:text="${services.status}"></td>
+                    <td th:text="${services.rentType.name}"></td>
+                    <td th:text="${services.serviceType.name}"></td>
+                    <td><a th:href="@{/services}" style="color: black">Add</a></td>
+                    <td><a th:href="@{/services}" style="color: black">Delete</a></td>
 
                 </tr>
             </th:block>
