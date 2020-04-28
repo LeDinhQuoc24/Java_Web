@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
@@ -36,6 +37,8 @@ public class Employee {
     @Email(message = "Email không đúng định dạng")
     private String email;
     private String address;
+    //@NotEmpty(message = "Lương không được để trống")
+    @Min(value=0,message = "Lương phải là số dương lớn hơn 0")
     private long salary;
 
     @ManyToOne(targetEntity = Degree.class)

@@ -3,6 +3,7 @@ package casestudy.javaweb.persistence.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +24,12 @@ public class Contract {
     @Column(name = "end_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
-
+    //@NotEmpty(message = "Tiền đặt cọc không được để trống")
+    @Min(value=0,message = "Tiền đặt cọc phải là số dương lớn hơn 0")
     private long deposit;
     @Column(name = "total_pay")
+    //@NotEmpty(message = "Tổng tiền không được để trống")
+    @Min(value=0,message = "Tổng tiền phải là số dương lớn hơn 0")
     private long totalPay;
 
     @ManyToOne(targetEntity = Customer.class)
@@ -40,8 +44,8 @@ public class Contract {
     @JoinColumn(name = "service_id")
     private Service service;
 
-    @OneToMany(targetEntity = ContractDetail.class,cascade = ALL)
-    private List<ContractDetail> contractDetails;
+    @OneToOne(targetEntity = ContractDetail.class,cascade = ALL)
+    private ContractDetail contractDetail;
 
     public Contract() {
     }
@@ -118,12 +122,11 @@ public class Contract {
         this.service = service;
     }
 
-    public List<ContractDetail> getContractDetails() {
-        return contractDetails;
+    public ContractDetail getContractDetail() {
+        return contractDetail;
     }
 
-    public void setContractDetails(List<ContractDetail> contractDetails) {
-        this.contractDetails = contractDetails;
+    public void setContractDetail(ContractDetail contractDetail) {
+        this.contractDetail = contractDetail;
     }
-
 }

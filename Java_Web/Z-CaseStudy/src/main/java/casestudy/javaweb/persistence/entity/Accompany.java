@@ -1,6 +1,7 @@
 package casestudy.javaweb.persistence.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
@@ -13,6 +14,8 @@ public class Accompany {
     private Long id;
 
     private String name;
+    //    @NotEmpty(message = "Giá không được để trống")
+    @Min(value=0,message = "Giá phải là số dương lớn hơn 0")
     private long price;
     private String currency;
     private String status;

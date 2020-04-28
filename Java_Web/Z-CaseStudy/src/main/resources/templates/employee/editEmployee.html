@@ -60,6 +60,9 @@
                 <td><input type="text" th:field="*{salary}"></td>
             </tr>
             <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('salary')}" style="color: red" th:errors="*{salary}">Salary Error</td>
+            </tr>
+            <tr>
                 <td>Degree:</td>
                 <td>
                     <select th:field="*{degree}" >

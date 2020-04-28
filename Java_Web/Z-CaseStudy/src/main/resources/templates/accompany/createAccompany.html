@@ -13,6 +13,9 @@
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/accompanys" style="color: black">List Accompany</a>
     <h1>Create Accompany </h1>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
 
     <form th:action="@{createAccompany}" method="post" th:object="${accompany}">
         <!--    <input type="hidden" th:field="*{id}">-->
@@ -24,6 +27,9 @@
             <tr>
                 <td>Price:</td>
                 <td><input type="text" th:field="*{price}"></td>
+            </tr>
+            <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('price')}" style="color: red" th:errors="*{price}">Price Error</td>
             </tr>
             <tr>
                 <td>Currency:</td>

@@ -2,8 +2,11 @@ package casestudy.javaweb.controller;
 
 import casestudy.javaweb.persistence.entity.Accompany;
 import casestudy.javaweb.persistence.service.AccompanyService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,12 +32,18 @@ public class AccompanyController {
     }
 
     @PostMapping("createAccompany")
-    public ModelAndView saveAccompany(@ModelAttribute("accompany") Accompany accompany) {
-        accompanyService.save(accompany);
-        List<Accompany> accompanys = accompanyService.findAll();
-        ModelAndView modelAndView = new ModelAndView("accompany/listAccompany");
-        modelAndView.addObject("message", "New Accompany created successfully");
-        modelAndView.addObject("accompanys", accompanys);
+    public ModelAndView saveAccompany(@Validated @ModelAttribute("accompany") Accompany accompany, BindingResult bindingResult) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/accompany/createAccompany");
+            modelAndView.addObject("message", "New Accompany created not successfully");
+        } else {
+            accompanyService.save(accompany);
+            List<Accompany> accompanys = accompanyService.findAll();
+            modelAndView = new ModelAndView("accompany/listAccompany");
+            modelAndView.addObject("message", "New Accompany created successfully");
+            modelAndView.addObject("accompanys", accompanys);
+        }
         return modelAndView;
     }
 
@@ -48,12 +57,19 @@ public class AccompanyController {
     }
 
     @PostMapping("editAccompany")
-    public ModelAndView updateAccompany(@ModelAttribute("accompany") Accompany accompany) {
-        accompanyService.save(accompany);
-        List<Accompany> accompanys = accompanyService.findAll();
-        ModelAndView modelAndView = new ModelAndView("accompany/listAccompany");
-        modelAndView.addObject("message", "Accompany updated successfully");
-        modelAndView.addObject("accompanys", accompanys);
+    public ModelAndView updateAccompany(@Validated @ModelAttribute("accompany") Accompany accompany,BindingResult bindingResult) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/accompany/editAccompany");
+            modelAndView.addObject("message", "Accompany updated not successfully");
+        } else {
+            accompanyService.save(accompany);
+            List<Accompany> accompanys = accompanyService.findAll();
+            modelAndView = new ModelAndView("accompany/listAccompany");
+            modelAndView.addObject("message", "Accompany updated successfully");
+            modelAndView.addObject("accompanys", accompanys);
+        }
+
         return modelAndView;
     }
 

@@ -1,6 +1,9 @@
 package casestudy.javaweb.persistence.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 public class ContractDetail {
@@ -8,9 +11,10 @@ public class ContractDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contract_detail_id")
     private Long id;
-
+    //    @NotEmpty(message = "Số lượng không được để trống")
+    @Min(value=0,message = "Số lượng phải là số dương lớn hơn 0")
     private int quantity;
-    @ManyToOne(targetEntity = Contract.class)
+    @OneToOne(targetEntity = Contract.class,cascade = ALL)
     @JoinColumn(name="contract_id")
     private Contract contract;
 

@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,12 +56,24 @@ public class ContractDetailController {
     }
 
     @PostMapping("createContractDetail")
-    public ModelAndView saveContractDetail(@ModelAttribute("contractDetail") ContractDetail contractDetail, Pageable pageable) {
-        contractDetailService.save(contractDetail);
-        Page<ContractDetail> contractDetails = contractDetailService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("contractDetail/listContractDetail");
-        modelAndView.addObject("message", "New ContractDetail created successfully");
-        modelAndView.addObject("contractDetails", contractDetails);
+    public ModelAndView saveContractDetail(@Validated @ModelAttribute("contractDetail") ContractDetail contractDetail, BindingResult bindingResult, Pageable pageable) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/contractDetail/createContractDetail");
+            modelAndView.addObject("message", "New ContractDetail created not successfully");
+        } else {
+            contractDetail.getContract().setTotalPay(contractDetail.getContract().getService().getRentType().getPrice()*
+                    (contractDetail.getContract().getEndDate().getTime()-
+                            contractDetail.getContract().getBeginDate().getTime())/(1000*60*60*24) +
+                    contractDetail.getQuantity()*contractDetail.getAccompany().getPrice());
+            contractDetail.getContract().setContractDetail(contractDetail);
+            contractDetailService.save(contractDetail);
+            Page<ContractDetail> contractDetails = contractDetailService.findAll(pageable);
+            modelAndView = new ModelAndView("contractDetail/listContractDetail");
+            modelAndView.addObject("message", "New ContractDetail created successfully");
+            modelAndView.addObject("contractDetails", contractDetails);
+        }
+
         return modelAndView;
     }
 
@@ -73,12 +87,23 @@ public class ContractDetailController {
     }
 
     @PostMapping("editContractDetail")
-    public ModelAndView updateCustomer(@ModelAttribute("contractDetail") ContractDetail contractDetail, Pageable pageable) {
-        contractDetailService.save(contractDetail);
-        Page<ContractDetail> contractDetails = contractDetailService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("contractDetail/listContractDetail");
-        modelAndView.addObject("message", "ContractDetail updated successfully");
-        modelAndView.addObject("contractDetails", contractDetails);
+    public ModelAndView updateCustomer(@Validated @ModelAttribute("contractDetail") ContractDetail contractDetail,BindingResult bindingResult, Pageable pageable) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/contractDetail/editContractDetail");
+            modelAndView.addObject("message", "ContractDetail updated not successfully");
+        } else {
+            contractDetail.getContract().setTotalPay(contractDetail.getContract().getService().getRentType().getPrice()*
+                    (contractDetail.getContract().getEndDate().getTime()-
+                            contractDetail.getContract().getBeginDate().getTime())/(1000*60*60*24) +
+                    contractDetail.getQuantity()*contractDetail.getAccompany().getPrice());
+            contractDetail.getContract().setContractDetail(contractDetail);
+            contractDetailService.save(contractDetail);
+            Page<ContractDetail> contractDetails = contractDetailService.findAll(pageable);
+            modelAndView = new ModelAndView("contractDetail/listContractDetail");
+            modelAndView.addObject("message", "ContractDetail updated successfully");
+            modelAndView.addObject("contractDetails", contractDetails);
+        }
         return modelAndView;
     }
 

@@ -13,6 +13,9 @@
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/contracts" style="color: black">List Contract</a>
     <h1>Create Contract </h1>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
 
     <form th:action="@{createContract}" method="post" th:object="${contract}">
         <!--    <input type="hidden" th:field="*{id}">-->
@@ -34,8 +37,10 @@
                 <td><input type="text" th:field="*{deposit}"></td>
             </tr>
             <tr>
-                <td>Total_pay:</td>
-                <td><input type="text" th:field="*{totalPay}"></td>
+                <td colspan="2" th:if="${#fields.hasErrors('deposit')}" style="color: red" th:errors="*{deposit}">Deposit Error</td>
+            </tr>
+            <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('totalPay')}" style="color: red" th:errors="*{totalPay}">TotalPay Error</td>
             </tr>
             <tr>
                 <td>Customer</td>

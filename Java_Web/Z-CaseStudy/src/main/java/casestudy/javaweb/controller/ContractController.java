@@ -1,21 +1,18 @@
 package casestudy.javaweb.controller;
 
-import casestudy.javaweb.persistence.entity.Contract;
-import casestudy.javaweb.persistence.entity.Customer;
-import casestudy.javaweb.persistence.entity.Employee;
-import casestudy.javaweb.persistence.entity.Service;
-import casestudy.javaweb.persistence.service.ContractService;
-import casestudy.javaweb.persistence.service.CustomerService;
-import casestudy.javaweb.persistence.service.EmployeeService;
-import casestudy.javaweb.persistence.service.ServiceService;
+import casestudy.javaweb.persistence.entity.*;
+import casestudy.javaweb.persistence.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -28,6 +25,8 @@ public class ContractController {
     private EmployeeService employeeService;
     @Autowired
     private ServiceService serviceService;
+    @Autowired
+    private AccompanyService accompanyService;
     @ModelAttribute("customers")
     public Page<Customer> listCustomer(Pageable pageable) {
         return customerService.findAll(pageable);
@@ -39,6 +38,10 @@ public class ContractController {
     @ModelAttribute("services")
     public Page<Service> listService(Pageable pageable) {
         return serviceService.findAll(pageable);
+    }
+    @ModelAttribute("accompanys")
+    public List<Accompany> listAccompany(Pageable pageable) {
+        return accompanyService.findAll();
     }
 
     @GetMapping("contracts")
@@ -58,18 +61,27 @@ public class ContractController {
     }
 
     @PostMapping("createContract")
-    public ModelAndView saveContract(@ModelAttribute("contract") Contract contract, Pageable pageable) {
-        contractService.save(contract);
-        Customer customer=contract.getCustomer();
-        customer.setStatus("Registered");
-        customerService.save(customer);
-        Service service = contract.getService();
-        service.setStatus("Registered");
-        serviceService.save(service);
-        Page<Contract> contracts = contractService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("contract/listContract");
-        modelAndView.addObject("message", "New Contract created successfully");
-        modelAndView.addObject("contracts", contracts);
+    public ModelAndView saveContract(@Validated @ModelAttribute("contract") Contract contract, BindingResult bindingResult, Pageable pageable) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/contract/createContract");
+            modelAndView.addObject("message", "New Contract created not successfully");
+        } else {
+            Customer customer=contract.getCustomer();
+            customer.setStatus("Registered");
+            customerService.save(customer);
+            Service service = contract.getService();
+            service.setStatus("Registered");
+            serviceService.save(service);
+
+            contract.setTotalPay(0);
+            contractService.save(contract);
+            Page<Contract> contracts = contractService.findAll(pageable);
+            modelAndView = new ModelAndView("contract/listContract");
+            modelAndView.addObject("message", "New Contract created successfully");
+            modelAndView.addObject("contracts", contracts);
+        }
+
         return modelAndView;
     }
 
@@ -83,18 +95,33 @@ public class ContractController {
     }
 
     @PostMapping("editContract")
-    public ModelAndView updateCustomer(@ModelAttribute("contract") Contract contract, Pageable pageable) {
-        contractService.save(contract);
-        Customer customer=contract.getCustomer();
-        customer.setStatus("Registered");
-        customerService.save(customer);
-        Service service = contract.getService();
-        service.setStatus("Registered");
-        serviceService.save(service);
-        Page<Contract> contracts = contractService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("contract/listContract");
-        modelAndView.addObject("message", "Contract updated successfully");
-        modelAndView.addObject("contracts", contracts);
+    public ModelAndView updateCustomer(@Validated @ModelAttribute("contract") Contract contract,BindingResult bindingResult, Pageable pageable) {
+        ModelAndView modelAndView;
+        if (bindingResult.hasFieldErrors()) {
+            modelAndView = new ModelAndView("/contract/editContract");
+            modelAndView.addObject("message", "Contract updated not successfully");
+        } else {
+            Customer customer=contract.getCustomer();
+            customer.setStatus("Registered");
+            customerService.save(customer);
+            Service service = contract.getService();
+            service.setStatus("Registered");
+            serviceService.save(service);
+
+            if (contract.getContractDetail() != null) {
+                contract.setTotalPay(contract.getService().getRentType().getPrice()*
+                        (contract.getEndDate().getTime()-contract.getBeginDate().getTime())/(1000*60*60*24) +
+                        contract.getContractDetail().getQuantity()*
+                                contract.getContractDetail().getAccompany().getPrice());
+            } else {
+                contract.setTotalPay(0);
+            }
+            contractService.save(contract);
+            Page<Contract> contracts = contractService.findAll(pageable);
+            modelAndView = new ModelAndView("contract/listContract");
+            modelAndView.addObject("message", "Contract updated successfully");
+            modelAndView.addObject("contracts", contracts);
+        }
         return modelAndView;
     }
 
@@ -121,5 +148,4 @@ public class ContractController {
         }
         return new ModelAndView("error.404");
     }
-
 }

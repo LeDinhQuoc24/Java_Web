@@ -13,9 +13,13 @@
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/contractDetails" style="color: black">List ContractDetail</a>
     <h1>Edit ContractDetail </h1>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
 
     <form th:action="@{/editContractDetail}" method="post" th:object="${contractDetail}">
             <input type="hidden" th:field="*{id}">
+
         <table>
             <tr>
                 <td>Contract:</td>
@@ -36,6 +40,9 @@
             <tr>
                 <td>Quantity:</td>
                 <td><input type="text" th:field="*{quantity}"></td>
+            </tr>
+            <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('quantity')}" style="color: red" th:errors="*{quantity}">Quantity Error</td>
             </tr>
 
             <tr>
