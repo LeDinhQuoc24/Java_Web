@@ -47,10 +47,12 @@
             <td><a th:href="@{/editService/__${service.id}__ }" style="color: black">Edit</a></td>
             <td><a th:href="@{/deleteService/__${service.id}__ }" style="color: black">Delete</a></td>
             <td><a th:href="@{/viewService/__${service.id}__ }" style="color: black">View</a></td>
-            <td th:id="${service.id}+'Like'" ><a  style="color: black"
-                   th:onclick="'listLike('+${service.id}+'Like',+${service.id}+'UnLike'+')'">Like</a></td>
-            <td th:id="${service.id}+'Unlike'" style="display: none;"><a style="color: red"
-                   th:onclick="'listLike('+${service.id}+'UnLike',+${service.id}+'like'+')'">Unlike</a></td>
+            <td th:id="${service.id}+'Like'" >
+                <a  style="color: black" th:onclick="'listLike('+${service.id}+'Like',+${service.id}+'UnLike'+')'">Like</a>
+            </td>
+            <td th:id="${service.id}+'Unlike'" style="display: none;">
+                <a style="color: red" th:onclick="'listLike('+${service.id}+'UnLike',+${service.id}+'Like'+')'">Unlike</a>
+            </td>
         </tr>
     </th:block>
 </table>

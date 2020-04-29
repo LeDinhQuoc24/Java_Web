@@ -29,8 +29,14 @@
                 <td><input type="date" th:field="*{beginDate}" max="2020-04-29" min="2019-01-01"></td>
             </tr>
             <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('beginDate')}" style="color: red" th:errors="*{beginDate}">Begin Date Error</td>
+            </tr>
+            <tr>
                 <td>End Date:</td>
                 <td><input type="date" th:field="*{endDate}" max="2030-01-01" min="2020-04-29"></td>
+            </tr>
+            <tr>
+                <td colspan="2" th:if="${#fields.hasErrors('endDate')}" style="color: red" th:errors="*{endDate}">End Date Error</td>
             </tr>
             <tr>
                 <td>Deposit:</td>
