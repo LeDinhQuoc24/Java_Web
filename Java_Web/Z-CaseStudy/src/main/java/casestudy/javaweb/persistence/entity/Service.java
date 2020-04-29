@@ -1,22 +1,41 @@
 package casestudy.javaweb.persistence.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 
 @Entity
 public  class Service {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="service_id")
     private Long id;
+
+    @NotEmpty(message = "Mã dịch vụ không được để trống")
+    @Pattern(regexp = "(DV-)[0-9]{4}", message ="Mã dịch vụ có định dạng là DV-XXXX (X là số 0-9)" )
+    private String codeService;
+
     @Column(name="service_name")
     private String name;
+
     @Column(name="areaUsed")
+//    @NotEmpty(message = "Diện tích không được để trống")
+    @Min(value=0,message = "Diện tích phải là số dương lớn hơn 0")
     private double areaUsed;
     @Column(name="amount")
+//    @NotEmpty(message = "Chi phí thuê không được để trống")
+    @Min(value=0,message = "Chi phí thuê phải là số dương lớn hơn 0")
     private int amount;
     @Column(name = "maximum_people")
+//    @NotEmpty(message = "Số người tối đa không được để trống")
+    @Min(value=0,message = "Số người tối đa phải là số dương lớn hơn 0")
     private int maximumPeople;
+<<<<<<< HEAD
     @Column(name = "typeRent")
     private String typeRent;
     @Column(name="typeService")
@@ -31,6 +50,24 @@ public  class Service {
     private double poolArea;
     //Room
     private String freeAccompanyService;
+=======
+
+    @ManyToOne(targetEntity = RentType.class)
+    @JoinColumn(name = "rent_type_id")
+    private RentType rentType;
+
+    @ManyToOne(targetEntity = ServiceType.class)
+    @JoinColumn(name = "service_type_id")
+    private ServiceType serviceType;
+
+    @OneToMany(targetEntity = Contract.class,cascade = ALL)
+    @JoinColumn(name="contract_id")
+    private List<Contract> contracts;
+
+    private String status = "NotRegistered";
+
+
+>>>>>>> bcfd42292c66e43836b9ec794754ac386361a4ff
 
     public Service() {
     }
@@ -75,59 +112,43 @@ public  class Service {
         this.maximumPeople = maximumPeople;
     }
 
-    public String getTypeRent() {
-        return typeRent;
+    public RentType getRentType() {
+        return rentType;
     }
 
-    public void setTypeRent(String typeRent) {
-        this.typeRent = typeRent;
+    public void setRentType(RentType rentType) {
+        this.rentType = rentType;
     }
 
-    public String getTypeService() {
-        return typeService;
+    public ServiceType getServiceType() {
+        return serviceType;
     }
 
-    public void setTypeService(String typeService) {
-        this.typeService = typeService;
+    public void setServiceType(ServiceType serviceType) {
+        this.serviceType = serviceType;
     }
 
-    public String getRoomStandard() {
-        return roomStandard;
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
-    public void setRoomStandard(String roomStandard) {
-        this.roomStandard = roomStandard;
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
-    public String getOtherConvenienceDescription() {
-        return otherConvenienceDescription;
+    public String getCodeService() {
+        return codeService;
     }
 
-    public void setOtherConvenienceDescription(String otherConvenienceDescription) {
-        this.otherConvenienceDescription = otherConvenienceDescription;
+    public void setCodeService(String codeService) {
+        this.codeService = codeService;
     }
 
-    public int getFloorAmount() {
-        return floorAmount;
+    public String getStatus() {
+        return status;
     }
 
-    public void setFloorAmount(int floorAmount) {
-        this.floorAmount = floorAmount;
-    }
-
-    public double getPoolArea() {
-        return poolArea;
-    }
-
-    public void setPoolArea(double poolArea) {
-        this.poolArea = poolArea;
-    }
-
-    public String getFreeAccompanyService() {
-        return freeAccompanyService;
-    }
-
-    public void setFreeAccompanyService(String freeAccompanyService) {
-        this.freeAccompanyService = freeAccompanyService;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

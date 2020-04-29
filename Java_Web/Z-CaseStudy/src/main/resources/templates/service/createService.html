@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Create Service</title>
+</head>
+<body>
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+<a href="/menu" style="color: black">Back to Menu</a>
+<a href="/services" style="color: black">List Service</a>
+<h1>Create Service </h1>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
+
+<form th:action="@{createService}" method="post" th:object="${service}">
+    <!--    <input type="hidden" th:field="*{id}">-->
+    <table>
+        <tr>
+            <td>Code Service:</td>
+            <td><input type="text" th:field="*{codeService}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" th:if="${#fields.hasErrors('codeService')}" style="color: red" th:errors="*{codeService}">Code Service Error</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>AreaUsed:</td>
+            <td><input type="text" th:field="*{areaUsed}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" th:if="${#fields.hasErrors('areaUsed')}" style="color: red" th:errors="*{areaUsed}">Area Used Error</td>
+        </tr>
+        <tr>
+            <td>Amount:</td>
+            <td><input type="text" th:field="*{amount}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" th:if="${#fields.hasErrors('amount')}" style="color: red" th:errors="*{amount}">Amount Error</td>
+        </tr>
+        <tr>
+            <td>Maximum_people:</td>
+            <td><input type="text" th:field="*{maximumPeople}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" th:if="${#fields.hasErrors('maximumPeople')}" style="color: red" th:errors="*{maximumPeople}">Maximum People Error</td>
+        </tr>
+        <tr>
+            <td>RentType:</td>
+            <td>
+                <select th:field="*{rentType}" >
+                    <option th:each="r:${rentTypes}" th:value="${r.id}" th:text="${r.name}"></option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>ServiceType:</td>
+            <td>
+                <select th:field="*{serviceType}" >
+                    <option th:each="s:${serviceTypes}" th:value="${s.id}" th:text="${s.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create Service"></td>
+        </tr>
+
+    </table>
+</form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+
+</body>
+</html>

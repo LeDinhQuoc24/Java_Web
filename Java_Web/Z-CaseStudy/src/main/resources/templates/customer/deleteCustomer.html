@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Delete Customer</title>
+</head>
+<body>
+
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/customers" style="color: black">List Customer</a>
+    <h1>Delete Customer</h1>
+    <h2>Are you sure?</h2>
+
+    <form th:action="@{/deleteCustomer}" th:object="${customer}" method="post">
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <table>
+            <tr>
+                <td>Id:</td>
+                <td th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <td>Code Customer:</td>
+                <td th:text="*{codeCustomer}"></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td th:text="*{fullName}"></td>
+            </tr>
+            <tr>
+                <td>Birth:</td>
+                <td th:text="*{birth}"></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td th:text="*{gender}"></td>
+            </tr>
+            <tr>
+                <td>IdNumber:</td>
+                <td th:text="*{idNumber}"></td>
+            </tr>
+            <tr>
+                <td>PhoneNumber:</td>
+                <td th:text="*{phoneNumber}"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td th:text="*{email}"></td>
+            </tr>
+
+            <tr>
+                <td>TypeCustomer:</td>
+                <td th:text="*{customerType.name}"></td>
+            </tr >
+            <tr >
+                <td>Status:</td>
+                <td th:text="*{status}"></td>
+            </tr>
+            <tr >
+                <td>Image:</td>
+                <td><img height="50" th:src="@{'../'+${customer.image.image_url}}"></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Delete Customer"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+</body>
+</html>

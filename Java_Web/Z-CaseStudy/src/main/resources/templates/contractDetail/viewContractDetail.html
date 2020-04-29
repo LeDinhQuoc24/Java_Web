@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Edit ContractDetail</title>
+</head>
+<body>
+
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/contractDetails" style="color: black">List ContractDetail</a>
+    <h1>Edit ContractDetail</h1>
+ 
+
+    <form  th:object="${contractDetail}" >
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <table>
+            <tr>
+                <td>Id:</td>
+                <td th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <td>Contract Begin Date:</td>
+                <td th:text="*{contract.beginDate}"></td>
+            </tr>
+            <tr>
+                <td>Contract End Date:</td>
+                <td th:text="*{contract.endDate}"></td>
+            </tr>
+            <tr>
+                <td>Contract Number:</td>
+                <td th:text="*{contract.contractNumber}"></td>
+            </tr>
+            <tr>
+                <td>Service Name:</td>
+                <td th:text="*{contract.service.name}"></td>
+            </tr>
+            <tr>
+                <td>Customer:</td>
+                <td th:text="*{contract.customer.fullName}"></td>
+                <td><img height="50" th:src="@{'../'+${contractDetail.contract.customer.image.image_url}}"></td>
+            </tr>
+            <tr>
+                <td>Employee:</td>
+                <td th:text="*{contract.employee.fullName}"></td>
+                <td><img height="50" th:src="@{'../'+${contractDetail.contract.employee.image.image_url}}"></td>
+            </tr>
+            <tr>
+                <td>Total Pay:</td>
+                <td th:text="*{contract.totalPay}"></td>
+            </tr>
+            <tr>
+                <td>Accompany Name:</td>
+                <td th:text="*{accompany.name}"></td>
+            </tr>
+            <tr>
+                <td>Quantity:</td>
+                <td th:text="*{quantity}"></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+</body>
+</html>

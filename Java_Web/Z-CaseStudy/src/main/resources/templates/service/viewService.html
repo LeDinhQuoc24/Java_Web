@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>View Service</title>
+</head>
+<body>
+
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/services" style="color: black">List Service</a>
+    <h1>View Service</h1>
+
+
+    <form  th:object="${service}" >
+        <table>
+            <tr>
+                <td>Id:</td>
+                <td th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <td>Code Service:</td>
+                <td th:text="*{codeService}"></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td th:text="*{name}"></td>
+            </tr>
+            <tr>
+                <td>AreaUsed:</td>
+                <td th:text="*{areaUsed}"></td>
+            </tr>
+            <tr>
+                <td>Amount:</td>
+                <td th:text="*{amount}"></td>
+            </tr>
+            <tr>
+                <td>Maximum_people:</td>
+                <td th:text="*{maximumPeople}"></td>
+            </tr>
+            <tr>
+                <td>RentType:</td>
+                <td th:text="*{rentType.name}"></td>
+            </tr>
+            <tr>
+                <td>ServiceType:</td>
+                <td th:text="*{serviceType.name}"></td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td th:text="*{status}"></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Create Image</title>
+</head>
+<body>
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/images" style="color: black">List Image</a>
+    <h1>Create Image </h1>
+
+    <form th:action="@{createImage}" method="post" th:object="${image}">
+        <!--    <input type="hidden" th:field="*{id}">-->
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+            <tr>
+                <td>Image_Url:</td>
+                <td><input type="text" th:field="*{image_url}"></td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td>
+                    <select th:field="*{type}" >
+                        <option th:value="Customer" th:text="Customer"></option>
+                        <option th:value="Employee" th:text="Employee"></option>
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td><input type="submit" value="Create Image"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+
+</body>
+</html>

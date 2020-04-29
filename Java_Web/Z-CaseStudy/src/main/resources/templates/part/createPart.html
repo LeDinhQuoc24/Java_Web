@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Create Part</title>
+</head>
+<body>
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/parts" style="color: black">List Part</a>
+    <h1>Create Part </h1>
+
+    <form th:action="@{createPart}" method="post" th:object="${part}">
+        <!--    <input type="hidden" th:field="*{id}">-->
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" value="Create Part"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+
+</body>
+</html>

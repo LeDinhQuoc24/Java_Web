@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Delete Contract</title>
+</head>
+<body>
+
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/contracts" style="color: black">List Contract</a>
+    <h1>Delete Contract</h1>
+    <h2>Are you sure?</h2>
+
+    <form th:action="@{/deleteContract}" th:object="${contract}" method="post">
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <table>
+            <tr>
+                <td>Id:</td>
+                <td th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <td>Contract Number:</td>
+                <td th:text="*{contractNumber}"></td>
+            </tr>
+            <tr>
+                <td>Begin Date:</td>
+                <td th:text="*{beginDate}"></td>
+            </tr>
+            <tr>
+                <td>End Date:</td>
+                <td th:text="*{endDate}"></td>
+            </tr>
+            <tr>
+                <td>Deposit:</td>
+                <td th:text="*{deposit}"></td>
+            </tr>
+            <tr>
+                <td>Total Pay:</td>
+                <td th:text="*{totalPay}"></td>
+            </tr>
+            <tr>
+                <td>Customer:</td>
+                <td th:text="*{customer.fullName}"></td>
+                <td><img height="50" th:src="@{'../'+${contract.customer.image.image_url}}"></td>
+
+            </tr>
+
+            <tr>
+                <td>Employee:</td>
+                <td th:text="*{employee.fullName}"></td>
+                <td><img height="50" th:src="@{'../'+${contract.employee.image.image_url}}"></td>
+            </tr >
+            <tr >
+                <td>Service:</td>
+                <td th:text="*{service.name}"></td>
+            </tr>
+
+
+            <tr>
+                <td><input type="submit" value="Delete Contract"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+</body>
+</html>

@@ -12,15 +12,18 @@
         body {
             font-family: Arial;
             padding: 10px;
-            background: #e9d8f4;
+            background-image: url("../img/mylove.jpg");
+
         }
+
+
 
         /* Header/Blog Title ------------------------------------------------------------------------*/
         .header {
             padding: 10px;
             text-align: center;
-            background: white;
-            color: #58257b;
+            background-image: url("../img/girl.jpg");
+            color: white;
         }
 
         .header h1 {
@@ -34,101 +37,224 @@
         /* Style the top navigation bar ------------------------------------------------------------------------*/
         .topnav {
             overflow: hidden;
-            background-color: #58257b;
+            background-color: black;
         }
 
         /* Định dạng link điều hướng */
         .topnav a {
             float: left;
             display: block;
-            color: #f2f2f2;
+            color: white;
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
         }
 
         /* Thay đổi màu liên kết khi di chuột qua */
-        .topnav a:hover {
-            background-color: #db7093;
-            color: white;
+        .topnav :hover {
+            background-color: dimgrey;
+            color: blueviolet;
         }
 
-        /* Tạo hai cột không bằng nhau, float cạnh nhau -----------------------------------------------------*/
-        /* Cột trái */    /* Cột phải */
-        .column.side {
+        .column {
             float: left;
-            width: 25%;
+            color: black;
+
+        }
+        .column a {
+            float: left;
             display: block;
-            color: #f2f2f2;
+            color: black;
             text-align: center;
-            padding: 14px 16px;
+            padding: 1px 1px;
             text-decoration: none;
+        }
+
+        /* Left and right column */
+        .column.left {
+            width: 18%;
+
+        }
+        .column.right {
+            width: 14%;
         }
 
 
         /* Middle column */
         .column.middle {
-            content:"";
-            clear:both;
-            display:table;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
+            width: 68%;
+            background-image: url("../img/love2.png");
+
+
+        }
+        .column a:hover {
+            background-color: dimgrey;
+            color: white;
         }
 
-        /* Hình ảnh tượng trưng */
-        .fakeimg {
-            background-color: #baa1cc;
-            width: 100%;
-            padding: 20px;
-        }
-
-        /* Thêm định dạng thẻ cho bài viết */
-        .card {
-            background-color: white;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        /* Clear float khác sau các cột */
+        /* Clear floats after the columns */
         .row:after {
             content: "";
             display: table;
             clear: both;
         }
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .column.left, .column.middle,.column.right {
+                width:100%;
+            }
+        }
 
-        /* Footer */
+        /* Style the footer */
         .footer {
-            padding: 10px;
+
+            background-image: url("../img/banner1.jpg");
+            padding: 5px;
             text-align: center;
-            background: white;
-            margin-top: 10px;
+            color: white;
+
+        }
+        table, th, td{
+            border:1px solid #ccc;
+        }
+        table{
+            border-collapse:collapse;
+            width:80%;
+        }
+        th, td{
+            text-align:left;
+            padding:4px;
+        }
+        tr:hover{
+            background-color:#ddd;
+            cursor:pointer;
         }
 
-        /* Bố cục linh hoạt: các cột xếp chồng lên nhau thay vì cạnh nhau khi màn hình
-        có chiều rộng dưới 700px */
-        @media screen and (max-width: 700px) {
-            .leftcolumn, .rightcolumn {
-                width: 100%;
-                padding: 0;
-            }
-        }
-
-        /* Bố cục linh hoạt: Thanh menu điều hướng xếp chồng lên nhau thay vì cạnh nhau
-        khi màn hình có chiều rộng dưới 300px  */
-        @media screen and (max-width: 300px) {
-            .topnav a {
-                float: none;
-                width: 100%;
-            }
-        }
     </style>
+
+
 </head>
-<body>
-<div th:fragment="copy">
-    &copy; 2011 The Good Thymes Virtual Grocery
+<body >
+<!--Tiêu đề-->
+<div th:fragment="title">
+    <div class="header" >
+        <img  src="../img/logo.png" height="50" align="left"/>
+        <font face="VNI-HLThuphap">
+        <h1>Furama Resort Da Nang </h1>
+        <p>CaseStudy - JavaWeb - VnNhnLm</p>
+        </font>
+    </div>
+    <div class="topnav">
+        <font face="VNI-HLThuphap">
+        <a href="/menu">Home</a>
+        <a href="/services">Service</a>
+        <a href="/image">Image</a>
+        <a href="/search">Search</a>
+            <a href="/listLike">ListLike</a>
+        <a href="#">Review</a>
+        <a href="#" style="float:right">Register</a>
+        <a href="#" style="float:right">Login</a>
+        </font>
+    </div>
 </div>
+
+<!--Cột trái-->
+<div th:fragment="columnLeft" class="column left" >
+
+    <font face="VNI-HLThuphap">
+        <table >
+
+            <tr>
+                <th ><a href="/services" style="color: black">Service</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/services/Villa" style="color: black">Villa</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/services/House" style="color: black">House</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/services/Room" style="color: black">Room</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/customers" style="color: black">Customer</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/employees" style="color: black">Employee</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/contracts" style="color: black">Contract</a></th>
+            </tr>
+            <tr>
+                <th ><a href="/contractDetails" style="color: black">ContractDetail</a></th>
+            </tr>
+
+
+        </table>
+    </font>
+
+
+</div>
+
+<!--Cột giữa-->
+<div th:fragment="columnMid" class="column middle">
+    <font face="VNI-HLThuphap">
+    <center>
+        <h2>Welcome to VnNhnLm 's CaseStudy</h2>
+        <h1 style="color: red">Do Ta Khong Do Nang</h1>
+        <p style="color: red" >
+        Hoa no ngan nam hoa bi ngan<br>
+        Hoang tuyen huyet nhuom noi bi thuong<br>
+        Vo hoa huu diep vo tuong ngo<br>
+        Van kiep luan hoi van kiep vuong<br>
+            ...<br>
+
+
+        </p>
+    </center>
+    </font>
+
+</div>
+
+
+<!--Cột phải-->
+<div th:fragment="columnRight" class="column right">
+    <center>
+    <font face="VNI-HLThuphap">
+        <table>
+            <tr>
+                <th><a href="/degrees" style="color: black" >Degree</a></th>
+            </tr>
+            <tr>
+                <th><a href="/parts" style="color: black">Part</a></th>
+            </tr>
+            <tr>
+                <th><a href="/positions" style="color: black">Position</a></th>
+            </tr>
+            <tr>
+                <th><a href="/customerTypes" style="color: black">Cu.Type</a></th>
+            </tr>
+            <tr>
+                <th><a href="/serviceTypes" style="color: black">Se.Type</a></th>
+            </tr>
+            <tr>
+                <th><a href="/rentTypes" style="color: black">Re.Type</a></th>
+            </tr>
+            <tr>
+                <th><a href="/accompanys" style="color: black">Accompany</a></th>
+            </tr>
+        </table>
+    </font>
+    </center>
+
+</div>
+
+<!--Footer-->
+<div th:fragment="footer" class="footer">
+    <p>VnNhnLm 4/2020 C0120G1</p>
+
+</div>
+
 
 </body>
 </html>

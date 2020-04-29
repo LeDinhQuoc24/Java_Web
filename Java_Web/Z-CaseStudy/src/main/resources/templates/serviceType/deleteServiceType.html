@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Delete ServiceType</title>
+</head>
+<body>
+
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/serviceTypes" style="color: black">List ServiceType</a>
+    <h1>Delete ServiceType</h1>
+    <h2>Are you sure?</h2>
+
+    <form th:action="@{/deleteServiceType}" th:object="${serviceType}" method="post">
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <table>
+            <tr>
+                <td>Id:</td>
+                <td th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td th:text="*{name}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Delete ServiceType"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+</body>
+</html>
