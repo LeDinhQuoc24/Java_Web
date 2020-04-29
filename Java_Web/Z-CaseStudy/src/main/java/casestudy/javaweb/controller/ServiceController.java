@@ -27,12 +27,13 @@ public class ServiceController {
         return new ModelAndView("service/create_service", "service", new Service());
     }
     @PostMapping("create-service")
-    public ModelAndView createService(@ModelAttribute("service")Service service) {
+    public ModelAndView createService(@ModelAttribute("service")Service service,Pageable pageable) {
         serviceService.save(service);
+        Page<Service> services = serviceService.findAll(pageable);
         ModelAndView modelAndView;
-        modelAndView=new ModelAndView("service/create_service");
-        modelAndView.addObject("service", service);
-
+        modelAndView=new ModelAndView("service/listService");
+        modelAndView.addObject("services", services);
+        modelAndView.addObject("message","New Service created successfully");
         return modelAndView;
     }
 }

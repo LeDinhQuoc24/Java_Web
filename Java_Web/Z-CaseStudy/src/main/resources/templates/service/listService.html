@@ -9,6 +9,9 @@
 <a href="/create-service">Create new Service</a>
 
 <h1>Services</h1>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
 <form>
     Search by name:
     <input name="s" type="text"/>

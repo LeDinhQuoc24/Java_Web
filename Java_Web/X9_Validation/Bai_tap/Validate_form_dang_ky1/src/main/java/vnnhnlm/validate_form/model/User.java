@@ -1,15 +1,12 @@
 package vnnhnlm.validate_form.model;
 
-import jdk.nashorn.internal.objects.annotations.Property;
-import net.bytebuddy.implementation.bind.annotation.Default;
-import org.hibernate.annotations.Check;
-import org.springframework.beans.factory.annotation.Value;
+
 
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.Valid;
+
 import javax.validation.constraints.*;
 
 
