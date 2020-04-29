@@ -56,14 +56,18 @@ public class MenuController {
     @GetMapping("listLike-add/{id}")
     public String addListLike(@PathVariable("id")Long id, @ModelAttribute("listLike") ListLike listLike,RedirectAttributes redirectAttributes) {
         Service service = serviceService.findById(id);
-        for (Service service1 : listLike.getServiceList()) {
-            if (service1.getId().equals(id)) {
-                redirectAttributes.addFlashAttribute("message", "You liked this service");
-               }
-            return "redirect:/services2";
+        if (service == null) {
+            return "error.404";
+        } else {
+            for (Service service1 : listLike.getServiceList()) {
+                if (service1.getId().equals(id)) {
+                    redirectAttributes.addFlashAttribute("message", "You liked this service");
+                    return "redirect:/services2";
+                }
+            }
+            listLike.addListLike(service);
+            redirectAttributes.addFlashAttribute("message", "Add successfully");
         }
-        listLike.addListLike(service);
-        redirectAttributes.addFlashAttribute("message", "Add successfully");
         return "redirect:/services2";
     }
     @GetMapping("listLike-remove/{id}")
