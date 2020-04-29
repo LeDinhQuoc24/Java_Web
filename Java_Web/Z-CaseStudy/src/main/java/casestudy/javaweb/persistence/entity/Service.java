@@ -35,7 +35,7 @@ public  class Service {
 //    @NotEmpty(message = "Số người tối đa không được để trống")
     @Min(value=0,message = "Số người tối đa phải là số dương lớn hơn 0")
     private int maximumPeople;
-<<<<<<< HEAD
+
     @Column(name = "typeRent")
     private String typeRent;
     @Column(name="typeService")
@@ -50,7 +50,7 @@ public  class Service {
     private double poolArea;
     //Room
     private String freeAccompanyService;
-=======
+
 
     @ManyToOne(targetEntity = RentType.class)
     @JoinColumn(name = "rent_type_id")
@@ -67,7 +67,7 @@ public  class Service {
     private String status = "NotRegistered";
 
 
->>>>>>> bcfd42292c66e43836b9ec794754ac386361a4ff
+
 
     public Service() {
     }

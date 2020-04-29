@@ -59,7 +59,7 @@ public class ServiceController {
     public ModelAndView showFormCreate() {
         return new ModelAndView("service/createService", "service", new Service());
     }
-<<<<<<< HEAD
+
     @PostMapping("create-service")
     public ModelAndView createService(@ModelAttribute("service")Service service,Pageable pageable) {
         serviceService.save(service);
@@ -68,10 +68,10 @@ public class ServiceController {
         modelAndView=new ModelAndView("service/listService");
         modelAndView.addObject("services", services);
         modelAndView.addObject("message","New Service created successfully");
-=======
+        return modelAndView;
 
     @PostMapping("createService")
-    public ModelAndView createService(@Validated  @ModelAttribute("service") Service service, BindingResult bindingResult, Pageable pageable) {
+    public ModelAndView createService(@Validated @ModelAttribute("service")Service service, BindingResult bindingResult, Pageable pageable) {
         ModelAndView modelAndView;
         if (bindingResult.hasFieldErrors()) {
             modelAndView = new ModelAndView("/service/createService");
@@ -108,7 +108,7 @@ public class ServiceController {
             modelAndView.addObject("services", services);
             modelAndView.addObject("message", "Service updated successfully");
         }
->>>>>>> bcfd42292c66e43836b9ec794754ac386361a4ff
+
         return modelAndView;
     }
 
