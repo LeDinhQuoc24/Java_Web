@@ -65,10 +65,11 @@ public class ServiceController {
         serviceService.save(service);
         Page<Service> services = serviceService.findAll(pageable);
         ModelAndView modelAndView;
-        modelAndView=new ModelAndView("service/listService");
+        modelAndView = new ModelAndView("service/listService");
         modelAndView.addObject("services", services);
-        modelAndView.addObject("message","New Service created successfully");
+        modelAndView.addObject("message", "New Service created successfully");
         return modelAndView;
+    }
 
     @PostMapping("createService")
     public ModelAndView createService(@Validated @ModelAttribute("service")Service service, BindingResult bindingResult, Pageable pageable) {
