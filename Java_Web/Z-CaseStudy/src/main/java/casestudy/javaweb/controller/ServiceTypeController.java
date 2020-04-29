@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
@@ -69,8 +70,9 @@ public class ServiceTypeController {
         return new ModelAndView("error.404");
     }
     @PostMapping("deleteServiceType")
-    public String deleteServiceType(@ModelAttribute("serviceType")ServiceType serviceType) {
+    public String deleteServiceType(@ModelAttribute("serviceType")ServiceType serviceType, RedirectAttributes redirectAttributes) {
         serviceTypeService.remove(serviceType.getId());
+        redirectAttributes.addFlashAttribute("message","ServiceType deleted successfully");
         return "redirect:serviceTypes";
     }
 }

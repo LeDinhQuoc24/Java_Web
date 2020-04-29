@@ -9,9 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
@@ -51,32 +54,36 @@ public class MenuController {
     }
 
     @GetMapping("listLike-add/{id}")
-    public ModelAndView addListLike(@PathVariable("id")String id,@ModelAttribute("listLike") ListLike listLike) {
-        ModelAndView modelAndView=new ModelAndView("listLike");
-        Service service = serviceService.findById(parseLong(id));
-
+    public String addListLike(@PathVariable("id")Long id, @ModelAttribute("listLike") ListLike listLike,RedirectAttributes redirectAttributes) {
+        Service service = serviceService.findById(id);
         for (Service service1 : listLike.getServiceList()) {
-            if (service1.getId() == parseLong(id)) {
-                modelAndView.addObject("message", "You liked this service");
+            if (service1.getId().equals(id)) {
+                redirectAttributes.addFlashAttribute("message", "You liked this service");
                }
+            return "redirect:/services2";
         }
-
         listLike.addListLike(service);
-        modelAndView.addObject("message", "Add successfully");
-        return listLike(listLike);
+        redirectAttributes.addFlashAttribute("message", "Add successfully");
+        return "redirect:/services2";
     }
     @GetMapping("listLike-remove/{id}")
-    public ModelAndView removeListLike(@PathVariable("id")String id,@ModelAttribute("listLike") ListLike listLike) {
-        listLike.removeFromListLike(parseLong(id));
-        ModelAndView modelAndView=new ModelAndView("listLike");
-        modelAndView.addObject("message", "Remove successfully");
-        return listLike(listLike);
+    public String removeListLike(@PathVariable("id")Long id,@ModelAttribute("listLike") ListLike listLike,RedirectAttributes redirectAttributes) {
+        List<Service> services = listLike.getServiceList();
+        for (Service service1 : services) {
+            if (service1.getId()==id) {
+                listLike.removeFromListLike(id);
+                redirectAttributes.addFlashAttribute("message", "Remove successfully");
+                return "redirect:/services2";
+            }
+        }
+        redirectAttributes.addFlashAttribute("message", "Please like this service first");
+        return "redirect:/services2";
     }
-//    @GetMapping("services2")
-//    public ModelAndView listService() {
-//        List<Service> services=serviceService.findAll();
-//        return new ModelAndView("service/listService", "services", services);
-//    }
+    @GetMapping("/services2")
+    public ModelAndView listService(Pageable pageable) {
+        Page<Service> services=serviceService.findAll(pageable);
+        return new ModelAndView("service/listService", "services", services);
+    }
 
 
 

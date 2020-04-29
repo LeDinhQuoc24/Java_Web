@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -105,8 +106,9 @@ public class CustomerController {
     }
 
     @PostMapping("deleteCustomer")
-    public String deleteCustomer(@ModelAttribute("customer") Customer customer) {
+    public String deleteCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirectAttributes) {
         customerService.remove(customer.getId());
+        redirectAttributes.addFlashAttribute("message","Customer deleted successfully");
         return "redirect:customers";
     }
 

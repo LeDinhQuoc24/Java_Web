@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -114,8 +115,9 @@ public class EmployeeController {
     }
 
     @PostMapping("deleteEmployee")
-    public String deleteEmployee(@ModelAttribute("employee") Employee employee) {
+    public String deleteEmployee(@ModelAttribute("employee") Employee employee, RedirectAttributes redirectAttributes) {
         employeeService.remove(employee.getId());
+        redirectAttributes.addFlashAttribute("message"," Employee deleted successfully");
         return "redirect:employees";
     }
 

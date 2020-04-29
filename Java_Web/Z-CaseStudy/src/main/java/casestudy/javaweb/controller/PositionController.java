@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
@@ -69,8 +70,9 @@ public class PositionController {
         return new ModelAndView("error.404");
     }
     @PostMapping("deletePosition")
-    public String deletePosition(@ModelAttribute("position")Position position) {
+    public String deletePosition(@ModelAttribute("position")Position position, RedirectAttributes redirectAttributes) {
         positionService.remove(position.getId());
+        redirectAttributes.addFlashAttribute("message","Position deleted successfully");
         return "redirect:positions";
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
@@ -68,8 +69,9 @@ public class PartController {
         return new ModelAndView("error.404");
     }
     @PostMapping("deletePart")
-    public String deletePart(@ModelAttribute("part")Part part) {
+    public String deletePart(@ModelAttribute("part")Part part, RedirectAttributes redirectAttributes) {
         partService.remove(part.getId());
+        redirectAttributes.addFlashAttribute("message","Part deleted successfully");
         return "redirect:parts";
     }
 }

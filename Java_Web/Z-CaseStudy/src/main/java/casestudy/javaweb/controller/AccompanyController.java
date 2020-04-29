@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -82,8 +83,9 @@ public class AccompanyController {
         return new ModelAndView("error.404");
     }
     @PostMapping("deleteAccompany")
-    public String deleteAccompany(@ModelAttribute("accompany")Accompany accompany) {
+    public String deleteAccompany(@ModelAttribute("accompany")Accompany accompany, RedirectAttributes redirectAttributes) {
         accompanyService.remove(accompany.getId());
+        redirectAttributes.addFlashAttribute("message","Accompany deleted successfully");
         return "redirect:accompanys";
     }
 }

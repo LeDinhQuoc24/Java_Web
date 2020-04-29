@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -123,8 +124,9 @@ public class ServiceController {
     }
 
     @PostMapping("deleteService")
-    public String deleteService(@ModelAttribute("service") Service service) {
+    public String deleteService(@ModelAttribute("service") Service service, RedirectAttributes redirectAttributes) {
         serviceService.remove(service.getId());
+        redirectAttributes.addFlashAttribute("message","Service deleted successfully");
         return "redirect:services";
     }
 

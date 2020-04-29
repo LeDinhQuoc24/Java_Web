@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
@@ -67,8 +68,9 @@ public class DegreeController {
         return new ModelAndView("error.404");
     }
     @PostMapping("deleteDegree")
-    public String deleteDegree(@ModelAttribute("degree")Degree degree) {
+    public String deleteDegree(@ModelAttribute("degree")Degree degree, RedirectAttributes redirectAttributes) {
         degreeService.remove(degree.getId());
+        redirectAttributes.addFlashAttribute("message","Degree deleted successfully");
         return "redirect:degrees";
     }
 }

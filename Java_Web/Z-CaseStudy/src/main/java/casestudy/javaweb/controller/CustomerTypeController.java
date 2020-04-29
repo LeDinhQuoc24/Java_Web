@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
@@ -68,8 +69,9 @@ public class CustomerTypeController {
         return new ModelAndView("error.404");
     }
     @PostMapping("deleteCustomerType")
-    public String deleteCustomerType(@ModelAttribute("customerType")CustomerType customerType) {
+    public String deleteCustomerType(@ModelAttribute("customerType")CustomerType customerType, RedirectAttributes redirectAttributes) {
         customerTypeService.remove(customerType.getId());
+        redirectAttributes.addFlashAttribute("message","CustomerType deleted successfully");
         return "redirect:customerTypes";
     }
 }

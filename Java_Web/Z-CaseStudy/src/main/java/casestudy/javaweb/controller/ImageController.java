@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -72,8 +73,9 @@ public class ImageController {
         return new ModelAndView("error.404");
     }
     @PostMapping("deleteImage")
-    public String deleteImage(@ModelAttribute("image")Image image) {
+    public String deleteImage(@ModelAttribute("image")Image image, RedirectAttributes redirectAttributes) {
         imageService.remove(image.getId());
+        redirectAttributes.addFlashAttribute("message","Image deleted successfully");
         return "redirect:images";
     }
 }

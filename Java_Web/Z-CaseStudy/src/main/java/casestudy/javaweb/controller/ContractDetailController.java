@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -117,8 +118,9 @@ public class ContractDetailController {
     }
 
     @PostMapping("deleteContractDetail")
-    public String deleteContractDetail(@ModelAttribute("contractDetail") ContractDetail contractDetail) {
+    public String deleteContractDetail(@ModelAttribute("contractDetail") ContractDetail contractDetail, RedirectAttributes redirectAttributes) {
         contractDetailService.remove(contractDetail.getId());
+        redirectAttributes.addFlashAttribute("message","ContractDetail deleted successfully");
         return "redirect:contractDetails";
     }
 

@@ -16,9 +16,9 @@
 <a href="/menu" style="color: black">Back to Menu</a>
 <a href="/createService" style="color: black">Create new Service</a>
 <h1>Services</h1>
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
 
     <center>
 
@@ -77,5 +77,4 @@
         document.getElementById(id1).style.display = "none";
         document.getElementById(id2).style.display = "block";
     }
-
 </script>
