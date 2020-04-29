@@ -26,7 +26,6 @@
                 <th>Status</th>
                 <th>RentType</th>
                 <th>ServiceType</th>
-                <th colspan="2">Action</th>
             </tr>
 
             <th:block th:each="services : ${listLike.serviceList}">
@@ -36,8 +35,6 @@
                     <td th:text="${services.status}"></td>
                     <td th:text="${services.rentType.name}"></td>
                     <td th:text="${services.serviceType.name}"></td>
-                    <td><a th:href="@{/services}" style="color: black">Add</a></td>
-                    <td><a th:href="@{/services}" style="color: black">Delete</a></td>
 
                 </tr>
             </th:block>

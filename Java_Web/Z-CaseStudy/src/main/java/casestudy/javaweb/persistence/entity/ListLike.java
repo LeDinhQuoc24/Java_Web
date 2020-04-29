@@ -1,11 +1,14 @@
 package casestudy.javaweb.persistence.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListLike {
     private List<Service> serviceList;
 
     public ListLike() {
+        //chú ý thêm 1 list Service khi tạo contrustor ListLike
+        this.serviceList = new ArrayList<Service>();
     }
 
     public ListLike(List<Service> serviceList) {
