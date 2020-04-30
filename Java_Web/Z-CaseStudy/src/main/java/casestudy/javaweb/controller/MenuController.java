@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,6 @@ public class MenuController {
     public ListLike setUpForm() {
         return new ListLike();
     }
-
 
 
     @GetMapping("menu")
@@ -54,7 +54,7 @@ public class MenuController {
     }
 
     @GetMapping("listLike-add/{id}")
-    public String addListLike(@PathVariable("id")Long id, @ModelAttribute("listLike") ListLike listLike,RedirectAttributes redirectAttributes) {
+    public String addListLike(@PathVariable("id") Long id, @ModelAttribute("listLike") ListLike listLike, RedirectAttributes redirectAttributes) {
         Service service = serviceService.findById(id);
         if (service == null) {
             return "error.404";
@@ -70,11 +70,12 @@ public class MenuController {
         }
         return "redirect:/services2";
     }
+
     @GetMapping("listLike-remove/{id}")
-    public String removeListLike(@PathVariable("id")Long id,@ModelAttribute("listLike") ListLike listLike,RedirectAttributes redirectAttributes) {
+    public String removeListLike(@PathVariable("id") Long id, @ModelAttribute("listLike") ListLike listLike, RedirectAttributes redirectAttributes) {
         List<Service> services = listLike.getServiceList();
         for (Service service1 : services) {
-            if (service1.getId()==id) {
+            if (service1.getId() == id) {
                 listLike.removeFromListLike(id);
                 redirectAttributes.addFlashAttribute("message", "Remove successfully");
                 return "redirect:/services2";
@@ -83,12 +84,12 @@ public class MenuController {
         redirectAttributes.addFlashAttribute("message", "Please like this service first");
         return "redirect:/services2";
     }
+
     @GetMapping("/services2")
     public ModelAndView listService(Pageable pageable) {
-        Page<Service> services=serviceService.findAll(pageable);
+        Page<Service> services = serviceService.findAll(pageable);
         return new ModelAndView("service/listService", "services", services);
     }
-
 
 
 }

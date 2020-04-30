@@ -63,6 +63,8 @@ public class ContractDetailController {
             modelAndView = new ModelAndView("/contractDetail/createContractDetail");
             modelAndView.addObject("message", "New ContractDetail created not successfully");
         } else {
+            //Khi thay đổi 3 giá trị thời gian bắt đầu/kết thúc,số lượng và giá dịch vụ đi kèm sẽ làm thay đổi
+            //đến tổng tiền.Riêng giá kiểu thuê dịch vụ thì chưa xử lý @@
             contractDetail.getContract().setTotalPay(contractDetail.getContract().getService().getRentType().getPrice()*
                     (contractDetail.getContract().getEndDate().getTime()-
                             contractDetail.getContract().getBeginDate().getTime())/(1000*60*60*24) +

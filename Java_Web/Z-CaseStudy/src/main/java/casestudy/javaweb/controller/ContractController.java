@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class ContractController {
@@ -62,7 +67,9 @@ public class ContractController {
     }
 
     @PostMapping("createContract")
-    public ModelAndView saveContract(@Validated @ModelAttribute("contract") Contract contract, BindingResult bindingResult, Pageable pageable) {
+    public ModelAndView saveContract(@Validated @ModelAttribute("contract") Contract contract, BindingResult bindingResult,
+                                     @CookieValue(value="setHistory", defaultValue = "") String setHistory,
+                                     HttpServletResponse response, Pageable pageable) {
         ModelAndView modelAndView;
         if (bindingResult.hasFieldErrors()) {
             modelAndView = new ModelAndView("/contract/createContract");
@@ -74,8 +81,15 @@ public class ContractController {
             Service service = contract.getService();
             service.setStatus("Registered");
             serviceService.save(service);
-
             contract.setTotalPay(0);
+
+            setHistory = "hello";
+//                    contract.getBeginDate() + "," + contract.getEndDate() + "," + contract.getService().getName();
+            Cookie cookie = new Cookie("setHistory", setHistory);
+            cookie.setMaxAge(24 * 60 * 60);
+            cookie.setPath("/viewHistory");
+            response.addCookie(cookie);
+
             contractService.save(contract);
             Page<Contract> contracts = contractService.findAll(pageable);
             modelAndView = new ModelAndView("contract/listContract");
@@ -149,5 +163,11 @@ public class ContractController {
             return new ModelAndView("contract/viewContract", "contract", contract);
         }
         return new ModelAndView("error.404");
+    }
+
+    @GetMapping("viewHistory")
+    public ModelAndView viewHistoryContract(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        return new ModelAndView("viewHistory", "cookies", cookies);
     }
 }
