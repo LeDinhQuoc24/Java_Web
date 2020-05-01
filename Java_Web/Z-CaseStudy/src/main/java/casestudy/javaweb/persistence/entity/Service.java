@@ -40,6 +40,9 @@ public  class Service {
     private String typeRent;
     @Column(name="typeService")
     private String typeService;
+
+
+
     //Villa/House
     private String roomStandard;
     //Villa/House
@@ -65,6 +68,7 @@ public  class Service {
     private List<Contract> contracts;
 
     private String status = "NotRegistered";
+    private String status2 = "black";
 
 
 
@@ -150,5 +154,29 @@ public  class Service {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTypeRent() {
+        return typeRent;
+    }
+
+    public void setTypeRent(String typeRent) {
+        this.typeRent = typeRent;
+    }
+
+    public String getTypeService() {
+        return typeService;
+    }
+
+    public void setTypeService(String typeService) {
+        this.typeService = typeService;
+    }
+
+    public String getStatus2() {
+        return status2;
+    }
+
+    public void setStatus2(String status2) {
+        this.status2 = status2;
     }
 }

@@ -23,6 +23,7 @@
 <form th:action="@{/editService}" th:object="${service}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <input th:type="hidden" name="id" th:field="*{status}">
+    <input th:type="hidden" name="id" th:field="*{status2}">
     <!--    <input th:type="hidden" name="id" th:field="*{image_id}">-->
     <table>
         <tr>

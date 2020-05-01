@@ -1,125 +1,125 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Service</title>
-</head>
-<body>
-<h1>Create Service</h1>
-<p>
-    <a href="/services">List Services</a>
-</p>
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
-<form th:action="@{create-service}" method="post" th:object="${service}">
-    <!--    <input type="hidden" th:field="*{id}">-->
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" th:field="*{name}"></td>
-        </tr>
-        <tr>
-            <td>AreaUsed:</td>
-            <td><input type="text" th:field="*{areaUsed}"></td>
-        </tr>
-        <tr>
-            <td>Amount:</td>
-            <td><input type="text" th:field="*{amount}"></td>
-        </tr>
-        <tr>
-            <td>Maximum_people:</td>
-            <td><input type="text" th:field="*{maximumPeople}"></td>
-        </tr>
-        <tr>
-            <td>TypeRent:</td>
-            <td><input type="text" th:field="*{typeRent}"></td>
-        </tr>
-        <tr>
-            <td>TypeService:</td>
-            <td>
-                <select th:field="*{typeService}" onchange="change(this)">
-                    <option th:value="Villa" th:text="Villa"></option>
-                    <option th:value="House" th:text="House"></option>
-                    <option th:value="Room" th:text="Room"></option>
-                </select>
-            </td>
-        </tr>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Create Service</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Create Service</h1>-->
+<!--<p>-->
+<!--    <a href="/services">List Services</a>-->
+<!--</p>-->
+<!--<th:block th:if="${message}">-->
+<!--    <p th:text="${message}"></p>-->
+<!--</th:block>-->
+<!--<form th:action="@{create-service}" method="post" th:object="${service}">-->
+<!--    &lt;!&ndash;    <input type="hidden" th:field="*{id}">&ndash;&gt;-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>Name:</td>-->
+<!--            <td><input type="text" th:field="*{name}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>AreaUsed:</td>-->
+<!--            <td><input type="text" th:field="*{areaUsed}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Amount:</td>-->
+<!--            <td><input type="text" th:field="*{amount}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Maximum_people:</td>-->
+<!--            <td><input type="text" th:field="*{maximumPeople}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>TypeRent:</td>-->
+<!--            <td><input type="text" th:field="*{typeRent}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>TypeService:</td>-->
+<!--            <td>-->
+<!--                <select th:field="*{typeService}" onchange="change(this)">-->
+<!--                    <option th:value="Villa" th:text="Villa"></option>-->
+<!--                    <option th:value="House" th:text="House"></option>-->
+<!--                    <option th:value="Room" th:text="Room"></option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
 
-        <tr name="VillaHouse" style="display: block">
-            <td>RoomStandard:</td>
-            <td><input type="text" th:field="*{roomStandard}"></td>
-        </tr >
-        <tr name="VillaHouse" style="display: block">
-            <td>OtherConvenienceDescription:</td>
-            <td><input type="text" th:field="*{otherConvenienceDescription}"></td>
-        </tr>
-        <tr name="VillaHouse" style="display: block">
-            <td>FloorAmount:</td>
-            <td><input type="text" th:field="*{floorAmount}"></td>
-        </tr>
-        <tr name="Villa" style="display: block">
-            <td>PoolArea:</td>
-            <td><input type="text" th:field="*{poolArea}"></td>
-        </tr>
+<!--        <tr name="VillaHouse" style="display: block">-->
+<!--            <td>RoomStandard:</td>-->
+<!--            <td><input type="text" th:field="*{roomStandard}"></td>-->
+<!--        </tr >-->
+<!--        <tr name="VillaHouse" style="display: block">-->
+<!--            <td>OtherConvenienceDescription:</td>-->
+<!--            <td><input type="text" th:field="*{otherConvenienceDescription}"></td>-->
+<!--        </tr>-->
+<!--        <tr name="VillaHouse" style="display: block">-->
+<!--            <td>FloorAmount:</td>-->
+<!--            <td><input type="text" th:field="*{floorAmount}"></td>-->
+<!--        </tr>-->
+<!--        <tr name="Villa" style="display: block">-->
+<!--            <td>PoolArea:</td>-->
+<!--            <td><input type="text" th:field="*{poolArea}"></td>-->
+<!--        </tr>-->
 
 
-        <tr name="Room" style="display: none">
-            <td>FreeAccompanyService:</td>
-            <td><input type="text" th:field="*{freeAccompanyService}"></td>
-        </tr>
+<!--        <tr name="Room" style="display: none">-->
+<!--            <td>FreeAccompanyService:</td>-->
+<!--            <td><input type="text" th:field="*{freeAccompanyService}"></td>-->
+<!--        </tr>-->
 
-        <tr>
-            <td><input type="submit" value="Create Service"></td>
-        </tr>
-    </table>
+<!--        <tr>-->
+<!--            <td><input type="submit" value="Create Service"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
 
-</form>
-<script>
-    function change(obj) {
-        var value=obj.value;
-        if(value==="Villa"){
-            let showVilla=document.getElementsByName("VillaHouse");
-            for(let i=0;i<showVilla.length;i++){
-                showVilla[i].style.display="block";
-            }
-            let showVilla2=document.getElementsByName("Villa");
-            for(let i=0;i<showVilla2.length;i++){
-                showVilla2[i].style.display="block";
-            }
-            let showRoom = document.getElementsByName("Room");
-            for (let i = 0; i < showRoom.length; i++) {
-                showRoom[i].style.display = "none";
-            }
-        }else if (value === "House") {
-            let showVilla=document.getElementsByName("VillaHouse");
-            for(let i=0;i<showVilla.length;i++){
-                showVilla[i].style.display="block";
-            }
-            let showVilla2=document.getElementsByName("Villa");
-            for(let i=0;i<showVilla2.length;i++){
-                showVilla2[i].style.display="none";
-            }
-            let showRoom = document.getElementsByName("Room");
-            for (let i = 0; i < showRoom.length; i++) {
-                showRoom[i].style.display = "none";
-            }
-        } else {
-            let showRoom = document.getElementsByName("Room");
-            for (let i = 0; i < showRoom.length; i++) {
-                showRoom[i].style.display = "block";
-            }
-            let showVilla=document.getElementsByName("VillaHouse");
-            for(let i=0;i<showVilla.length;i++){
-                showVilla[i].style.display="none";
-            }
-            let showVilla2=document.getElementsByName("Villa");
-            for(let i=0;i<showVilla2.length;i++){
-                showVilla2[i].style.display="none";
-            }
-        }
-    }
-</script>
+<!--</form>-->
+<!--<script>-->
+<!--    function change(obj) {-->
+<!--        var value=obj.value;-->
+<!--        if(value==="Villa"){-->
+<!--            let showVilla=document.getElementsByName("VillaHouse");-->
+<!--            for(let i=0;i<showVilla.length;i++){-->
+<!--                showVilla[i].style.display="block";-->
+<!--            }-->
+<!--            let showVilla2=document.getElementsByName("Villa");-->
+<!--            for(let i=0;i<showVilla2.length;i++){-->
+<!--                showVilla2[i].style.display="block";-->
+<!--            }-->
+<!--            let showRoom = document.getElementsByName("Room");-->
+<!--            for (let i = 0; i < showRoom.length; i++) {-->
+<!--                showRoom[i].style.display = "none";-->
+<!--            }-->
+<!--        }else if (value === "House") {-->
+<!--            let showVilla=document.getElementsByName("VillaHouse");-->
+<!--            for(let i=0;i<showVilla.length;i++){-->
+<!--                showVilla[i].style.display="block";-->
+<!--            }-->
+<!--            let showVilla2=document.getElementsByName("Villa");-->
+<!--            for(let i=0;i<showVilla2.length;i++){-->
+<!--                showVilla2[i].style.display="none";-->
+<!--            }-->
+<!--            let showRoom = document.getElementsByName("Room");-->
+<!--            for (let i = 0; i < showRoom.length; i++) {-->
+<!--                showRoom[i].style.display = "none";-->
+<!--            }-->
+<!--        } else {-->
+<!--            let showRoom = document.getElementsByName("Room");-->
+<!--            for (let i = 0; i < showRoom.length; i++) {-->
+<!--                showRoom[i].style.display = "block";-->
+<!--            }-->
+<!--            let showVilla=document.getElementsByName("VillaHouse");-->
+<!--            for(let i=0;i<showVilla.length;i++){-->
+<!--                showVilla[i].style.display="none";-->
+<!--            }-->
+<!--            let showVilla2=document.getElementsByName("Villa");-->
+<!--            for(let i=0;i<showVilla2.length;i++){-->
+<!--                showVilla2[i].style.display="none";-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

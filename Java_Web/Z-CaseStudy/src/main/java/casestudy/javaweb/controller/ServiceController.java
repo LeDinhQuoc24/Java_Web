@@ -48,7 +48,7 @@ public class ServiceController {
         } else {
             services= serviceService.findAll(pageable);
         }
-        return new ModelAndView("service/listService", "services", services);
+        return new ModelAndView("service/listService","services", services);
     }
     @GetMapping("services/{name}")
     public ModelAndView listVilla(@PathVariable("name") String name,@PageableDefault(value=5) Pageable pageable) {

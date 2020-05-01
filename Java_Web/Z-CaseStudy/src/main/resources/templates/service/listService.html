@@ -49,12 +49,13 @@
             <td><a th:href="@{/editService/__${service.id}__ }" style="color: black">Edit</a></td>
             <td><a th:href="@{/deleteService/__${service.id}__ }" style="color: black">Delete</a></td>
             <td><a th:href="@{/viewService/__${service.id}__ }" style="color: black">View</a></td>
-            <td th:id="${service.id}+'Like'" >
+            <td>
                 <a th:href="@{/listLike-add/__${service.id}__ }" style="color: black">Like</a>
             </td>
-            <td th:id="${service.id}+'Unlike'" >
+            <td>
                 <a th:href="@{/listLike-remove/__${service.id}__ }" style="color: red">Unlike</a>
             </td>
+
 <!--            <td th:id="${service.id}+'Like'" >-->
 <!--                <a   th:href="@{/listLike-add/__${service.id}__ }"-->
 <!--                     style="color: black"-->
