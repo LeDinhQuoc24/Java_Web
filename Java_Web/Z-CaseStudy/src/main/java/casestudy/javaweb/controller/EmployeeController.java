@@ -120,6 +120,14 @@ public class EmployeeController {
         redirectAttributes.addFlashAttribute("message"," Employee deleted successfully");
         return "redirect:employees";
     }
+    @GetMapping("deleteAllEmployees")
+    public String deleteAllEmployees(RedirectAttributes redirectAttributes,Pageable pageable) {
+        for (Employee employee : employeeService.findAll(pageable)) {
+            employeeService.remove(employee.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All employees deleted successfully");
+        return "redirect:employees";
+    }
 
     @GetMapping("viewEmployee/{id}")
     public ModelAndView viewEmployee(@PathVariable("id")Long id) {

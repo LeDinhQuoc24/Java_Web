@@ -75,4 +75,12 @@ public class PositionController {
         redirectAttributes.addFlashAttribute("message","Position deleted successfully");
         return "redirect:positions";
     }
+    @GetMapping("deleteAllPositions")
+    public String deleteAllPositions(RedirectAttributes redirectAttributes) {
+        for (Position position : positionService.findAll()) {
+            positionService.remove(position.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All positions deleted successfully");
+        return "redirect:positions";
+    }
 }

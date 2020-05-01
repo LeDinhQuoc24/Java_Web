@@ -1,6 +1,7 @@
 package casestudy.javaweb.controller;
 
 import casestudy.javaweb.persistence.entity.Accompany;
+import casestudy.javaweb.persistence.entity.Service;
 import casestudy.javaweb.persistence.service.AccompanyService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class AccompanyController {
     }
 
     @PostMapping("editAccompany")
-    public ModelAndView updateAccompany(@Validated @ModelAttribute("accompany") Accompany accompany,BindingResult bindingResult) {
+    public ModelAndView updateAccompany(@Validated @ModelAttribute("accompany") Accompany accompany, BindingResult bindingResult) {
         ModelAndView modelAndView;
         if (bindingResult.hasFieldErrors()) {
             modelAndView = new ModelAndView("/accompany/editAccompany");
@@ -82,10 +83,20 @@ public class AccompanyController {
         }
         return new ModelAndView("error.404");
     }
+
     @PostMapping("deleteAccompany")
-    public String deleteAccompany(@ModelAttribute("accompany")Accompany accompany, RedirectAttributes redirectAttributes) {
+    public String deleteAccompany(@ModelAttribute("accompany") Accompany accompany, RedirectAttributes redirectAttributes) {
         accompanyService.remove(accompany.getId());
-        redirectAttributes.addFlashAttribute("message","Accompany deleted successfully");
+        redirectAttributes.addFlashAttribute("message", "Accompany deleted successfully");
+        return "redirect:accompanys";
+    }
+
+    @GetMapping("deleteAllAccompanys")
+    public String deleteAllAccompanys(RedirectAttributes redirectAttributes) {
+        for (Accompany accompany : accompanyService.findAll()) {
+            accompanyService.remove(accompany.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All accompanys deleted successfully");
         return "redirect:accompanys";
     }
 }

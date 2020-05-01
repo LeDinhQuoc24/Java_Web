@@ -1,8 +1,10 @@
 package casestudy.javaweb.controller;
 
+import casestudy.javaweb.persistence.entity.Customer;
 import casestudy.javaweb.persistence.entity.Degree;
 import casestudy.javaweb.persistence.service.DegreeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,6 +73,14 @@ public class DegreeController {
     public String deleteDegree(@ModelAttribute("degree")Degree degree, RedirectAttributes redirectAttributes) {
         degreeService.remove(degree.getId());
         redirectAttributes.addFlashAttribute("message","Degree deleted successfully");
+        return "redirect:degrees";
+    }
+    @GetMapping("deleteAllDegrees")
+    public String deleteAllDegrees(RedirectAttributes redirectAttributes) {
+        for (Degree degree : degreeService.findAll()) {
+            degreeService.remove(degree.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All degrees deleted successfully");
         return "redirect:degrees";
     }
 }

@@ -1,9 +1,11 @@
 package casestudy.javaweb.controller;
 
 
+import casestudy.javaweb.persistence.entity.Customer;
 import casestudy.javaweb.persistence.entity.CustomerType;
 import casestudy.javaweb.persistence.service.CustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -72,6 +74,14 @@ public class CustomerTypeController {
     public String deleteCustomerType(@ModelAttribute("customerType")CustomerType customerType, RedirectAttributes redirectAttributes) {
         customerTypeService.remove(customerType.getId());
         redirectAttributes.addFlashAttribute("message","CustomerType deleted successfully");
+        return "redirect:customerTypes";
+    }
+    @GetMapping("deleteAllCustomerTypes")
+    public String deleteAllCustomerTypes(RedirectAttributes redirectAttributes) {
+        for (CustomerType customerType : customerTypeService.findAll()) {
+            customerTypeService.remove(customerType.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All customerTypes deleted successfully");
         return "redirect:customerTypes";
     }
 }

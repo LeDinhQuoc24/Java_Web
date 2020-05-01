@@ -15,6 +15,8 @@
 
 <a href="/menu" style="color: black">Back to Menu</a>
 <a href="/createService" style="color: black">Create new Service</a>
+    <a href="/deleteAllServices" style="float: right"
+       onclick="return confirm('Are you sure you want to delete all services?')">Delete all services</a>
 <h1>Services</h1>
     <th:block th:if="${message}">
         <p style="color: red" th:text="${message}"></p>

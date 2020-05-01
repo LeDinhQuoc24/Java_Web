@@ -90,6 +90,7 @@ public class ContractController {
             cookie.setPath("/viewHistory");
             response.addCookie(cookie);
 
+
             contractService.save(contract);
             Page<Contract> contracts = contractService.findAll(pageable);
             modelAndView = new ModelAndView("contract/listContract");
@@ -153,6 +154,14 @@ public class ContractController {
     public String deleteContract(@ModelAttribute("contract") Contract contract, RedirectAttributes redirectAttributes) {
         contractService.remove(contract.getId());
         redirectAttributes.addFlashAttribute("message","Contract deleted successfully");
+        return "redirect:contracts";
+    }
+    @GetMapping("deleteAllContracts")
+    public String deleteAllContracts(RedirectAttributes redirectAttributes,Pageable pageable) {
+        for (Contract contract : contractService.findAll(pageable)) {
+            contractService.remove(contract.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All contracts deleted successfully");
         return "redirect:contracts";
     }
 

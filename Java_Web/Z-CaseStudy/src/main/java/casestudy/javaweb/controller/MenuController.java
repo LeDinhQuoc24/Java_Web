@@ -94,6 +94,4 @@ public class MenuController {
         Page<Service> services = serviceService.findAll(pageable);
         return new ModelAndView("service/listService", "services", services);
     }
-
-
 }

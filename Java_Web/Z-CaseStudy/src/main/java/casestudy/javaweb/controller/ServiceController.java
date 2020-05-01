@@ -1,6 +1,7 @@
 package casestudy.javaweb.controller;
 
 
+import casestudy.javaweb.persistence.entity.Customer;
 import casestudy.javaweb.persistence.entity.RentType;
 import casestudy.javaweb.persistence.entity.Service;
 import casestudy.javaweb.persistence.entity.ServiceType;
@@ -127,6 +128,14 @@ public class ServiceController {
     public String deleteService(@ModelAttribute("service") Service service, RedirectAttributes redirectAttributes) {
         serviceService.remove(service.getId());
         redirectAttributes.addFlashAttribute("message","Service deleted successfully");
+        return "redirect:services";
+    }
+    @GetMapping("deleteAllServices")
+    public String deleteAllServices(RedirectAttributes redirectAttributes,Pageable pageable) {
+        for (Service service : serviceService.findAll(pageable)) {
+            serviceService.remove(service.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All services deleted successfully");
         return "redirect:services";
     }
 

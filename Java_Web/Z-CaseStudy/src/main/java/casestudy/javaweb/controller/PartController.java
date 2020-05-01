@@ -1,6 +1,7 @@
 package casestudy.javaweb.controller;
 
 
+import casestudy.javaweb.persistence.entity.Image;
 import casestudy.javaweb.persistence.entity.Part;
 import casestudy.javaweb.persistence.service.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,14 @@ public class PartController {
     public String deletePart(@ModelAttribute("part")Part part, RedirectAttributes redirectAttributes) {
         partService.remove(part.getId());
         redirectAttributes.addFlashAttribute("message","Part deleted successfully");
+        return "redirect:parts";
+    }
+    @GetMapping("deleteAllParts")
+    public String deleteAllParts(RedirectAttributes redirectAttributes) {
+        for (Part part : partService.findAll()) {
+            partService.remove(part.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All parts deleted successfully");
         return "redirect:parts";
     }
 }

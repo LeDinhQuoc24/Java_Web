@@ -125,6 +125,14 @@ public class ContractDetailController {
         redirectAttributes.addFlashAttribute("message","ContractDetail deleted successfully");
         return "redirect:contractDetails";
     }
+    @GetMapping("deleteAllContractDetails")
+    public String deleteAllContractDetails(RedirectAttributes redirectAttributes,Pageable pageable) {
+        for (ContractDetail contractDetail : contractDetailService.findAll(pageable)) {
+            contractDetailService.remove(contractDetail.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All contractDetails deleted successfully");
+        return "redirect:contractDetails";
+    }
 
     @GetMapping("viewContractDetail/{id}")
     public ModelAndView viewContractDetail(@PathVariable("id")Long id) {

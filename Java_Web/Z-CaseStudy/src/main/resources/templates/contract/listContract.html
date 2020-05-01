@@ -15,6 +15,8 @@
 
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/createContract" style="color: black">Create new Contract</a>
+    <a href="/deleteAllContracts" style="float: right"
+       onclick="return confirm('Are you sure you want to delete all contracts?')">Delete all contracts</a>
     <h1>Contracts</h1>
     <th:block th:if="${message}">
         <p style="color: red" th:text="${message}"></p>

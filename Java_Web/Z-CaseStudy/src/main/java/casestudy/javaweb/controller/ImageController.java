@@ -1,5 +1,6 @@
 package casestudy.javaweb.controller;
 
+import casestudy.javaweb.persistence.entity.Degree;
 import casestudy.javaweb.persistence.entity.Image;
 import casestudy.javaweb.persistence.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,14 @@ public class ImageController {
     public String deleteImage(@ModelAttribute("image")Image image, RedirectAttributes redirectAttributes) {
         imageService.remove(image.getId());
         redirectAttributes.addFlashAttribute("message","Image deleted successfully");
+        return "redirect:images";
+    }
+    @GetMapping("deleteAllImages")
+    public String deleteAllImages(RedirectAttributes redirectAttributes) {
+        for (Image image : imageService.findAll()) {
+            imageService.remove(image.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All images deleted successfully");
         return "redirect:images";
     }
 }

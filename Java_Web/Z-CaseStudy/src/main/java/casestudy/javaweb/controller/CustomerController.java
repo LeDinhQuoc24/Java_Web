@@ -1,9 +1,6 @@
 package casestudy.javaweb.controller;
 
-import casestudy.javaweb.persistence.entity.Customer;
-import casestudy.javaweb.persistence.entity.CustomerType;
-import casestudy.javaweb.persistence.entity.Image;
-import casestudy.javaweb.persistence.entity.Service;
+import casestudy.javaweb.persistence.entity.*;
 import casestudy.javaweb.persistence.service.CustomerService;
 import casestudy.javaweb.persistence.service.CustomerTypeService;
 import casestudy.javaweb.persistence.service.ImageService;
@@ -109,6 +106,14 @@ public class CustomerController {
     public String deleteCustomer(@ModelAttribute("customer") Customer customer, RedirectAttributes redirectAttributes) {
         customerService.remove(customer.getId());
         redirectAttributes.addFlashAttribute("message","Customer deleted successfully");
+        return "redirect:customers";
+    }
+    @GetMapping("deleteAllCustomers")
+    public String deleteAllCustomers(RedirectAttributes redirectAttributes,Pageable pageable) {
+        for (Customer customer : customerService.findAll(pageable)) {
+            customerService.remove(customer.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All customers deleted successfully");
         return "redirect:customers";
     }
 

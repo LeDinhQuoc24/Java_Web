@@ -15,6 +15,8 @@
 
     <a href="/menu" style="color: black">Back to Menu</a>
     <a href="/createDegree" style="color: black">Create new Degree</a>
+    <a href="/deleteAllDegrees" style="float: right"
+       onclick="return confirm('Are you sure you want to delete all degrees?')">Delete all degrees</a>
     <h1>Degrees</h1>
     <th:block th:if="${message}">
         <p style="color: red" th:text="${message}"></p>

@@ -1,6 +1,7 @@
 package casestudy.javaweb.controller;
 
 
+import casestudy.javaweb.persistence.entity.Position;
 import casestudy.javaweb.persistence.entity.RentType;
 import casestudy.javaweb.persistence.service.RentTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,14 @@ public class RentTypeController {
     public String deleteRentType(@ModelAttribute("rentType")RentType rentType, RedirectAttributes redirectAttributes) {
         rentTypeService.remove(rentType.getId());
         redirectAttributes.addFlashAttribute("message","RentType deleted successfully");
+        return "redirect:rentTypes";
+    }
+    @GetMapping("deleteAllRentTypes")
+    public String deleteAllRentTypes(RedirectAttributes redirectAttributes) {
+        for (RentType rentType : rentTypeService.findAll()) {
+            rentTypeService.remove(rentType.getId());
+        }
+        redirectAttributes.addFlashAttribute("message", "All rentTypes deleted successfully");
         return "redirect:rentTypes";
     }
 }
