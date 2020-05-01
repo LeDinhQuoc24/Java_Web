@@ -37,6 +37,10 @@ public class MenuController {
     public ModelAndView menu() {
         return new ModelAndView("show/menu");
     }
+    @GetMapping("readme")
+    public ModelAndView readme() {
+        return new ModelAndView("show/readme");
+    }
 
     @GetMapping("search")
     public ModelAndView search() {

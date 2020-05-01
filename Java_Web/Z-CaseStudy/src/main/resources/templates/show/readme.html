@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <Title>Menu</Title>
+</head>
+<body >
+<div th:replace="layout :: title" > </div>
+<div>
+    <div th:replace="layout :: columnLeft" > </div>
+    <div th:fragment="columnMid" class="column middle">
+
+            <center>
+                <h1>Đọc kỹ hướng dẫn sử dụng trước khi xài</h1>
+                <h2 style="color: red">Create Image(Tạo ảnh)</h2>
+                <h4 style="color: red">Customer(Khách hàng)</h4>
+                <p style="color: black">img/imgs/(Tên học viên Code Gym)<br>
+                    Ví dụ: img/imgs/NguyenDinhHoa
+                </p>
+                <h4 style="color: red">Employee(Nhân viên)</h4>
+                <p style="color: black">img/imgs/(Tên TT Code Gym)<br>
+                    Ví dụ: img/imgs/LeVuNguyen
+                <h2 style="color: red">Create Degree(Trình độ)</h2>
+                <h4 style="color: red">Danh sách trình độ</h4>
+                <p style="color: black">
+                    Trung cấp<br>
+                    Cao đẳng<br>
+                    Đại học<br>
+                    Sau đại học<br>
+                </p>
+                <h2 style="color: red">Create Part(Vị trí)</h2>
+                <h4 style="color: red">Danh sách vị trí</h4>
+                <p style="color: black">
+                    Lễ tân<br>
+                    Phục vụ<br>
+                    Chuyên viên<br>
+                    Giám sát<br>
+                    Quản lý<br>
+                    Giám đốc<br>
+                </p>
+                <h2 style="color: red">Create Position(Bộ phận)</h2>
+                <h4 style="color: red">Danh sách bộ phận</h4>
+                <p style="color: black">
+                    Sale-Marketing<br>
+                    Hành chính<br>
+                    Phục vụ<br>
+                    Quản lý<br>
+                </p>
+                <h2 style="color: red">Create Customer Type(Kiểu khách hàng)</h2>
+                <h4 style="color: red">Danh sách kiểu khách hàng</h4>
+                <p style="color: black">
+                    Diamond<br>
+                    Platinium<br>
+                    Gold<br>
+                    Silver<br>
+                    Member<br>
+                </p>
+                <h2 style="color: red">Create Service Type(Kiểu dịch vụ)</h2>
+                <h4 style="color: red">Danh sách kiểu dịch vụ</h4>
+                <p style="color: black">
+                    Villa<br>
+                    House<br>
+                    Room<br>
+                </p>
+                <h2 style="color: red">Create Rent Type(Kiểu thuê)</h2>
+                <h4 style="color: red">Danh sách thuê</h4>
+                <p style="color: black">
+                    ByDay<br>
+                    ByMonth<br>
+                    ByYear<br>
+                </p>
+
+                <h2 style="color: red">Create Accompanys(Dịch vụ kèm theo)</h2>
+                <h4 style="color: red">Tùy chọn</h4>
+
+                <h2 style="color: red">Các chức năng khác</h2>
+
+                <h4 style="color: red">Home->Giao diện chính</h4>
+                <h4 style="color: red">Image->Danh sách ảnh</h4>
+                <h4 style="color: red">Search->Tìm kiếm nhanh</h4>
+                <h4 style="color: red">ListLike->Danh sách dịch vụ yêu thích</h4>
+                <h4 style="color: red">History->Lịch sử đăng ký hợp đồng</h4>
+                <h4 style="color: red">Readme->Hướng dẫn sử dụng</h4>
+                <h4 style="color: red">Contract->Danh sách hợp đồng</h4>
+                <h4 style="color: red">ContractDetail->Danh sách hợp đồng chi tiết</h4>
+
+
+            </center>
+
+
+    </div>
+    <div th:replace="layout :: columnRight" > </div>
+</div>
+
+
+<!--<div th:insert="layout :: footer" class="footer"> </div>-->
+
+<!--<div th:fragment="footer" class="footer">-->
+<!--    <p>VnNhnLm 4/2020 C0120G1</p>-->
+
+<!--</div>-->
+
+
+</body>
+</html>
+
+
