@@ -26,7 +26,6 @@ import static java.lang.Long.parseLong;
 public class MenuController {
     @Autowired
     private ServiceService serviceService;
-
     @ModelAttribute("listLike")
     public ListLike setUpForm() {
         return new ListLike();
@@ -87,6 +86,17 @@ public class MenuController {
         }
         redirectAttributes.addFlashAttribute("message", "Please like this service first");
         return "redirect:/services2";
+    }
+    @GetMapping("listLike-remove2/{id}")
+    public ModelAndView removeListLike2(@PathVariable("id") Long id, @ModelAttribute("listLike") ListLike listLike) {
+        List<Service> services = listLike.getServiceList();
+        for (Service service1 : services) {
+            if (service1.getId() == id) {
+                listLike.removeFromListLike(id);
+                return new ModelAndView("listLike","message","Remove successfully");
+            }
+        }
+        return new ModelAndView("listLike","message","Not fault");
     }
 
     @GetMapping("/services2")

@@ -50,15 +50,21 @@
             <td><a th:href="@{/deleteService/__${service.id}__ }" style="color: black">Delete</a></td>
             <td><a th:href="@{/viewService/__${service.id}__ }" style="color: black">View</a></td>
             <td th:id="${service.id}+'Like'" >
-                <a   th:href="@{/listLike-add/__${service.id}__ }"
-                     style="color: black"
-                     th:onclick="'listLike('+${service.id}+'Like',+${service.id}+'UnLike'+')'">Like</a>
+                <a th:href="@{/listLike-add/__${service.id}__ }" style="color: black">Like</a>
             </td>
             <td th:id="${service.id}+'Unlike'" >
-                <a  th:href="@{/listLike-remove/__${service.id}__ }"
-                    style="color: red"
-                    th:onclick="'listLike('+${service.id}+'UnLike',+${service.id}+'Like'+')'">Unlike</a>
+                <a th:href="@{/listLike-remove/__${service.id}__ }" style="color: red">Unlike</a>
             </td>
+<!--            <td th:id="${service.id}+'Like'" >-->
+<!--                <a   th:href="@{/listLike-add/__${service.id}__ }"-->
+<!--                     style="color: black"-->
+<!--                     th:onclick="'listLike('+${service.id}+'Like',+${service.id}+'UnLike'+')'">Like</a>-->
+<!--            </td>-->
+<!--            <td th:id="${service.id}+'Unlike'" >-->
+<!--                <a  th:href="@{/listLike-remove/__${service.id}__ }"-->
+<!--                    style="color: red"-->
+<!--                    th:onclick="'listLike('+${service.id}+'UnLike',+${service.id}+'Like'+')'">Unlike</a>-->
+<!--            </td>-->
         </tr>
 <!--        style="display: none;"-->
     </th:block>
@@ -74,9 +80,9 @@
 
 </body>
 </html>
-<script>
-    function listLike(id1,id2) {
-        document.getElementById(id1).style.display = "none";
-        document.getElementById(id2).style.display = "block";
-    }
-</script>
+<!--<script>-->
+<!--    function listLike(id1,id2) {-->
+<!--        document.getElementById(id1).style.display = "none";-->
+<!--        document.getElementById(id2).style.display = "block";-->
+<!--    }-->
+<!--</script>-->

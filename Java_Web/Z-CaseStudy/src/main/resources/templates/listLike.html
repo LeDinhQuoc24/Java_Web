@@ -24,15 +24,19 @@
                 <th>Status</th>
                 <th>RentType</th>
                 <th>ServiceType</th>
+                <th>Remove</th>
             </tr>
 
-            <th:block th:each="services : ${listLike.serviceList}">
+            <th:block th:each="service : ${listLike.serviceList}">
                 <tr>
-                    <td th:text="${services.name}"></td>
-                    <td th:text="${services.codeService}"></td>
-                    <td th:text="${services.status}"></td>
-                    <td th:text="${services.rentType.name}"></td>
-                    <td th:text="${services.serviceType.name}"></td>
+                    <td th:text="${service.name}"></td>
+                    <td th:text="${service.codeService}"></td>
+                    <td th:text="${service.status}"></td>
+                    <td th:text="${service.rentType.name}"></td>
+                    <td th:text="${service.serviceType.name}"></td>
+                    <td th:id="${service.id}+'Unlike'" >
+                        <a th:href="@{/listLike-remove2/__${service.id}__ }" style="color: red">Unlike</a>
+                    </td>
 
                 </tr>
             </th:block>
