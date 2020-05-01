@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -83,8 +84,7 @@ public class ContractController {
             serviceService.save(service);
             contract.setTotalPay(0);
 
-            setHistory = "hello";
-//                    contract.getBeginDate() + "," + contract.getEndDate() + "," + contract.getService().getName();
+            setHistory = contract.getContractNumber()+contract.getService().getName();
             Cookie cookie = new Cookie("setHistory", setHistory);
             cookie.setMaxAge(24 * 60 * 60);
             cookie.setPath("/viewHistory");
