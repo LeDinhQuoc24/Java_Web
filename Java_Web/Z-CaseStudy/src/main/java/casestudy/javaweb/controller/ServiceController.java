@@ -1,10 +1,7 @@
 package casestudy.javaweb.controller;
 
 
-import casestudy.javaweb.persistence.entity.Customer;
-import casestudy.javaweb.persistence.entity.RentType;
-import casestudy.javaweb.persistence.entity.Service;
-import casestudy.javaweb.persistence.entity.ServiceType;
+import casestudy.javaweb.persistence.entity.*;
 import casestudy.javaweb.persistence.service.RentTypeService;
 import casestudy.javaweb.persistence.service.ServiceService;
 import casestudy.javaweb.persistence.service.ServiceTypeService;
@@ -30,6 +27,10 @@ public class ServiceController {
     private ServiceTypeService serviceTypeService;
     @Autowired
     private RentTypeService rentTypeService;
+    @ModelAttribute("listLike")
+    public ListLike setUpForm() {
+        return new ListLike();
+    }
 
     @ModelAttribute("rentTypes")
     public List<RentType> rentTypes() {
@@ -42,6 +43,7 @@ public class ServiceController {
 
     @GetMapping("services")
     public ModelAndView listService(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
+
         Page<Service> services;
         if (s.isPresent()) {
             services = serviceService.findByNameContaining(s.get(),pageable);

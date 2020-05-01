@@ -36,7 +36,7 @@
         <th>Status</th>
         <th>RentType</th>
         <th>ServiceType</th>
-        <th colspan="4">Action</th>
+        <th colspan="5">Action</th>
     </tr>
 
     <th:block th:each="service : ${services}">
@@ -55,19 +55,8 @@
             <td>
                 <a th:href="@{/listLike-remove/__${service.id}__ }" style="color: red">Unlike</a>
             </td>
-
-<!--            <td th:id="${service.id}+'Like'" >-->
-<!--                <a   th:href="@{/listLike-add/__${service.id}__ }"-->
-<!--                     style="color: black"-->
-<!--                     th:onclick="'listLike('+${service.id}+'Like',+${service.id}+'UnLike'+')'">Like</a>-->
-<!--            </td>-->
-<!--            <td th:id="${service.id}+'Unlike'" >-->
-<!--                <a  th:href="@{/listLike-remove/__${service.id}__ }"-->
-<!--                    style="color: red"-->
-<!--                    th:onclick="'listLike('+${service.id}+'UnLike',+${service.id}+'Like'+')'">Unlike</a>-->
-<!--            </td>-->
         </tr>
-<!--        style="display: none;"-->
+
     </th:block>
 </table>
 <div>
