@@ -1,0 +1,260 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <title>Thiết kế Layout - Bố cục website trong CSS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 10px;
+            background-image: url("../img/mylove.jpg");
+
+        }
+
+
+
+        /* Header/Blog Title ------------------------------------------------------------------------*/
+        .header {
+            padding: 10px;
+            text-align: center;
+            background-image: url("../img/girl.jpg");
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 40px;
+        }
+
+        .header p {
+            font-size: 20px;
+        }
+
+        /* Style the top navigation bar ------------------------------------------------------------------------*/
+        .topnav {
+            overflow: hidden;
+            background-color: black;
+        }
+
+        /* Định dạng link điều hướng */
+        .topnav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Thay đổi màu liên kết khi di chuột qua */
+        .topnav :hover {
+            background-color: dimgrey;
+            color: blueviolet;
+        }
+
+        .column {
+            float: left;
+            color: black;
+
+        }
+        .column a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 1px 1px;
+            text-decoration: none;
+        }
+
+        /* Left and right column */
+        .column.left {
+            width: 18%;
+
+        }
+        .column.right {
+            width: 14%;
+        }
+
+
+        /* Middle column */
+        .column.middle {
+            width: 68%;
+            background-image: url("../img/love2.png");
+
+
+        }
+        .column a:hover {
+            background-color: dimgrey;
+            color: white;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .column.left, .column.middle,.column.right {
+                width:100%;
+            }
+        }
+
+        /* Style the footer */
+        .footer {
+
+            background-image: url("../img/banner1.jpg");
+            padding: 5px;
+            text-align: center;
+            color: white;
+
+        }
+        table, th, td{
+            border:1px solid #ccc;
+        }
+        table{
+            border-collapse:collapse;
+            width:80%;
+        }
+        th, td{
+            text-align:left;
+            padding:4px;
+        }
+        tr:hover{
+            background-color:#ddd;
+            cursor:pointer;
+        }
+
+    </style>
+
+
+</head>
+<body >
+<!--Tiêu đề-->
+<div th:fragment="title">
+    <div class="header" >
+        <img  src="../img/logo.png" height="50" align="left"/>
+        <font face="VNI-HLThuphap">
+        <h1>Bai Thi Cuoi Ky </h1>
+        <p>Module2-LeDinhQuoc-C0120G1</p>
+        </font>
+    </div>
+    <div class="topnav">
+        <font face="VNI-HLThuphap">
+        <a href="#">Home</a>
+        <a href="#">Image</a>
+        <a href="#">Search</a>
+            <a href="#">ListLike</a>
+            <a href="#">History</a>
+        <a href="#">ReadMe</a>
+        <a href="#" style="float:right">Register</a>
+        <a href="#" style="float:right">Login</a>
+        </font>
+    </div>
+</div>
+
+<!--Cột trái-->
+<div th:fragment="columnLeft" class="column left" >
+
+    <font face="VNI-HLThuphap">
+        <table >
+
+            <tr>
+                <th ><a href="#" style="color: black">Service</a></th>
+            </tr>
+            <tr>
+                <th ><a href="#" style="color: black">Villa</a></th>
+            </tr>
+            <tr>
+                <th ><a href="#" style="color: black">House</a></th>
+            </tr>
+            <tr>
+                <th ><a href="#" style="color: black">Room</a></th>
+            </tr>
+            <tr>
+                <th ><a href="#" style="color: black">Customer</a></th>
+            </tr>
+            <tr>
+                <th ><a href="#" style="color: black">Employee</a></th>
+            </tr>
+            <tr>
+                <th ><a href="#" style="color: black">Contract</a></th>
+            </tr>
+            <tr>
+                <th ><a href="#" style="color: black">ContractDetail</a></th>
+            </tr>
+
+
+        </table>
+    </font>
+
+
+</div>
+
+<!--Cột giữa-->
+<div th:fragment="columnMid" class="column middle">
+    <font face="VNI-HLThuphap">
+    <center>
+        <h2>Welcome to VnNhnLm 's Exam</h2>
+        <h1 style="color: red">Bi Ngan Hoa</h1>
+        <p style="color: red" >
+        Hoa no ngan nam hoa bi ngan<br>
+        Hoang tuyen huyet nhuom noi bi thuong<br>
+        Vo hoa huu diep vo tuong ngo<br>
+        Van kiep luan hoi van kiep vuong<br>
+            ...<br>
+
+
+        </p>
+    </center>
+    </font>
+
+</div>
+
+
+<!--Cột phải-->
+<div th:fragment="columnRight" class="column right">
+    <center>
+    <font face="VNI-HLThuphap">
+        <table>
+            <tr>
+                <th><a href="#" style="color: black" >Degree</a></th>
+            </tr>
+            <tr>
+                <th><a href="#" style="color: black">Part</a></th>
+            </tr>
+            <tr>
+                <th><a href="#" style="color: black">Position</a></th>
+            </tr>
+            <tr>
+                <th><a href="#" style="color: black">Cu.Type</a></th>
+            </tr>
+            <tr>
+                <th><a href="#" style="color: black">Se.Type</a></th>
+            </tr>
+            <tr>
+                <th><a href="#" style="color: black">Re.Type</a></th>
+            </tr>
+            <tr>
+                <th><a href="#" style="color: black">Accompany</a></th>
+            </tr>
+        </table>
+    </font>
+    </center>
+
+</div>
+
+<!--Footer-->
+<div th:fragment="footer" class="footer">
+    <p>VnNhnLm 4/2020 C0120G1</p>
+
+</div>
+
+
+</body>
+</html>
