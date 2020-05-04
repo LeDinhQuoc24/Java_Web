@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <Title>Menu</Title>
+</head>
+<body >
+<div th:replace="layout :: title" > </div>
+<div>
+    <div th:replace="layout :: columnLeft" > </div>
+    <div th:fragment="columnMid" class="column middle">
+
+            <center>
+                <h1>Đọc kỹ hướng dẫn sử dụng trước khi xài</h1>
+                <h2 style="color: red">Create Image(Tạo ảnh)</h2>
+                <h4 style="color: red">Employee(Nhân viên)</h4>
+                <p style="color: black">img/imgs/(Tên học viên Code Gym)<br>
+                    Ví dụ: img/imgs/NguyenDinhHoa
+                </p>
+
+                <h2 style="color: red">Create Employee(Nhân viên)</h2>
+                <h4 style="color: red">Mã nhân viên</h4>
+                <p style="color: black">
+                    Mã nhân viên có định dạng là NV-XXXX (X là số từ 0-9)
+                </p>
+
+                <h4 style="color: red">Nhóm nhân viên</h4>
+                <p style="color: black">
+                    Nhóm nhân viên đúng định dạng A/B/C
+                </p>
+
+                <h4 style="color: red">Số điện thoại</h4>
+                <p style="color: black">
+                    Số điện thoại có 10 số,bắt đầu bằng 090/091
+                </p>
+
+                <h2 style="color: red">Các chức năng khác</h2>
+
+                <h4 style="color: red">Home->Giao diện chính</h4>
+                <h4 style="color: red">Image->Danh sách ảnh</h4>
+                <h4 style="color: red">Search->Tìm kiếm nhanh</h4>
+                <h4 style="color: red">Readme->Hướng dẫn sử dụng</h4>
+                <h4 style="color: red">Employee->Danh sách nhân viên</h4>
+
+
+            </center>
+
+
+    </div>
+    <div th:replace="layout :: columnRight" > </div>
+</div>
+
+
+<!--<div th:insert="layout :: footer" class="footer"> </div>-->
+
+<!--<div th:fragment="footer" class="footer">-->
+<!--    <p>VnNhnLm 4/2020 C0120G1</p>-->
+
+<!--</div>-->
+
+
+</body>
+</html>
+
+

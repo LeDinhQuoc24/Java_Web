@@ -11,5 +11,14 @@ public class MenuController {
     public ModelAndView menu() {
         return new ModelAndView("menu/menu");
     }
+    @GetMapping("readme")
+    public ModelAndView readme() {
+        return new ModelAndView("menu/readme");
+    }
+
+    @GetMapping("search")
+    public ModelAndView search() {
+        return new ModelAndView("menu/search");
+    }
 
 }

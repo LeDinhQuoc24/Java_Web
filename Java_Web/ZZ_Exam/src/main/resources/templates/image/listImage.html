@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Image List</title>
+</head>
+<body>
+
+<div th:replace="layout :: title"> </div>
+<div th:replace="layout :: columnLeft"> </div>
+
+
+<div class="column middle">
+
+    <a href="/menu" style="color: black">Back to Menu</a>
+    <a href="/createImage" style="color: black">Create new Image</a>
+    <a href="/deleteAllImages" style="float: right"
+       onclick="return confirm('Are you sure you want to delete all images?')">Delete all images</a>
+    <h1>Images</h1>
+    <th:block th:if="${message}">
+        <p style="color: red" th:text="${message}"></p>
+    </th:block>
+    <center>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th colspan="2">Action</th>
+        </tr>
+
+        <th:block th:each="image : ${images}">
+            <tr>
+                <td th:text="${image.name}"></td>
+                <td><img height="50" th:src="@{'../'+${image.image_url}}"></td>
+
+                <td><a th:href="@{/editImage/__${image.id}__ }" style="color: black">Edit</a></td>
+                <td><a th:href="@{/deleteImage/__${image.id}__ }" style="color: black">Delete</a></td>
+
+            </tr>
+        </th:block>
+    </table>
+        </center>
+
+</div>
+<div th:replace="layout :: columnRight"> </div>
+
+</body>
+</html>

@@ -1,8 +1,5 @@
-package casestudy.javaweb.controller;
+package vnnhnlm.exam.controller;
 
-
-import casestudy.javaweb.persistence.entity.*;
-import casestudy.javaweb.persistence.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +10,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import vnnhnlm.exam.persistence.entity.Employee;
+import vnnhnlm.exam.persistence.entity.Image;
+import vnnhnlm.exam.persistence.service.EmployeeService;
+import vnnhnlm.exam.persistence.service.ImageService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,29 +25,13 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @Autowired
     private ImageService imageService;
-    @Autowired
-    private DegreeService degreeService;
-    @Autowired
-    private PartService partService;
-    @Autowired
-    private PositionService positionService;
 
     @ModelAttribute("images")
     public List<Image> images() {
-        return imageService.findByTypeContaining("Employee");
+        return imageService.findAll();
     }
-    @ModelAttribute("degrees")
-    public List<Degree> degrees() {
-        return degreeService.findAll();
-    }
-    @ModelAttribute("parts")
-    public List<Part> parts() {
-        return partService.findAll();
-    }
-    @ModelAttribute("positions")
-    public List<Position> positions() {
-        return positionService.findAll();
-    }
+
+
 
     @GetMapping("employees")
     public ModelAndView listEmployee(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
@@ -57,12 +43,40 @@ public class EmployeeController {
         }
         return new ModelAndView("employee/listEmployee", "employees", employees);
     }
-
+    @GetMapping("employees/codeEmployee")
+    public ModelAndView listEmployee1(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
+        Page<Employee> employees;
+        if (s.isPresent()) {
+            employees = employeeService.findByCodeEmployeeContaining(s.get(), pageable);
+        } else {
+            employees = employeeService.findAll(pageable);
+        }
+        return new ModelAndView("employee/listEmployee", "employees", employees);
+    }
+    @GetMapping("employees/idNumber")
+    public ModelAndView listEmployee2(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
+        Page<Employee> employees;
+        if (s.isPresent()) {
+            employees = employeeService.findByIdNumberContaining(s.get(), pageable);
+        } else {
+            employees = employeeService.findAll(pageable);
+        }
+        return new ModelAndView("employee/listEmployee", "employees", employees);
+    }
+//    @GetMapping("employees/birth")
+//    public ModelAndView listEmployee3(@RequestParam("s") Optional<String> s, @PageableDefault(value = 5) Pageable pageable) {
+//        Page<Employee> employees;
+//        if (s.isPresent()) {
+//            employees = employeeService.findByBirthContaining((Date)s.get(), pageable);
+//        } else {
+//            employees = employeeService.findAll(pageable);
+//        }
+//        return new ModelAndView("employee/listEmployee", "employees", employees);
+//    }
     @GetMapping("createEmployee")
     public ModelAndView showFormCreate() {
         return new ModelAndView("employee/createEmployee", "employee", new Employee());
     }
-
     @PostMapping("createEmployee")
     public ModelAndView saveEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult bindingResult, Pageable pageable) {
         ModelAndView modelAndView;
@@ -78,7 +92,6 @@ public class EmployeeController {
         }
         return modelAndView;
     }
-
     @GetMapping("editEmployee/{id}")
     public ModelAndView showFormEdit(@PathVariable("id") Long id) {
         Employee employee = employeeService.findById(id);
@@ -87,7 +100,6 @@ public class EmployeeController {
         }
         return new ModelAndView("error.404");
     }
-
     @PostMapping("editEmployee")
     public ModelAndView updateCustomer(@Validated @ModelAttribute("employee") Employee employee,BindingResult bindingResult, Pageable pageable) {
         ModelAndView modelAndView;
@@ -101,10 +113,8 @@ public class EmployeeController {
             modelAndView.addObject("message", "Employee updated successfully");
             modelAndView.addObject("employees", employees);
         }
-
         return modelAndView;
     }
-
     @GetMapping("deleteEmployee/{id}")
     public ModelAndView showFormDelete(@PathVariable("id") Long id) {
         Employee employee = employeeService.findById(id);
@@ -128,7 +138,6 @@ public class EmployeeController {
         redirectAttributes.addFlashAttribute("message", "All employees deleted successfully");
         return "redirect:employees";
     }
-
     @GetMapping("viewEmployee/{id}")
     public ModelAndView viewEmployee(@PathVariable("id")Long id) {
         Employee employee=employeeService.findById(id);
@@ -137,5 +146,9 @@ public class EmployeeController {
         }
         return new ModelAndView("error.404");
     }
+
+
+
+
 
 }
